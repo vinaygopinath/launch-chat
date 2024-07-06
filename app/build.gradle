@@ -4,6 +4,7 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     id 'com.google.devtools.ksp'
     id 'com.google.dagger.hilt.android'
+    id 'androidx.room'
 }
 
 android {
@@ -44,6 +45,10 @@ android {
     defaultConfig {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
+    room {
+        schemaDirectory "$projectDir/schemas"
+    }
+
     namespace 'org.vinaygopinath.launchchat'
 }
 
@@ -64,11 +69,18 @@ dependencies {
     implementation(libs.libphonenumber)
     implementation(libs.vcard4android)
 
+    implementation(libs.room.kotlin)
+    implementation(libs.room.runtime)
+    implementation(libs.room.paging)
+    annotationProcessor(libs.room.compiler)
+    ksp(libs.room.compiler)
+
     testImplementation(libs.junit)
     testImplementation(libs.robolectric)
     testImplementation(libs.test.core)
     testImplementation(libs.truth)
     testImplementation(libs.mockito)
+    testImplementation(libs.room.testing)
 
     androidTestImplementation(libs.bundles.test)
     androidTestImplementation(libs.bundles.espresso)

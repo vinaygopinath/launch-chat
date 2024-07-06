@@ -4,6 +4,7 @@ espresso = "3.5.1"
 hilt = "2.51.1"
 kotlin = "2.0.0"
 ksp = "2.0.0-1.0.22"
+room = "2.6.1"
 vcard4android = "03a37a8"
 
 [libraries]
@@ -17,8 +18,8 @@ test-core = { module = "androidx.test:core", version.ref = "androidx_test" }
 test-runner = { module = "androidx.test:runner", version.ref = "androidx_test" }
 test-rules = { module = "androidx.test:rules", version.ref = "androidx_test" }
 
-espresso-core = { module = "androidx.test.espresso:espresso-core", version.ref = "espresso"}
-espresso-intents = { module = "androidx.test.espresso:espresso-intents", version.ref = "espresso"}
+espresso-core = { module = "androidx.test.espresso:espresso-core", version.ref = "espresso" }
+espresso-intents = { module = "androidx.test.espresso:espresso-intents", version.ref = "espresso" }
 
 libphonenumber = { module = "io.michaelrocks:libphonenumber-android", version = "8.13.35" }
 junit = { module = "junit:junit", version = "4.13.2" }
@@ -32,6 +33,12 @@ material = { module = "com.google.android.material:material", version = "1.12.0"
 vcard4android = { module = "com.github.bitfireAT:vcard4android", version.ref = "vcard4android" }
 desugarjdklibs = { module = "com.android.tools:desugar_jdk_libs", version = "2.0.4" }
 
+room-kotlin = { module = "androidx.room:room-ktx", version.ref = "room" }
+room-runtime = { module = "androidx.room:room-runtime", version.ref = "room" }
+room-compiler = { module = "androidx.room:room-compiler", version.ref = "room" }
+room-paging = { module = "androidx.room:room-paging", version.ref = "room" }
+room-testing = { module = "androidx.room:room-testing", version.ref = "room" }
+
 [bundles]
 test = ["test-core", "test-runner", "test-rules"]
 espresso = ["espresso-core", "espresso-intents"]
@@ -40,3 +47,4 @@ espresso = ["espresso-core", "espresso-intents"]
 hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 kotlin = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+room = { id = "androidx.room", version.ref = "room" }
