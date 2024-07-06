@@ -17,6 +17,7 @@ import org.mockito.kotlin.mock
 import org.mockito.kotlin.spy
 import org.mockito.kotlin.whenever
 import org.robolectric.RobolectricTestRunner
+import org.vinaygopinath.launchchat.models.ContentSource
 import java.io.ByteArrayInputStream
 import java.io.ByteArrayOutputStream
 
@@ -69,7 +70,7 @@ class ProcessIntentUseCaseTest {
         }
         assertThat(useCase.execute(intent, contentResolver)).isEqualTo(
             ProcessIntentUseCase.ExtractedContent.Result(
-                source = ProcessIntentUseCase.ExtractedContent.ContentSource.TEL,
+                source = ContentSource.TEL,
                 phoneNumbers = listOf(phoneNumber),
                 rawContent = uri
             )
@@ -88,7 +89,7 @@ class ProcessIntentUseCaseTest {
         }
         assertThat(useCase.execute(intent, contentResolver)).isEqualTo(
             ProcessIntentUseCase.ExtractedContent.Result(
-                source = ProcessIntentUseCase.ExtractedContent.ContentSource.SMS,
+                source = ContentSource.SMS,
                 phoneNumbers = listOf(phoneNumber),
                 rawContent = uri,
                 message = message
@@ -108,7 +109,7 @@ class ProcessIntentUseCaseTest {
         }
         assertThat(useCase.execute(intent, contentResolver)).isEqualTo(
             ProcessIntentUseCase.ExtractedContent.Result(
-                source = ProcessIntentUseCase.ExtractedContent.ContentSource.SMS,
+                source = ContentSource.SMS,
                 phoneNumbers = listOf(phoneNumber),
                 rawContent = uri,
                 message = message
@@ -128,7 +129,7 @@ class ProcessIntentUseCaseTest {
         }
         assertThat(useCase.execute(intent, contentResolver)).isEqualTo(
             ProcessIntentUseCase.ExtractedContent.Result(
-                source = ProcessIntentUseCase.ExtractedContent.ContentSource.MMS,
+                source = ContentSource.MMS,
                 phoneNumbers = listOf(phoneNumber),
                 rawContent = uri,
                 message = message
@@ -148,7 +149,7 @@ class ProcessIntentUseCaseTest {
         }
         assertThat(useCase.execute(intent, contentResolver)).isEqualTo(
             ProcessIntentUseCase.ExtractedContent.Result(
-                source = ProcessIntentUseCase.ExtractedContent.ContentSource.MMS,
+                source = ContentSource.MMS,
                 phoneNumbers = listOf(phoneNumber),
                 rawContent = uri,
                 message = message
@@ -168,7 +169,7 @@ class ProcessIntentUseCaseTest {
 
         assertThat(useCase.execute(intent, contentResolver)).isEqualTo(
             ProcessIntentUseCase.ExtractedContent.PossibleResult(
-                source = ProcessIntentUseCase.ExtractedContent.ContentSource.UNKNOWN,
+                source = ContentSource.UNKNOWN,
                 rawInputText = dataString,
                 rawContent = uri
             )
@@ -199,7 +200,7 @@ class ProcessIntentUseCaseTest {
         }
         assertThat(useCase.execute(intent, contentResolver)).isEqualTo(
             ProcessIntentUseCase.ExtractedContent.Result(
-                source = ProcessIntentUseCase.ExtractedContent.ContentSource.TEXT_SHARE,
+                source = ContentSource.TEXT_SHARE,
                 phoneNumbers = listOf(phoneNumber),
                 rawContent = uri
             )
@@ -219,7 +220,7 @@ class ProcessIntentUseCaseTest {
 
         assertThat(useCase.execute(intent, contentResolver)).isEqualTo(
             ProcessIntentUseCase.ExtractedContent.Result(
-                source = ProcessIntentUseCase.ExtractedContent.ContentSource.TEXT_SHARE,
+                source = ContentSource.TEXT_SHARE,
                 phoneNumbers = listOf(phoneNumber),
                 rawContent = uri,
                 message = message
@@ -240,7 +241,7 @@ class ProcessIntentUseCaseTest {
 
         assertThat(useCase.execute(intent, contentResolver)).isEqualTo(
             ProcessIntentUseCase.ExtractedContent.Result(
-                source = ProcessIntentUseCase.ExtractedContent.ContentSource.TEXT_SHARE,
+                source = ContentSource.TEXT_SHARE,
                 phoneNumbers = listOf(phoneNumber),
                 rawContent = uri,
                 message = message
@@ -261,7 +262,7 @@ class ProcessIntentUseCaseTest {
 
         assertThat(useCase.execute(intent, contentResolver)).isEqualTo(
             ProcessIntentUseCase.ExtractedContent.Result(
-                source = ProcessIntentUseCase.ExtractedContent.ContentSource.TEXT_SHARE,
+                source = ContentSource.TEXT_SHARE,
                 phoneNumbers = listOf(phoneNumber),
                 rawContent = uri,
                 message = message
@@ -282,7 +283,7 @@ class ProcessIntentUseCaseTest {
 
         assertThat(useCase.execute(intent, contentResolver)).isEqualTo(
             ProcessIntentUseCase.ExtractedContent.Result(
-                source = ProcessIntentUseCase.ExtractedContent.ContentSource.TEXT_SHARE,
+                source = ContentSource.TEXT_SHARE,
                 phoneNumbers = listOf(phoneNumber),
                 rawContent = uri,
                 message = message
@@ -302,7 +303,7 @@ class ProcessIntentUseCaseTest {
 
         assertThat(useCase.execute(intent, contentResolver)).isEqualTo(
             ProcessIntentUseCase.ExtractedContent.PossibleResult(
-                source = ProcessIntentUseCase.ExtractedContent.ContentSource.TEXT_SHARE,
+                source = ContentSource.TEXT_SHARE,
                 rawInputText = clipboardString,
                 rawContent = uri
             )
@@ -333,7 +334,7 @@ class ProcessIntentUseCaseTest {
 
         assertThat(useCase.execute(intent, contentResolver)).isEqualTo(
             ProcessIntentUseCase.ExtractedContent.Result(
-                source = ProcessIntentUseCase.ExtractedContent.ContentSource.CONTACT_FILE,
+                source = ContentSource.CONTACT_FILE,
                 phoneNumbers = listOf(phoneNumber1, phoneNumber2),
                 rawContent = uri.toString()
             )
