@@ -5,14 +5,20 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Build
 import at.bitfire.vcard4android.Contact
+import org.vinaygopinath.launchchat.models.Activity
 import org.vinaygopinath.launchchat.models.ContentSource
+import org.vinaygopinath.launchchat.repositories.ActivityRepository
+import org.vinaygopinath.launchchat.utils.DateUtils
 import java.io.BufferedReader
 import java.io.InputStreamReader
 import javax.inject.Inject
 
-class ProcessIntentUseCase @Inject constructor() {
+class ProcessIntentUseCase @Inject constructor(
+    private val activityRepository: ActivityRepository,
+    private val dateUtils: DateUtils
+) {
 
-    fun execute(intent: Intent?, contentResolver: ContentResolver): ExtractedContent {
+    suspend fun execute(intent: Intent?, contentResolver: ContentResolver): ExtractedContent {
         return when {
             intent == null || !INTERESTED_ACTIONS.contains(intent.action) -> ExtractedContent.NoContentFound
             intent.action == Intent.ACTION_VIEW -> processViewIntent(intent)
@@ -27,6 +33,26 @@ class ProcessIntentUseCase @Inject constructor() {
                 rawInputText = intent.dataString?.trim(),
                 rawContent = intent.toUri(0)
             )
+        }.also { extractedContent ->
+            if (extractedContent is ExtractedContent.PossibleResult) {
+                activityRepository.create(
+                    Activity(
+                        content = extractedContent.rawInputText ?: "",
+                        source = extractedContent.source,
+                        message = null,
+                        occurredAt = dateUtils.getCurrentInstant()
+                    )
+                )
+            } else if (extractedContent is ExtractedContent.Result) {
+                activityRepository.create(
+                    Activity(
+                        content = extractedContent.phoneNumbers.joinToString("\n"),
+                        source = extractedContent.source,
+                        message = extractedContent.message,
+                        occurredAt = dateUtils.getCurrentInstant()
+                    )
+                )
+            }
         }
     }
 
