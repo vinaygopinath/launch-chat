@@ -3,6 +3,7 @@ androidx_test = "1.6.1"
 espresso = "3.5.1"
 hilt = "2.51.1"
 kotlin = "2.0.0"
+lifecycle = "2.8.3"
 ksp = "2.0.0-1.0.22"
 room = "2.6.1"
 vcard4android = "03a37a8"
@@ -38,6 +39,9 @@ room-runtime = { module = "androidx.room:room-runtime", version.ref = "room" }
 room-compiler = { module = "androidx.room:room-compiler", version.ref = "room" }
 room-paging = { module = "androidx.room:room-paging", version.ref = "room" }
 room-testing = { module = "androidx.room:room-testing", version.ref = "room" }
+
+lifecycle-viewmodel = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "lifecycle" }
+lifecycle-compiler = { module = "androidx.lifecycle:lifecycle-compiler", version.ref = "lifecycle" }
 
 [bundles]
 test = ["test-core", "test-runner", "test-rules"]

@@ -11,13 +11,18 @@ import android.widget.EditText
 import android.widget.ListView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 import org.vinaygopinath.launchchat.R
 import org.vinaygopinath.launchchat.helpers.ClipboardHelper
 import org.vinaygopinath.launchchat.helpers.IntentHelper
@@ -27,6 +32,8 @@ import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
+
+    private val viewModel: MainViewModel by viewModels()
 
     @Inject
     lateinit var phoneNumberHelper: PhoneNumberHelper
@@ -49,8 +56,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         initializeView()
+        initializeObservers()
 
-        processIntent(intent)
+        viewModel.processIntent(intent, contentResolver)
     }
 
     private fun initializeView() {
@@ -78,6 +86,34 @@ class MainActivity : AppCompatActivity() {
         findViewById<Button>(R.id.open_telegram_button).setOnClickListener {
             startActivityOrShowToast(R.string.toast_telegram_not_installed) { phoneNumber, _ ->
                 intentHelper.getOpenTelegramIntent(phoneNumber)
+            }
+        }
+    }
+
+    private fun initializeObservers() {
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.uiState.collect { uiState ->
+                    uiState.extractedContent?.let { handleExtractedContent(it) }
+                }
+            }
+        }
+    }
+
+    private fun handleExtractedContent(extractedContent: ProcessIntentUseCase.ExtractedContent) {
+        if (extractedContent is ProcessIntentUseCase.ExtractedContent.Result) {
+            if (extractedContent.phoneNumbers.size == 1) {
+                phoneNumberInput.setText(extractedContent.phoneNumbers.first())
+            } else if (extractedContent.phoneNumbers.size > 1) {
+                phoneNumberInput.setText(extractedContent.phoneNumbers.joinToString("\n"))
+            }
+
+            if (extractedContent.message != null) {
+                messageInput.setText(extractedContent.message)
+            }
+        } else if (extractedContent is ProcessIntentUseCase.ExtractedContent.PossibleResult) {
+            if (extractedContent.rawInputText != null) {
+                phoneNumberInput.setText(extractedContent.rawInputText)
             }
         }
     }
@@ -134,28 +170,9 @@ class MainActivity : AppCompatActivity() {
         dialog.show()
     }
 
-    private fun processIntent(intent: Intent?) {
-        val extractedContent = processIntentUseCase.execute(intent, contentResolver)
-        if (extractedContent is ProcessIntentUseCase.ExtractedContent.Result) {
-            if (extractedContent.phoneNumbers.size == 1) {
-                phoneNumberInput.setText(extractedContent.phoneNumbers.first())
-            } else if (extractedContent.phoneNumbers.size > 1) {
-                phoneNumberInput.setText(extractedContent.phoneNumbers.joinToString("\n"))
-            }
-
-            if (extractedContent.message != null) {
-                messageInput.setText(extractedContent.message)
-            }
-        } else if (extractedContent is ProcessIntentUseCase.ExtractedContent.PossibleResult) {
-            if (extractedContent.rawInputText != null) {
-                phoneNumberInput.setText(extractedContent.rawInputText)
-            }
-        }
-    }
-
     override fun onNewIntent(intent: Intent?) {
         super.onNewIntent(intent)
-        processIntent(intent)
+        viewModel.processIntent(intent, contentResolver)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
