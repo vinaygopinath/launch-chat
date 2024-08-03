@@ -11,7 +11,7 @@ import io.michaelrocks.libphonenumber.android.PhoneNumberUtil
 
 @Module
 @InstallIn(ActivityComponent::class)
-object SourceModule {
+internal object ActivityUtilModule {
 
     @Provides
     fun providePhoneNumberUtil(@ActivityContext context: Context): PhoneNumberUtil {
