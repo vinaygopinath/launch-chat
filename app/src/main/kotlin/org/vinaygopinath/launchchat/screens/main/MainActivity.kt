@@ -3,6 +3,7 @@ package org.vinaygopinath.launchchat.screens.main
 import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.os.Bundle
+import android.telephony.PhoneNumberFormattingTextWatcher
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.ArrayAdapter
@@ -93,6 +94,7 @@ class MainActivity : AppCompatActivity() {
     private fun initializeView() {
         phoneNumberInputLayout = findViewById(R.id.phone_number_input_layout)
         phoneNumberInput = findViewById(R.id.phone_number_input)
+        phoneNumberInput.addTextChangedListener(PhoneNumberFormattingTextWatcher())
         messageInput = findViewById(R.id.message_input)
         historyTitle = findViewById(R.id.history_title)
         historyListView = findViewById(R.id.history_list)
