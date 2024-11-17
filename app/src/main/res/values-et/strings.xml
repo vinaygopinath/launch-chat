@@ -25,7 +25,7 @@
     <string name="activity_source_text_share">Teksti jagamine</string>
     <string name="activity_source_dial">Numbrivalija</string>
     <string name="activity_source_unknown">Teadmata</string>
-    <string name="action_label">Avatud „%1$s“ rakendusega „%2$s“</string>
+    <string name="action_label"><![CDATA[Opened <strong>„%1$s“</strong> rakendusega <strong>„%2$s“</strong>]]></string>
     <string name="action_more">...ja veel „%1$d“</string>
     <string name="action_type_whatsapp">WhatsApp</string>
     <string name="action_type_signal">Signal</string>
@@ -39,4 +39,6 @@
     <string name="activity_source_history">Ajalugu</string>
     <string name="replace_input_title">Asenda sisend</string>
     <string name="replace_input_message">Sa oled klõpsinud ajalookirjet, kui telefoninumber pole tühi. Kas sa soovid asendada sisestatud teksti ajaloost võetud kirjega?</string>
+    <string name="label_history_view_all">Näita kõiki</string>
+    <string name="no_action_label">Tegevusi pole</string>
 </resources>
