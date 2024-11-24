@@ -1,2 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="button_open_telegram_description">Ouvrir avec Telegram</string>
+    <string name="button_open_whatsapp_description">Ouvrir avec WhatsApp</string>
+    <string name="button_open_signal_description">Ouvrir avec Signal</string>
+    <string name="input_hint_phone_number">Numéro de téléphone avec indicatif du pays</string>
+    <string name="input_hint_message">(Optionnel) Message</string>
+    <string name="label_share">Ouvrir le numéro de téléphone</string>
+    <string name="label_share_contact">Ouvrir le contact</string>
+    <string name="label_history">Historique</string>
+    <string name="phone_number_selection_dialog_title">Plusieurs numéros de téléphone détectés</string>
+    <string name="phone_number_selection_dialog_message">Plusieurs numéros de téléphone sont disponibles. Avec lequel souhaitez-vous discuter ?</string>
+    <string name="button_paste_from_clipboard_description">Coller depuis le presse-papier</string>
+    <string name="button_paste_from_clipboard">Presse-papier</string>
+    <string name="menu_item_about">À propos</string>
+    <string name="toast_invalid_phone_number">Numéro de téléphone invalide</string>
+    <string name="toast_whatsapp_not_installed">WhatsApp n\'est pas installé, ni aucun navigateur Internet</string>
+    <string name="toast_signal_not_installed">Signal n\'est pas installé, ni aucun navigateur Internet</string>
+    <string name="activity_source_sms">Lien SMS</string>
+    <string name="activity_source_contact">Contact</string>
+    <string name="activity_source_dial">Numéroteur téléphonique</string>
+    <string name="activity_source_unknown">Inconnu</string>
+    <string name="activity_source_manual_input">Saisie manuelle</string>
+    <string name="activity_source_history">Historique</string>
+    <string name="action_label"><![CDATA[Opened <strong>%1$s</strong> avec <strong>%2$s</strong>]]></string>
+    <string name="action_more">… et %1$d de plus</string>
+    <string name="action_type_signal">Signal</string>
+    <string name="replace_input_neutral_button">Rejeter</string>
+    <string name="app_name">Lanceur de conversation</string>
+    <string name="button_open">Ouvrir</string>
+    <string name="label_history_view_all">Voir tout</string>
+    <string name="label_contacts_shortcut">Contacts</string>
+    <string name="button_choose_from_contacts">Choisir depuis les contacts</string>
+    <string name="toast_telegram_not_installed">Telegram n\'est pas installé, ni aucun navigateur Internet</string>
+    <string name="activity_source_tel">Numéro de téléphone</string>
+    <string name="activity_source_text_share">Partage de texte</string>
+    <string name="activity_source_mms">Lien MMS</string>
+    <string name="replace_input_title">Remplacer la saisie</string>
+    <string name="no_action_label">Pas d\'actions</string>
+    <string name="action_type_telegram">Telegram</string>
+    <string name="action_type_whatsapp">WhatsApp</string>
+    <string name="replace_input_positive_button">Remplacer la saisie</string>
+    <string name="replace_input_message">Vous avez choisi une entrée de l\'historique alors que le champ de saisie du numéro de téléphone n\'était pas vide. Voulez-vous remplacer votre saisie avec le numéro issu de l\'historique ?</string>
+</resources>
