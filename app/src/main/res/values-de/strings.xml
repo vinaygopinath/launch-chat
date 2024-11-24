@@ -1,2 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="app_name">Launch Chat</string>
+    <string name="button_open">Öffnen</string>
+    <string name="button_open_signal_description">Öffnen mit Signal</string>
+    <string name="button_open_telegram_description">Öffnen mit Telegram</string>
+    <string name="input_hint_phone_number">Telefonnummer mit Landesvorwahl</string>
+    <string name="input_hint_message">(Optional) Nachricht</string>
+    <string name="label_share">Öffne Telefonnummer</string>
+    <string name="label_share_contact">Öffne Kontakt</string>
+    <string name="label_history">Verlauf</string>
+    <string name="label_history_view_all">Alles anzeigen</string>
+    <string name="button_choose_from_contacts">Kontakt auswählen</string>
+    <string name="button_paste_from_clipboard">Zwischenablage</string>
+    <string name="menu_item_about">Über</string>
+    <string name="toast_invalid_phone_number">Ungültige Telefonnummer</string>
+    <string name="toast_whatsapp_not_installed">Weder WhatsApp noch ein Browser ist installiert</string>
+    <string name="toast_signal_not_installed">Weder Signal noch ein Browser ist installiert</string>
+    <string name="toast_telegram_not_installed">Weder Telegram noch ein Browser ist installiert</string>
+    <string name="activity_source_mms">MMS Link</string>
+    <string name="activity_source_text_share">Text teilen</string>
+    <string name="activity_source_dial">Telefonnummernwähler</string>
+    <string name="activity_source_unknown">Unbekannt</string>
+    <string name="activity_source_manual_input">Manuelle Eingabe</string>
+    <string name="no_action_label">Keine Aktionen</string>
+    <string name="action_more">...und %1$d mehr</string>
+    <string name="action_type_whatsapp">WhatsApp</string>
+    <string name="action_type_signal">Signal</string>
+    <string name="action_type_telegram">Telegram</string>
+    <string name="replace_input_title">Eingabe ersetzen</string>
+    <string name="replace_input_neutral_button">Abbrechen</string>
+    <string name="button_open_whatsapp_description">Öffnen mit WhatsApp</string>
+    <string name="phone_number_selection_dialog_title">Mehrere Telefonnummern erkannt</string>
+    <string name="phone_number_selection_dialog_message">Es scheint als ob mehrere Telefonnummern verfügbar sind. Mit welcher soll eine Unterhaltung gestartet werden?</string>
+    <string name="label_contacts_shortcut">Kontakte</string>
+    <string name="button_paste_from_clipboard_description">Zwischenablage einfügen</string>
+    <string name="activity_source_tel">Telefonnummer</string>
+    <string name="activity_source_sms">SMS Link</string>
+    <string name="activity_source_contact">Kontakt</string>
+    <string name="activity_source_history">Verlauf</string>
+    <string name="action_label"><![CDATA[<strong>%1$s</strong> mit <strong>%2$s</strong> geöffnet]]></string>
+    <string name="replace_input_message">Soll die aktuelle Eingabe mit dem ausgewählten Eintrag aus dem Verlauf ersetzt werden?</string>
+    <string name="replace_input_positive_button">Eingabe ersetzen</string>
+</resources>
