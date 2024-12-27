@@ -41,4 +41,9 @@
     <string name="replace_input_message">Sa oled klõpsinud ajalookirjet, kui telefoninumber pole tühi. Kas sa soovid asendada sisestatud teksti ajaloost võetud kirjega?</string>
     <string name="label_history_view_all">Näita kõiki</string>
     <string name="no_action_label">Tegevusi pole</string>
+    <string name="label_settings">Seadistused</string>
+    <string name="pref_activity_history_title">Salvesta tegevuste ajalugu</string>
+    <string name="pref_activity_history_on_description">Launch Chat salvestab kõik tehtud toimingud</string>
+    <string name="main_menu_item_settings">Seadistused</string>
+    <string name="pref_activity_history_off_description">Launch Chat ei salvesta tehtud toiminguid</string>
 </resources>
