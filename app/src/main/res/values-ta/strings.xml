@@ -1,2 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="app_name">அரட்டையைத் தொடங்கவும்</string>
+    <string name="button_open">திற</string>
+    <string name="button_open_whatsapp_description">வாட்ச்அப்புடன் திறக்கவும்</string>
+    <string name="button_open_signal_description">சிக்னலுடன் திறக்கவும்</string>
+    <string name="button_open_telegram_description">தந்தி மூலம் திறந்திருக்கும்</string>
+    <string name="input_hint_phone_number">நாட்டின் குறியீட்டைக் கொண்ட தொலைபேசி எண்</string>
+    <string name="input_hint_message">(விரும்பினால்) செய்தி</string>
+    <string name="label_share">தொலைபேசி எண்ணைத் திறக்கவும்</string>
+    <string name="label_share_contact">திறந்த தொடர்பு</string>
+    <string name="label_history">வரலாறு</string>
+    <string name="label_settings">அமைப்புகள்</string>
+    <string name="label_history_view_all">அனைத்தையும் காண்க</string>
+    <string name="phone_number_selection_dialog_message">பல தொலைபேசி எண்கள் கிடைப்பது போல் தெரிகிறது. எந்த எண்ணுடன் அரட்டை அடிக்க விரும்புகிறீர்கள்?</string>
+    <string name="button_choose_from_contacts">தொடர்புகளிலிருந்து தேர்வு செய்யவும்</string>
+    <string name="button_paste_from_clipboard_description">கிளிப்போர்டிலிருந்து ஒட்டவும்</string>
+    <string name="button_paste_from_clipboard">இடைநிலைப் பலகை</string>
+    <string name="main_menu_item_about">பற்றி</string>
+    <string name="label_contacts_shortcut">தொடர்புகள்</string>
+    <string name="main_menu_item_settings">அமைப்புகள்</string>
+    <string name="toast_invalid_phone_number">தவறான தொலைபேசி எண்</string>
+    <string name="toast_signal_not_installed">சமிக்ஞை அல்லது உலாவி பயன்பாடு நிறுவப்படவில்லை</string>
+    <string name="toast_telegram_not_installed">தந்தி அல்லது உலாவி பயன்பாடு நிறுவப்படவில்லை</string>
+    <string name="pref_activity_history_title">செயல்பாட்டு வரலாறு பதிவு</string>
+    <string name="pref_activity_history_on_description">துவக்க அரட்டை செயல்பாட்டு வரலாற்றை பதிவு செய்யும்</string>
+    <string name="pref_activity_history_off_description">வெளியீட்டு அரட்டை செயல்பாட்டு வரலாற்றை பதிவு செய்யாது</string>
+    <string name="activity_source_tel">தொலைபேசி எண்</string>
+    <string name="activity_source_sms">எச்எம்எச் இணைப்பு</string>
+    <string name="activity_source_mms">எம்.எம்.எச் இணைப்பு</string>
+    <string name="activity_source_text_share">உரை பகிர்வு</string>
+    <string name="activity_source_contact">தொடர்பு</string>
+    <string name="activity_source_dial">தொலைபேசி எண் டயலர்</string>
+    <string name="activity_source_unknown">தெரியவில்லை</string>
+    <string name="activity_source_manual_input">கையேடு உள்ளீடு</string>
+    <string name="activity_source_history">வரலாறு</string>
+    <string name="action_type_whatsapp">வாட்ச்அப்</string>
+    <string name="action_type_signal">குறிகை</string>
+    <string name="action_label">&lt;!</string>
+    <string name="action_type_telegram">தந்தி</string>
+    <string name="replace_input_title">உள்ளீட்டை மாற்றவும்</string>
+    <string name="replace_input_message">தொலைபேசி எண் உள்ளீடு காலியாக இல்லாதபோது வரலாற்று உருப்படியைக் சொடுக்கு செய்துள்ளீர்கள். உள்ளிடப்பட்ட உரையை வரலாற்று உருப்படியுடன் மாற்ற விரும்புகிறீர்களா?</string>
+    <string name="replace_input_positive_button">உள்ளீட்டை மாற்றவும்</string>
+    <string name="phone_number_selection_dialog_title">பல தொலைபேசி எண்கள் கண்டறியப்பட்டன</string>
+    <string name="toast_whatsapp_not_installed">வாட்ச்அப் அல்லது உலாவி பயன்பாடு நிறுவப்படவில்லை</string>
+    <string name="no_action_label">செயல்கள் இல்லை</string>
+    <string name="action_more">... மற்றும் %1$d மேலும்</string>
+    <string name="replace_input_neutral_button">தள்ளுபடி</string>
+</resources>
