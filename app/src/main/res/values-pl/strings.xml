@@ -1,2 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="button_open_signal_description">Otwórz za pomocą Signal</string>
+    <string name="activity_source_history">Historia</string>
+    <string name="button_open_telegram_description">Otwórz za pomocą Telegramu</string>
+    <string name="input_hint_message">(Opcjonalnie) Wiadomość</string>
+    <string name="label_share">Otwórz numer telefonu</string>
+    <string name="label_share_contact">Otwórz kontakty</string>
+    <string name="phone_number_selection_dialog_title">Wykryto wiele numerów telefonów</string>
+    <string name="button_paste_from_clipboard_description">Wklej ze schowka</string>
+    <string name="label_contacts_shortcut">Kontakty</string>
+    <string name="main_menu_item_about">O aplikacji</string>
+    <string name="main_menu_item_settings">Ustawienia</string>
+    <string name="toast_invalid_phone_number">Nieprawidłowy numer telefonu</string>
+    <string name="toast_whatsapp_not_installed">Nie zainstalowano aplikacji WhatsApp ani przeglądarki</string>
+    <string name="pref_activity_history_on_description">Launch Chat zapisze historię aktywności</string>
+    <string name="pref_activity_history_title">Rejestruj historie aktywności</string>
+    <string name="activity_source_tel">Numer telefonu</string>
+    <string name="activity_source_sms">Łącze SMS</string>
+    <string name="activity_source_contact">Kontakt</string>
+    <string name="activity_source_dial">Wybieranie numeru telefonu</string>
+    <string name="activity_source_unknown">Nieznany</string>
+    <string name="action_more">...i %1$d więcej</string>
+    <string name="action_label"><![CDATA[Opened <strong>%1$s</strong> z <strong>%2$s</strong>]]></string>
+    <string name="action_type_signal">Signal</string>
+    <string name="action_type_telegram">Telegram</string>
+    <string name="replace_input_positive_button">Zmień dane</string>
+    <string name="replace_input_neutral_button">Odrzucić</string>
+    <string name="label_history">Historia</string>
+    <string name="button_paste_from_clipboard">Schowek</string>
+    <string name="action_type_whatsapp">WhatsApp</string>
+    <string name="label_settings">Ustawienia</string>
+    <string name="label_history_view_all">Wyświetl wszystkie</string>
+    <string name="phone_number_selection_dialog_message">Wygląda na to, że dostępnych jest wiele numerów telefonów. Z którym numerem chcesz rozmawiać?</string>
+    <string name="button_choose_from_contacts">Wybierz z kontaktów</string>
+    <string name="toast_signal_not_installed">Nie zainstalowano aplikacji Signal ani przeglądarki</string>
+    <string name="activity_source_mms">Łącze MMS</string>
+    <string name="toast_telegram_not_installed">Nie zainstalowano aplikacji Telegram ani przeglądarki</string>
+    <string name="replace_input_title">Zmień dane</string>
+    <string name="input_hint_phone_number">Numer telefonu z numerem kierunkowym kraju</string>
+    <string name="button_open_whatsapp_description">Otwórz za pomocą WhatsApp</string>
+    <string name="activity_source_text_share">Udostępnianie tekstu</string>
+    <string name="app_name">Launch Chat</string>
+    <string name="button_open">Otwórz</string>
+    <string name="no_action_label">Brak działań</string>
+    <string name="pref_activity_history_off_description">Launch Chat nie będzie rejestrować historii aktywności</string>
+    <string name="replace_input_message">Kliknąłeś element historii, gdy wprowadzony numer telefonu nie jest pusty. Czy chcesz zastąpić wprowadzony tekst elementem historii?</string>
+    <string name="activity_source_manual_input">Ręczne wprowadzanie</string>
+</resources>
