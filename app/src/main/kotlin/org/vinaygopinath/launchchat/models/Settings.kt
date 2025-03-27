@@ -1,5 +1,44 @@
 package org.vinaygopinath.launchchat.models
 
+import org.vinaygopinath.launchchat.utils.PreferenceUtil
+
 data class Settings(
-    val isActivityHistoryEnabled: Boolean
-)
+    val isActivityHistoryEnabled: Boolean,
+    val missingCountryCodeAction: MissingCountryCodeAction
+) {
+    companion object {
+        const val KEY_ACTIVITY_HISTORY = "pref_activity_history"
+
+        const val KEY_MISSING_COUNTRY_CODE_ACTION = "missing_country_code_action"
+        const val VALUE_MISSING_COUNTRY_CODE_ACTION_ENTRY_DEFAULT = "default_country_code"
+        const val VALUE_MISSING_COUNTRY_CODE_ACTION_ENTRY_RECENT = "recent_country_code"
+
+        const val KEY_DEFAULT_COUNTRY_CODE = "default_country_code"
+        const val KEY_RECENT_COUNTRY_CODE = "recent_country_code"
+
+        fun build(preferenceUtil: PreferenceUtil) = Settings(
+            isActivityHistoryEnabled = preferenceUtil.getBoolean(KEY_ACTIVITY_HISTORY, true),
+            missingCountryCodeAction = MissingCountryCodeAction.build(preferenceUtil)
+        )
+    }
+
+    sealed class MissingCountryCodeAction {
+        data class DefaultCountryCode(val defaultCountryCode: String?) : MissingCountryCodeAction()
+        data class RecentCountryCode(val recentCountryCode: String?) : MissingCountryCodeAction()
+        data object Undefined : MissingCountryCodeAction()
+
+        companion object {
+            fun build(preferenceUtil: PreferenceUtil): MissingCountryCodeAction {
+                return when (preferenceUtil.getString(KEY_MISSING_COUNTRY_CODE_ACTION, null)) {
+                    VALUE_MISSING_COUNTRY_CODE_ACTION_ENTRY_DEFAULT ->
+                        DefaultCountryCode(preferenceUtil.getString(KEY_DEFAULT_COUNTRY_CODE, null))
+
+                    VALUE_MISSING_COUNTRY_CODE_ACTION_ENTRY_RECENT ->
+                        RecentCountryCode(preferenceUtil.getString(KEY_RECENT_COUNTRY_CODE, null))
+
+                    else -> Undefined
+                }
+            }
+        }
+    }
+}
