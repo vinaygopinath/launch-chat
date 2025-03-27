@@ -2,12 +2,11 @@ package org.vinaygopinath.launchchat.screens.settings
 
 import androidx.preference.DropDownPreference
 import androidx.preference.Preference
+import org.vinaygopinath.launchchat.R
 import org.vinaygopinath.launchchat.models.Settings
 import org.vinaygopinath.launchchat.models.Settings.MissingCountryCodeAction.DefaultCountryCode
-import org.vinaygopinath.launchchat.utils.PreferenceUtil
-import org.vinaygopinath.launchchat.R
 import org.vinaygopinath.launchchat.models.Settings.MissingCountryCodeAction.RecentCountryCode
-import org.vinaygopinath.launchchat.models.Settings.MissingCountryCodeAction.Undefined
+import org.vinaygopinath.launchchat.utils.PreferenceUtil
 
 class MissingCountryCodeActionSummaryProvider(
     private val preferenceUtil: PreferenceUtil
@@ -22,12 +21,13 @@ class MissingCountryCodeActionSummaryProvider(
                 if (defaultCountryCode == null) {
                     context.getString(R.string.pref_missing_country_code_action_description_default_country_code_missing)
                 } else {
-                   context.getString(
-                       R.string.pref_missing_country_code_action_description_default_country_code_available,
-                       defaultCountryCode
-                   )
+                    context.getString(
+                        R.string.pref_missing_country_code_action_description_default_country_code_available,
+                        defaultCountryCode
+                    )
                 }
             }
+
             is RecentCountryCode -> {
                 val recentCountryCode = settings.missingCountryCodeAction.recentCountryCode
                 if (recentCountryCode == null) {
@@ -39,7 +39,6 @@ class MissingCountryCodeActionSummaryProvider(
                     )
                 }
             }
-            is Undefined -> context.getString(R.string.pref_missing_country_code_action_description_missing)
         }
     }
 }

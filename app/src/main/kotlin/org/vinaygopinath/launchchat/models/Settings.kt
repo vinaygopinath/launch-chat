@@ -25,18 +25,20 @@ data class Settings(
     sealed class MissingCountryCodeAction {
         data class DefaultCountryCode(val defaultCountryCode: String?) : MissingCountryCodeAction()
         data class RecentCountryCode(val recentCountryCode: String?) : MissingCountryCodeAction()
-        data object Undefined : MissingCountryCodeAction()
 
         companion object {
             fun build(preferenceUtil: PreferenceUtil): MissingCountryCodeAction {
-                return when (preferenceUtil.getString(KEY_MISSING_COUNTRY_CODE_ACTION, null)) {
+                return when (
+                    preferenceUtil.getString(
+                        KEY_MISSING_COUNTRY_CODE_ACTION,
+                        VALUE_MISSING_COUNTRY_CODE_ACTION_ENTRY_RECENT
+                    )
+                ) {
                     VALUE_MISSING_COUNTRY_CODE_ACTION_ENTRY_DEFAULT ->
                         DefaultCountryCode(preferenceUtil.getString(KEY_DEFAULT_COUNTRY_CODE, null))
 
-                    VALUE_MISSING_COUNTRY_CODE_ACTION_ENTRY_RECENT ->
+                    else ->
                         RecentCountryCode(preferenceUtil.getString(KEY_RECENT_COUNTRY_CODE, null))
-
-                    else -> Undefined
                 }
             }
         }

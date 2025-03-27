@@ -48,7 +48,6 @@
     <!-- Caution when editing: This maps to Settings.VALUE_MISSING_COUNTRY_CODE_ACTION_ENTRY_DEFAULT -->
     <string name="pref_missing_country_code_action_entry_recent_value" translatable="false">recent_country_code</string>
     <string name="pref_missing_country_code_action_short_title">Missing country code action</string>
-    <string name="pref_missing_country_code_action_description_missing">⚠️ Specify what to do when the entered/shared phone number does not include the country code</string>
     <string name="pref_missing_country_code_action_description_default_country_code_available">Use the default country code %1$s</string>
     <string name="pref_missing_country_code_action_description_default_country_code_missing">⚠️ Default country code selected, but country code not set</string>
     <string name="pref_missing_country_code_action_description_recent_country_code_available">Use the recent country code %1$s</string>
