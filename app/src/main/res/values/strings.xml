@@ -32,10 +32,46 @@
     <string name="toast_telegram_not_installed">Neither Telegram nor a browser app is installed</string>
 
     <!-- Preference ID's -->
+    <!-- Caution when editing: This maps to Settings.KEY_ACTIVITY_HISTORY -->
     <string name="pref_activity_history_key" translatable="false">pref_activity_history</string>
     <string name="pref_activity_history_title">Record activity history</string>
     <string name="pref_activity_history_on_description">Launch Chat will record activity history</string>
     <string name="pref_activity_history_off_description">Launch Chat will not record activity history</string>
+
+    <!-- Caution when editing: This maps to Settings.KEY_MISSING_COUNTRY_CODE_ACTION -->
+    <string name="pref_missing_country_code_action_key" translatable="false">missing_country_code_action</string>
+    <string name="pref_missing_country_code_action_title">Action when country code is missing</string>
+    <string name="pref_missing_country_code_action_entry_default_name">Use the default country code</string>
+    <!-- Caution when editing: This maps to Settings.VALUE_MISSING_COUNTRY_CODE_ACTION_ENTRY_DEFAULT -->
+    <string name="pref_missing_country_code_action_entry_default_value" translatable="false">default_country_code</string>
+    <string name="pref_missing_country_code_action_entry_recent_name">Use the most recent country code</string>
+    <!-- Caution when editing: This maps to Settings.VALUE_MISSING_COUNTRY_CODE_ACTION_ENTRY_DEFAULT -->
+    <string name="pref_missing_country_code_action_entry_recent_value" translatable="false">recent_country_code</string>
+    <string name="pref_missing_country_code_action_short_title">Missing country code action</string>
+    <string name="pref_missing_country_code_action_description_missing">⚠️ Specify what to do when the entered/shared phone number does not include the country code</string>
+    <string name="pref_missing_country_code_action_description_default_country_code_available">Use the default country code %1$s</string>
+    <string name="pref_missing_country_code_action_description_default_country_code_missing">⚠️ Default country code selected, but country code not set</string>
+    <string name="pref_missing_country_code_action_description_recent_country_code_available">Use the recent country code %1$s</string>
+    <string name="pref_missing_country_code_action_description_recent_country_code_missing">⚠️ Recent country code selected, but no recent country code available. Try launching a chat with a phone number with country code</string>
+    <string-array name="pref_missing_country_code_action_entries" translatable="false">
+        <item>@string/pref_missing_country_code_action_entry_recent_name</item>
+        <item>@string/pref_missing_country_code_action_entry_default_name</item>
+    </string-array>
+    <string-array name="pref_missing_country_code_action_entry_values" translatable="false">
+        <item>@string/pref_missing_country_code_action_entry_recent_value</item>
+        <item>@string/pref_missing_country_code_action_entry_default_value</item>
+    </string-array>
+
+    <!-- Caution when editing: This maps to Settings.KEY_DEFAULT_COUNTRY_CODE -->
+    <string name="pref_default_country_code_key" translatable="false">default_country_code</string>
+    <string name="pref_default_country_code_title">Default country code</string>
+    <string name="pref_default_country_code_description_missing">The country code to use when the phone number does not start with a country code</string>
+    <string name="pref_default_country_code_description_set">Use the country code %1$s</string>
+    <string name="pref_default_country_code_invalid_format">Please enter a country code in the format +123, with no spaces</string>
+
+    <!-- Caution when editing: This maps to Settings.KEY_RECENT_COUNTRY_CODE -->
+    <string name="pref_recent_country_code_key" translatable="false">recent_country_code</string>
+
     <string name="pref_last_region" translatable="false">pref_last_region</string>
 
     <string name="activity_source_tel">Phone number</string>

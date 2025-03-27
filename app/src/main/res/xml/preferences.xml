@@ -8,4 +8,17 @@
         app:summaryOn="@string/pref_activity_history_on_description"
         app:summaryOff="@string/pref_activity_history_off_description" />
 
+    <DropDownPreference
+        app:key="@string/pref_missing_country_code_action_key"
+        app:title="@string/pref_missing_country_code_action_title"
+        app:entries="@array/pref_missing_country_code_action_entries"
+        android:entryValues="@array/pref_missing_country_code_action_entry_values"
+        app:summary="@string/pref_missing_country_code_action_description_missing" />
+
+    <EditTextPreference
+        app:isPreferenceVisible="false"
+        app:key="@string/pref_default_country_code_key"
+        app:title="@string/pref_default_country_code_title"
+        app:summary="@string/pref_default_country_code_description_missing" />
+
 </androidx.preference.PreferenceScreen>

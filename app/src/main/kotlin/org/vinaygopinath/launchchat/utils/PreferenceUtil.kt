@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.SharedPreferences
 import androidx.annotation.OpenForTesting
 import androidx.annotation.StringRes
+import androidx.core.content.edit
 import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 
@@ -19,6 +20,14 @@ class PreferenceUtil @Inject constructor(
 
     fun getString(@StringRes key: Int, default: String?): String? {
         return getString(context.getString(key), default)
+    }
+
+    fun setString(key: String, value: String?) {
+        preferences.edit { putString(key, value) }
+    }
+
+    fun clearString(key: String) {
+        preferences.edit { remove(key) }
     }
 
     fun getBoolean(key: String, default: Boolean): Boolean {
