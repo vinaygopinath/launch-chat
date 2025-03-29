@@ -47,4 +47,17 @@
     <string name="pref_activity_history_title">Enregistrement de l\'historique des activités</string>
     <string name="pref_activity_history_on_description">Launch Chat va enregistrer l\'historique des activités</string>
     <string name="pref_activity_history_off_description">Launch Chat ne va pas enregistrer l\'historique des activités</string>
+    <string name="pref_default_country_code_title">Code pays par défaut</string>
+    <string name="pref_missing_country_code_action_description_recent_country_code_available">Utiliser le code pays le plus récent %1$s</string>
+    <string name="pref_default_country_code_description_missing">Le code pays à utiliser lorsqu\'il n\'y a pas de code pays en préfixe du numéro de téléphone</string>
+    <string name="pref_missing_country_code_action_short_title">Action pour code pays manquant</string>
+    <string name="pref_missing_country_code_action_description_missing">⚠️ Indiquez la conduite à tenir lorsque le numéro de téléphone saisi ou partagé n\'inclut pas le code pays</string>
+    <string name="pref_missing_country_code_action_description_recent_country_code_missing">⚠️ Code pays le plus récent sélectionné, mais aucun disponible. Essayez de lancer une discussion avec un numéro de téléphone incluant le code pays.</string>
+    <string name="pref_missing_country_code_action_title">Action quand le code pays est manquant</string>
+    <string name="pref_missing_country_code_action_entry_default_name">Utiliser le code pays par défaut</string>
+    <string name="pref_missing_country_code_action_entry_recent_name">Utiliser le code pays le plus récent</string>
+    <string name="pref_missing_country_code_action_description_default_country_code_available">Utiliser le code pays par défaut %1$s</string>
+    <string name="pref_missing_country_code_action_description_default_country_code_missing">⚠️ Code pays par défaut sélectionné, mais pas paramétré</string>
+    <string name="pref_default_country_code_description_set">Utiliser le code pays %1$s</string>
+    <string name="pref_default_country_code_invalid_format">Veuillez entrer un code pays au format +123, sans espace</string>
 </resources>
