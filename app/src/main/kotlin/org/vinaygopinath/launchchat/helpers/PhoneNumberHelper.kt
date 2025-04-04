@@ -14,7 +14,7 @@ class PhoneNumberHelper @Inject constructor(private val phoneNumberUtil: PhoneNu
         Regex("[-() ]*")
     }
 
-    fun extractPhoneNumber(rawString: String): List<String> {
+    fun extractPhoneNumbers(rawString: String): List<String> {
         val matches = phoneNumberRegex.findAll(rawString)
         return matches.filter { matchResult -> matchResult.groupValues.size == 2 }
             .map { matchResult -> matchResult.groupValues[1] }
