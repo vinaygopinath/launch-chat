@@ -80,8 +80,8 @@ class RecentDetailedActivityAdapter(
 
         init {
             itemView.setOnClickListener {
-                if (adapterPosition != NO_POSITION) {
-                    listener.onRecentHistoryItemClick(dataSet[adapterPosition])
+                if (bindingAdapterPosition != NO_POSITION) {
+                    listener.onRecentHistoryItemClick(dataSet[bindingAdapterPosition])
                 }
             }
         }
