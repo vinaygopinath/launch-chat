@@ -32,4 +32,17 @@ class PhoneNumberHelper @Inject constructor(private val phoneNumberUtil: PhoneNu
     }
 
     fun buildInternationalPhoneNumberString(
-  }
+        rawPhoneNumberWithoutCountryCode: String,
+        countryCode: Int
+    ): String {
+        return try {
+            val phoneNumber = phoneNumberUtil.parse(
+                rawPhoneNumberWithoutCountryCode,
+                phoneNumberUtil.getRegionCodeForCountryCode(countryCode)
+            )
+            phoneNumberUtil.format(phoneNumber, PhoneNumberUtil.PhoneNumberFormat.E164)
+        } catch (_: NumberParseException) {
+            rawPhoneNumberWithoutCountryCode
+        }
+    }
+}
