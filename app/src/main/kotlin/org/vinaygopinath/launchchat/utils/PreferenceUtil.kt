@@ -26,7 +26,7 @@ class PreferenceUtil @Inject constructor(
         preferences.edit { putString(key, value) }
     }
 
-    fun clearString(key: String) {
+    fun clear(key: String) {
         preferences.edit { remove(key) }
     }
 
@@ -44,5 +44,19 @@ class PreferenceUtil @Inject constructor(
 
     fun getInt(@StringRes key: Int, default: Int): Int {
         return getInt(context.getString(key), default)
+    }
+
+    fun setInt(key: String, value: Int) {
+        preferences.edit { putInt(key, value) }
+    }
+
+    fun getInt(key: String): Int? {
+        val result = getInt(key, Int.MIN_VALUE)
+
+        return if (result == Int.MIN_VALUE) {
+            null
+        } else {
+            result
+        }
     }
 }

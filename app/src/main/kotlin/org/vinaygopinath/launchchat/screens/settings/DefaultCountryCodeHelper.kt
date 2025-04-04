@@ -1,16 +1,16 @@
 package org.vinaygopinath.launchchat.screens.settings
 
-import java.util.regex.Pattern
-
 object DefaultCountryCodeHelper {
 
     fun isValidCountryCode(possibleCountryCode: String?): Boolean {
-        return when {
-            possibleCountryCode == null -> false
-            COUNTRY_CODE_REGEX.matches(possibleCountryCode) -> true
-            else -> false
+        return try {
+            when {
+                possibleCountryCode == null -> false
+                Integer.parseInt(possibleCountryCode) > 0 -> true
+                else -> false
+            }
+        } catch (_: NumberFormatException) {
+            false
         }
     }
-
-    private val COUNTRY_CODE_REGEX = Regex("\\+\\d{1,3}")
 }

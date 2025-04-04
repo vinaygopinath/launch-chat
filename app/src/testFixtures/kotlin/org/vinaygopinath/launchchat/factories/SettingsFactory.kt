@@ -7,7 +7,7 @@ object SettingsFactory {
 
     fun build(
         isActivityHistoryEnabled: Boolean = true,
-        missingCountryCodeAction: MissingCountryCodeAction = MissingCountryCodeAction.DefaultCountryCode("+238")
+        missingCountryCodeAction: MissingCountryCodeAction = MissingCountryCodeAction.DefaultCountryCode(238)
     ): Settings = Settings(
         isActivityHistoryEnabled = isActivityHistoryEnabled,
         missingCountryCodeAction = missingCountryCodeAction

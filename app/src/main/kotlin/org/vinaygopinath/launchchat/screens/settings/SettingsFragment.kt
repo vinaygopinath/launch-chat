@@ -45,7 +45,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
                         newValue == Settings.VALUE_MISSING_COUNTRY_CODE_ACTION_ENTRY_DEFAULT
                     defaultCountryCodePref?.isVisible = isNewValueDefaultCountryCode
                     if (!isNewValueDefaultCountryCode) {
-                        preferenceUtil.clearString(KEY_DEFAULT_COUNTRY_CODE)
+                        preferenceUtil.clear(KEY_DEFAULT_COUNTRY_CODE)
                     }
 
                     return true
