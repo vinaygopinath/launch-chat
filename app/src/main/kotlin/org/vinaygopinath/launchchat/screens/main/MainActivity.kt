@@ -243,9 +243,10 @@ class MainActivity : AppCompatActivity() {
         getButtonIntent: (phoneNumber: String, message: String) -> Intent,
         phoneNumber: String
     ) {
+        val possiblePhoneNumberWithCountryCode = viewModel.prefixCountryCode(phoneNumber)
         val message = messageInput.text.toString().trim()
         try {
-            startActivity(getButtonIntent(phoneNumber, message))
+            startActivity(getButtonIntent(possiblePhoneNumberWithCountryCode, message))
         } catch (e: ActivityNotFoundException) {
             showToast(errorToast)
         }
