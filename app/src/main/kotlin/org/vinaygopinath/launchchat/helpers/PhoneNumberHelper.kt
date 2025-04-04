@@ -13,11 +13,6 @@ class PhoneNumberHelper @Inject constructor(private val phoneNumberUtil: PhoneNu
         Regex("[-() ]*")
     }
 
-    fun isPhoneNumberValid(phoneNumberString: String, regionCode: String): Boolean {
-        val phoneNumber = phoneNumberUtil.parse(phoneNumberString, regionCode)
-        return phoneNumberUtil.isValidNumber(phoneNumber)
-    }
-
     fun extractPhoneNumber(rawString: String): List<String> {
         val matches = phoneNumberRegex.findAll(rawString)
         return matches.filter { matchResult -> matchResult.groupValues.size == 2 }
