@@ -5,7 +5,6 @@ import android.view.View
 import android.widget.Toast
 import android.widget.Toast.LENGTH_LONG
 import androidx.preference.DropDownPreference
-import androidx.preference.EditTextPreference
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import dagger.hilt.android.AndroidEntryPoint
@@ -34,7 +33,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
         val settings = Settings.build(preferenceUtil)
         val missingCountryCodePref =
             findPreference<DropDownPreference>(KEY_MISSING_COUNTRY_CODE_ACTION)
-        val defaultCountryCodePref = findPreference<EditTextPreference>(KEY_DEFAULT_COUNTRY_CODE)
+        val defaultCountryCodePref = findPreference<IntPreference>(KEY_DEFAULT_COUNTRY_CODE)
         missingCountryCodePref?.onPreferenceChangeListener =
             object : Preference.OnPreferenceChangeListener {
                 override fun onPreferenceChange(
