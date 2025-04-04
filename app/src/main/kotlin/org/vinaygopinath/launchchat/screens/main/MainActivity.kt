@@ -6,12 +6,18 @@ import android.content.Intent
 import android.content.Intent.ACTION_VIEW
 import android.os.Bundle
 import android.text.InputType
+import android.text.SpannableString
+import android.text.method.LinkMovementMethod
+import android.text.util.Linkify
+import android.text.util.Linkify.WEB_URLS
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ListView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.annotation.StringRes
@@ -136,7 +142,18 @@ class MainActivity : AppCompatActivity() {
                 phoneNumberInput.setText(content.content)
             }
         }
-        chooseContactButton = findViewById(R.id.choose_from_contacts_button)
+        findViewById<View>(R.id.choose_from_contacts_button).setOnClickListener {
+            AlertDialog.Builder(this)
+                .setTitle(R.string.select_contacts_not_ready_dialog_title)
+                .setMessage(
+                    SpannableString(getString(R.string.select_contacts_not_ready_dialog_message))
+                        .also { Linkify.addLinks(it, WEB_URLS) }
+                )
+                .setNeutralButton(R.string.select_contacts_not_ready_dialog_neutral_button, null)
+                .show()
+                .findViewById<TextView>(android.R.id.message)
+                ?.movementMethod = LinkMovementMethod.getInstance()
+        }
         findViewById<Button>(R.id.open_whatsapp_button).setOnClickListener {
             startActivityOrShowToast(R.string.toast_whatsapp_not_installed) { phoneNumber, message ->
                 viewModel.logAction(
