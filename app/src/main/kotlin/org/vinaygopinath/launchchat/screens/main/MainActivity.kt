@@ -226,7 +226,7 @@ class MainActivity : AppCompatActivity() {
         getButtonIntent: (phoneNumber: String, message: String) -> Intent
     ) {
         phoneNumberInputLayout.error = null
-        val phoneNumbers = phoneNumberHelper.extractPhoneNumber(phoneNumberInput.text.toString())
+        val phoneNumbers = phoneNumberHelper.extractPhoneNumbers(phoneNumberInput.text.toString())
         if (phoneNumbers.isEmpty()) {
             phoneNumberInputLayout.error = getString(R.string.toast_invalid_phone_number)
         } else if (phoneNumbers.size != 1) {
