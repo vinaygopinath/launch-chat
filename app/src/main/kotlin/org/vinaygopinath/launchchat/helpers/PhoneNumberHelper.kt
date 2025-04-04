@@ -1,5 +1,6 @@
 package org.vinaygopinath.launchchat.helpers
 
+import io.michaelrocks.libphonenumber.android.NumberParseException
 import io.michaelrocks.libphonenumber.android.PhoneNumberUtil
 import javax.inject.Inject
 
@@ -21,4 +22,14 @@ class PhoneNumberHelper @Inject constructor(private val phoneNumberUtil: PhoneNu
             .map { match -> match.replace(invalidPhoneNumberCharactersRegex, "") }
             .toList()
     }
-}
+
+    fun extractCountryCodeFromInternationalPhoneNumber(rawPhoneNumberWithCountryCode: String): Int? {
+        return try {
+            phoneNumberUtil.parse(rawPhoneNumberWithCountryCode, "").countryCode
+        } catch (_: NumberParseException) {
+            null
+        }
+    }
+
+    fun buildInternationalPhoneNumberString(
+  }
