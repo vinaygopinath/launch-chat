@@ -14,7 +14,7 @@
         app:entries="@array/pref_missing_country_code_action_entries"
         android:entryValues="@array/pref_missing_country_code_action_entry_values" />
 
-    <EditTextPreference
+    <org.vinaygopinath.launchchat.screens.settings.IntPreference
         app:isPreferenceVisible="false"
         app:key="@string/pref_default_country_code_key"
         app:title="@string/pref_default_country_code_title"
