@@ -19,6 +19,7 @@ import org.vinaygopinath.launchchat.screens.main.domain.GetRecentDetailedActivit
 import org.vinaygopinath.launchchat.screens.main.domain.GetSettingsUseCase
 import org.vinaygopinath.launchchat.screens.main.domain.LogActionUseCase
 import org.vinaygopinath.launchchat.screens.main.domain.LogActivityFromHistoryUseCase
+import org.vinaygopinath.launchchat.screens.main.domain.PrefixCountryCodeUseCase
 import org.vinaygopinath.launchchat.screens.main.domain.ProcessIntentUseCase
 import org.vinaygopinath.launchchat.utils.CoroutineUtil
 import org.vinaygopinath.launchchat.utils.DispatcherUtil
@@ -31,6 +32,7 @@ class MainViewModel @Inject constructor(
     private val getRecentDetailedActivityUseCase: GetRecentDetailedActivityUseCase,
     private val logActivityFromHistoryUseCase: LogActivityFromHistoryUseCase,
     private val getSettingsUseCase: GetSettingsUseCase,
+    private val prefixCountryCodeUseCase: PrefixCountryCodeUseCase,
     private val dispatcherUtil: DispatcherUtil
 ) : ViewModel() {
 
@@ -105,4 +107,6 @@ class MainViewModel @Inject constructor(
             onError = {}
         )
     }
+
+    fun prefixCountryCode(phoneNumber: String) = prefixCountryCodeUseCase.execute(phoneNumber)
 }
