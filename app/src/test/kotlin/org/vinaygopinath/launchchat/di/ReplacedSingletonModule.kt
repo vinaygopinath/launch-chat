@@ -6,6 +6,7 @@ import dagger.Provides
 import dagger.hilt.components.SingletonComponent
 import dagger.hilt.testing.TestInstallIn
 import org.vinaygopinath.launchchat.fakes.SharedPreferenceFake
+import javax.inject.Singleton
 
 @Module
 @TestInstallIn(
@@ -15,6 +16,7 @@ import org.vinaygopinath.launchchat.fakes.SharedPreferenceFake
 class ReplacedSingletonModule {
 
     @Provides
+    @Singleton
     fun provideSharedPreferences(): SharedPreferences {
         return SharedPreferenceFake()
     }
