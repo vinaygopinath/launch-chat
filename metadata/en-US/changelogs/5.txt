@@ -1,0 +1,3 @@
+* Usage history can be disabled via the new settings screen
+* You can specify what happens when a phone number is entered/shared that does not include the country code - Launch Chat can either use the most recent country code or a default country code, if it is set.
+* Lots of translation updates (thank you everyone who contributed!) across Arabic, German, Estonian, French, Polish, and Tamil.
