@@ -1,6 +1,6 @@
 [versions]
 espresso = "3.6.1"
-gradle = "8.7.3"
+gradle = "8.9.1"
 hilt = "2.54"
 kotlin = "2.1.0"
 coroutines = "1.9.0"
