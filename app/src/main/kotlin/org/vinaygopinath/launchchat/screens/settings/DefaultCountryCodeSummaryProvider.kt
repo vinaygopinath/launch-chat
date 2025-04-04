@@ -8,7 +8,7 @@ import org.vinaygopinath.launchchat.utils.PreferenceUtil
 
 class DefaultCountryCodeSummaryProvider(private val preferenceUtil: PreferenceUtil) : Preference.SummaryProvider<EditTextPreference> {
     override fun provideSummary(preference: EditTextPreference): CharSequence? {
-        val defaultCountryCode = preferenceUtil.getString(KEY_DEFAULT_COUNTRY_CODE, null)
+        val defaultCountryCode = preferenceUtil.getInt(KEY_DEFAULT_COUNTRY_CODE)
         val context = preference.context
         return if (defaultCountryCode == null) {
             context.getString(R.string.pref_default_country_code_description_missing)

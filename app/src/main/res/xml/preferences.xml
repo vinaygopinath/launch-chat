@@ -12,8 +12,7 @@
         app:key="@string/pref_missing_country_code_action_key"
         app:title="@string/pref_missing_country_code_action_title"
         app:entries="@array/pref_missing_country_code_action_entries"
-        android:entryValues="@array/pref_missing_country_code_action_entry_values"
-        app:summary="@string/pref_missing_country_code_action_description_missing" />
+        android:entryValues="@array/pref_missing_country_code_action_entry_values" />
 
     <EditTextPreference
         app:isPreferenceVisible="false"

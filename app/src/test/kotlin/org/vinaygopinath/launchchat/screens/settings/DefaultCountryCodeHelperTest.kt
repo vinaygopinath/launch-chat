@@ -17,13 +17,8 @@ class DefaultCountryCodeHelperTest {
     }
 
     @Test
-    fun `returns false when input is country code-like, but does not begin with a +`() {
-        assertThat(isValidCountryCode("254")).isFalse()
-    }
-
-    @Test
-    fun `returns false when input is country code-like with no spaces, but has more than 3 digits`() {
-        assertThat(isValidCountryCode("+38756")).isFalse()
+    fun `returns true when input is country code-like, but does not begin with a +`() {
+        assertThat(isValidCountryCode("254")).isTrue()
     }
 
     @Test

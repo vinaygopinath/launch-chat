@@ -65,7 +65,7 @@
     <string name="pref_default_country_code_key" translatable="false">default_country_code</string>
     <string name="pref_default_country_code_title">Default country code</string>
     <string name="pref_default_country_code_description_missing">The country code to use when the phone number does not start with a country code</string>
-    <string name="pref_default_country_code_description_set">Use the country code %1$s</string>
+    <string name="pref_default_country_code_description_set">Use the country code +%1$d</string>
     <string name="pref_default_country_code_invalid_format">Please enter a country code in the format +123, with no spaces</string>
 
     <!-- Caution when editing: This maps to Settings.KEY_RECENT_COUNTRY_CODE -->
