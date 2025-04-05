@@ -49,14 +49,17 @@
     <string name="pref_missing_country_code_action_entry_default_name">Kasuta vaikimisi riigikoodi</string>
     <string name="pref_missing_country_code_action_short_title">Tegevus puuduva riigikoodi puhul</string>
     <string name="pref_missing_country_code_action_description_missing">⚠️ Vali tegevus, kui sisestatud või jagatud telefoninumbril on riigikood puudu</string>
-    <string name="pref_missing_country_code_action_description_recent_country_code_available">Kasuta viimatikasutatud riigikoodi %1$s</string>
+    <string name="pref_missing_country_code_action_description_recent_country_code_available">Kasuta viimatikasutatud riigikoodi +%1$d</string>
     <string name="pref_default_country_code_title">Vaikimisi riigikood</string>
     <string name="pref_default_country_code_description_missing">Kasutatav riigikood, kui telefoninumbri alguses seda pole</string>
     <string name="pref_default_country_code_invalid_format">Palun sisesta riigikood +123 vormingus ja ilma tühikuteta</string>
     <string name="pref_missing_country_code_action_entry_recent_name">Kasuta viimatikasutatud riigikoodi</string>
     <string name="pref_missing_country_code_action_description_default_country_code_missing">⚠️ Vaikimisi riigikood on valitud, kuid riik ise pole määratud</string>
-    <string name="pref_missing_country_code_action_description_default_country_code_available">Kasuta vaikimisi riigikoodi %1$s</string>
+    <string name="pref_missing_country_code_action_description_default_country_code_available">Kasuta vaikimisi riigikoodi +%1$d</string>
     <string name="pref_missing_country_code_action_title">Tegevus, kui riigikood on puudu</string>
     <string name="pref_missing_country_code_action_description_recent_country_code_missing">⚠️ Valisid viimatikasutatud riigikoodi eelistuse, kuid sellist väärtust ei leidu. Proovi alustada vestlust telefoninumbriga, kus on riigikood olemas</string>
-    <string name="pref_default_country_code_description_set">Kasuta riigikoodi %1$s</string>
+    <string name="pref_default_country_code_description_set">Kasuta riigikoodi +%1$d</string>
+    <string name="select_contacts_not_ready_dialog_title">Pole veel implementeeritud!</string>
+    <string name="select_contacts_not_ready_dialog_message">See funktsionaalsus pole veel saadaval. Siiski oskab Launch Chat avada kontaktiandmeid, kui avad oma nutiseadmes kontaktide rakenduse ning jagad sealt kontakti Launch Chatiga. \n\nVaata õppevideot https://github.com/vinaygopinath/launch-chat/pull/18</string>
+    <string name="select_contacts_not_ready_dialog_neutral_button">Selge</string>
 </resources>
