@@ -46,4 +46,5 @@
     <string name="pref_activity_history_off_description">Launch Chat nie będzie rejestrować historii aktywności</string>
     <string name="replace_input_message">Kliknąłeś element historii, gdy wprowadzony numer telefonu nie jest pusty. Czy chcesz zastąpić wprowadzony tekst elementem historii?</string>
     <string name="activity_source_manual_input">Ręczne wprowadzanie</string>
+    <string name="select_contacts_not_ready_dialog_message">Ta funkcja nie jest jeszcze dostępna. Launch Chat może jednak otwierać kontakty, jeśli otworzysz aplikację Kontakty i udostępnisz kontakt Launch Chat. \n\nZobacz film demonstracyjny na https://github.com/vinaygopinath/launch-chat/pull/18</string>
 </resources>
