@@ -98,7 +98,7 @@ class DetailedActivityHelper @Inject constructor(
         }
     }
 
-    fun getActionsText(detailedActivity: DetailedActivity): Spanned? {
+    fun getActionsText(detailedActivity: DetailedActivity): Spanned {
         val actions = detailedActivity.actions
 
         return if (actions.isEmpty()) {

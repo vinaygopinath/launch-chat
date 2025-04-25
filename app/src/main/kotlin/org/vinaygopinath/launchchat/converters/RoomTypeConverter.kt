@@ -9,5 +9,5 @@ class RoomTypeConverter {
     fun convertInstantToLong(instant: Instant) = instant.toEpochMilli()
 
     @TypeConverter
-    fun convertLongToInstant(long: Long) = Instant.ofEpochMilli(long)
+    fun convertLongToInstant(long: Long): Instant = Instant.ofEpochMilli(long)
 }

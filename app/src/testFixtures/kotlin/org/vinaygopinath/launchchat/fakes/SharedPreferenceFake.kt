@@ -12,7 +12,7 @@ class SharedPreferenceFake : SharedPreferences {
     private val editor by lazy { EditorFake() }
     private var listener: SharedPreferences.OnSharedPreferenceChangeListener? = null
 
-    override fun getAll(): Map<String?, *>? {
+    override fun getAll(): Map<String?, *> {
         return stringMap + intMap + booleanMap + floatMap + longMap + stringSetMap
     }
 
@@ -65,11 +65,11 @@ class SharedPreferenceFake : SharedPreferences {
         this.listener = null
     }
 
-    inner class EditorFake() : SharedPreferences.Editor {
+    inner class EditorFake : SharedPreferences.Editor {
         override fun putString(
             key: String,
             value: String?
-        ): SharedPreferences.Editor? {
+        ): SharedPreferences.Editor {
             stringMap[key] = value
             listener?.onSharedPreferenceChanged(this@SharedPreferenceFake, key)
             return this
@@ -78,7 +78,7 @@ class SharedPreferenceFake : SharedPreferences {
         override fun putStringSet(
             key: String,
             values: Set<String>?
-        ): SharedPreferences.Editor? {
+        ): SharedPreferences.Editor {
             if (values == null) {
                 stringSetMap.remove(key)
             } else {
@@ -91,7 +91,7 @@ class SharedPreferenceFake : SharedPreferences {
         override fun putInt(
             key: String,
             value: Int
-        ): SharedPreferences.Editor? {
+        ): SharedPreferences.Editor {
             intMap[key] = value
             listener?.onSharedPreferenceChanged(this@SharedPreferenceFake, key)
             return this
@@ -100,7 +100,7 @@ class SharedPreferenceFake : SharedPreferences {
         override fun putLong(
             key: String,
             value: Long
-        ): SharedPreferences.Editor? {
+        ): SharedPreferences.Editor {
             longMap[key] = value
             listener?.onSharedPreferenceChanged(this@SharedPreferenceFake, key)
             return this
@@ -109,7 +109,7 @@ class SharedPreferenceFake : SharedPreferences {
         override fun putFloat(
             key: String,
             value: Float
-        ): SharedPreferences.Editor? {
+        ): SharedPreferences.Editor {
             floatMap[key] = value
             listener?.onSharedPreferenceChanged(this@SharedPreferenceFake, key)
             return this
@@ -118,13 +118,13 @@ class SharedPreferenceFake : SharedPreferences {
         override fun putBoolean(
             key: String,
             value: Boolean
-        ): SharedPreferences.Editor? {
+        ): SharedPreferences.Editor {
             booleanMap[key] = value
             listener?.onSharedPreferenceChanged(this@SharedPreferenceFake, key)
             return this
         }
 
-        override fun remove(key: String): SharedPreferences.Editor? {
+        override fun remove(key: String): SharedPreferences.Editor {
             stringMap.remove(key)
             intMap.remove(key)
             booleanMap.remove(key)
@@ -136,7 +136,7 @@ class SharedPreferenceFake : SharedPreferences {
             return this
         }
 
-        override fun clear(): SharedPreferences.Editor? {
+        override fun clear(): SharedPreferences.Editor {
             stringMap.clear()
             intMap.clear()
             booleanMap.clear()

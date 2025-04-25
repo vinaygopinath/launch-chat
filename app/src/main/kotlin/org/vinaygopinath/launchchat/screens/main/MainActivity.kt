@@ -190,7 +190,7 @@ class MainActivity : AppCompatActivity() {
                 intentHelper.getOpenTelegramIntent(phoneNumber)
             }
         }
-        historyViewAllButton = findViewById<Button>(R.id.history_view_all)
+        historyViewAllButton = findViewById(R.id.history_view_all)
         historyViewAllButton.setOnClickListener {
             startActivity(HistoryActivity.getIntent(this))
         }

@@ -1,7 +1,6 @@
 package org.vinaygopinath.launchchat.helpers
 
 import android.content.Intent
-import android.net.Uri
 import androidx.annotation.VisibleForTesting
 import androidx.core.net.toUri
 import org.vinaygopinath.launchchat.Constants
@@ -12,7 +11,7 @@ class IntentHelper @Inject constructor() {
     fun getGithubRepoIntent(): Intent {
         return Intent().apply {
             action = Intent.ACTION_VIEW
-            data = Uri.parse(Constants.GITHUB_REPO_URL)
+            data = Constants.GITHUB_REPO_URL.toUri()
         }
     }
 

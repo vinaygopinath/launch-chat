@@ -35,49 +35,39 @@ class SettingsFragment : PreferenceFragmentCompat() {
             findPreference<DropDownPreference>(KEY_MISSING_COUNTRY_CODE_ACTION)
         val defaultCountryCodePref = findPreference<IntPreference>(KEY_DEFAULT_COUNTRY_CODE)
         missingCountryCodePref?.onPreferenceChangeListener =
-            object : Preference.OnPreferenceChangeListener {
-                override fun onPreferenceChange(
-                    preference: Preference,
-                    newValue: Any?
-                ): Boolean {
-                    val isNewValueDefaultCountryCode =
-                        newValue == Settings.VALUE_MISSING_COUNTRY_CODE_ACTION_ENTRY_DEFAULT
-                    defaultCountryCodePref?.isVisible = isNewValueDefaultCountryCode
-                    if (!isNewValueDefaultCountryCode) {
-                        preferenceUtil.clear(KEY_DEFAULT_COUNTRY_CODE)
-                    }
-
-                    return true
+            Preference.OnPreferenceChangeListener { _, newValue ->
+                val isNewValueDefaultCountryCode =
+                    newValue == Settings.VALUE_MISSING_COUNTRY_CODE_ACTION_ENTRY_DEFAULT
+                defaultCountryCodePref?.isVisible = isNewValueDefaultCountryCode
+                if (!isNewValueDefaultCountryCode) {
+                    preferenceUtil.clear(KEY_DEFAULT_COUNTRY_CODE)
                 }
+
+                true
             }
         missingCountryCodePref?.summaryProvider =
             MissingCountryCodeActionSummaryProvider(preferenceUtil)
         defaultCountryCodePref?.isVisible = settings.missingCountryCodeAction is DefaultCountryCode
         defaultCountryCodePref?.summaryProvider = DefaultCountryCodeSummaryProvider(preferenceUtil)
         defaultCountryCodePref?.onPreferenceChangeListener =
-            object : Preference.OnPreferenceChangeListener {
-                override fun onPreferenceChange(
-                    preference: Preference,
-                    newValue: Any?
-                ): Boolean {
-                    val isNewValueValid = isValidCountryCode(newValue as String?)
-                    if (isNewValueValid) {
-                        /*
-                           Preference does not provide a way to refresh the summary,
-                           so we're toggling its visibility as a workaround.
-                         */
-                        missingCountryCodePref?.isVisible = false
-                        missingCountryCodePref?.isVisible = true
-                    } else {
-                        Toast.makeText(
-                            context,
-                            R.string.pref_default_country_code_invalid_format,
-                            LENGTH_LONG
-                        ).show()
-                    }
-
-                    return isNewValueValid
+            Preference.OnPreferenceChangeListener { _, newValue ->
+                val isNewValueValid = isValidCountryCode(newValue as String?)
+                if (isNewValueValid) {
+                    /*
+                                   Preference does not provide a way to refresh the summary,
+                                   so we're toggling its visibility as a workaround.
+                                 */
+                    missingCountryCodePref?.isVisible = false
+                    missingCountryCodePref?.isVisible = true
+                } else {
+                    Toast.makeText(
+                        context,
+                        R.string.pref_default_country_code_invalid_format,
+                        LENGTH_LONG
+                    ).show()
                 }
+
+                isNewValueValid
             }
     }
 }

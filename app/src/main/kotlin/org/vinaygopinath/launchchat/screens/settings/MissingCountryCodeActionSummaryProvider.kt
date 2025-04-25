@@ -12,7 +12,7 @@ class MissingCountryCodeActionSummaryProvider(
     private val preferenceUtil: PreferenceUtil
 ) : Preference.SummaryProvider<DropDownPreference> {
 
-    override fun provideSummary(preference: DropDownPreference): CharSequence? {
+    override fun provideSummary(preference: DropDownPreference): CharSequence {
         val settings = Settings.build(preferenceUtil)
         val context = preference.context
         return when (settings.missingCountryCodeAction) {
