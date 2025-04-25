@@ -67,6 +67,7 @@ dependencies {
 
     implementation(libs.appcompat)
     implementation(libs.preference)
+    implementation(libs.activity)
 
     implementation(libs.material)
     implementation(libs.core)
