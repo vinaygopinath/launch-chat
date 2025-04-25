@@ -1,5 +1,6 @@
 package org.vinaygopinath.launchchat.screens.main
 
+import android.app.ComponentCaller
 import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
@@ -294,8 +295,8 @@ class MainActivity : AppCompatActivity() {
         dialog.show()
     }
 
-    override fun onNewIntent(intent: Intent?) {
-        super.onNewIntent(intent)
+    override fun onNewIntent(intent: Intent, caller: ComponentCaller) {
+        super.onNewIntent(intent, caller)
         viewModel.processIntent(intent, contentResolver)
     }
 
