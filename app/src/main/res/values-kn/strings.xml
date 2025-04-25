@@ -40,4 +40,13 @@
     <string name="activity_source_history">ಇತಿಹಾಸ</string>
     <string name="no_action_label">ಯಾವುದೇ ಕ್ರಮಗಳಿಲ್ಲ</string>
     <string name="label_history_view_all">ಎಲ್ಲವನ್ನೂ ವೀಕ್ಷಿಸು</string>
+    <string name="label_settings">ಸೆಟ್ಟಿಂಗ್ಗಳು</string>
+    <string name="pref_activity_history_title">ಚಟುವಟಿಕೆ ಇತಿಹಾಸವನ್ನು ದಾಖಲಿಸು</string>
+    <string name="pref_activity_history_on_description">Launch Chat ಚಟುವಟಿಕೆ ಇತಿಹಾಸವನ್ನು ದಾಖಲಿಸುವುದು</string>
+    <string name="pref_activity_history_off_description">Launch Chat ಚಟುವಟಿಕೆ ಇತಿಹಾಸವನ್ನು ದಾಖಲಿಸುವುದಿಲ್ಲ</string>
+    <string name="pref_missing_country_code_action_entry_default_name">ಡೀಫಾಲ್ಟ್ ದೇಶದ ಕೋಡನ್ನು ಉಪಯೋಗಿಸು</string>
+    <string name="pref_missing_country_code_action_description_default_country_code_missing">ಡೀಫಾಲ್ಟ್ ದೇಶದ ಕೋಡ್ ಆಯ್ಕೆ ಮಾಡಲಾಗಿದೆ, ಆದರೆ ದೇಶದ ಕೋಡ್ ಹೊಂದಿಸಲಾಗಿಲ್ಲ</string>
+    <string name="pref_missing_country_code_action_title">ದೇಶದ ಕೋಡ್ ಲಭ್ಯವಿಲ್ಲದಿದ್ದಾಗ ತೆಗೆದುಕೊಳ್ಲುವ ಕ್ರಮ</string>
+    <string name="pref_missing_country_code_action_entry_recent_name">ಇತ್ತೀಚಿನ ದೇಶದ ಕೋಡನ್ನು ಉಪಯೋಗಿಸು</string>
+    <string name="pref_missing_country_code_action_description_default_country_code_available">ಡೀಫಾಲ್ಟ್ ದೇಶದ ಕೋಡ್ +%1$d ಅನ್ನುಉಪಯೋಗಿಸು</string>
 </resources>
