@@ -1,0 +1,2 @@
+* Fix broken layout on Android 15+ devices
+* Improved translations for Kannada
