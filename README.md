@@ -15,17 +15,17 @@
 <table style="display: block; overflow-x: auto; white-space: nowrap">
   <tr>
     <td>
-      <a href="https://github.com/vinaygopinath/launch-chat/blob/1104a294bc6116ab2562277c1b3feef347a6d7ca/metadata/en-US/images/phoneScreenshots/1.png?raw=true" alt="The main screen of the app, showing an input field to enter the phone number, and buttons to launch a chat on WhatsApp, Signal or Telegram">
+      <a href="https://github.com/vinaygopinath/launch-chat/blob/1104a294bc6116ab2562277c1b3feef347a6d7ca/metadata/en-US/images/phoneScreenshots/1.png?raw=true">
         <img src="https://github.com/vinaygopinath/launch-chat/blob/1104a294bc6116ab2562277c1b3feef347a6d7ca/metadata/en-US/images/phoneScreenshots/1.png?raw=true" alt="The main screen of the app, showing an input field to enter the phone number, and buttons to launch a chat on WhatsApp, Signal or Telegram" width="400px" />
       </a>
     </td>
     <td>
-      <a href="https://github.com/vinaygopinath/launch-chat/blob/1104a294bc6116ab2562277c1b3feef347a6d7ca/metadata/en-US/images/phoneScreenshots/2.png?raw=true" alt="A screenshot demonstrating the use of the app from a third party app when a phone number is clicked">
+      <a href="https://github.com/vinaygopinath/launch-chat/blob/1104a294bc6116ab2562277c1b3feef347a6d7ca/metadata/en-US/images/phoneScreenshots/2.png?raw=true">
         <img src="https://github.com/vinaygopinath/launch-chat/blob/1104a294bc6116ab2562277c1b3feef347a6d7ca/metadata/en-US/images/phoneScreenshots/2.png?raw=true" alt="A screenshot demonstrating the use of the app from a third party app when a phone number is clicked" width="400px" />
       </a>
     </td>
     <td>
-      <a href="https://github.com/vinaygopinath/launch-chat/blob/1104a294bc6116ab2562277c1b3feef347a6d7ca/metadata/en-US/images/phoneScreenshots/3.png?raw=true" alt="A screenshot demonstrating the use of the app from a browser app when a phone number is clicked">
+      <a href="https://github.com/vinaygopinath/launch-chat/blob/1104a294bc6116ab2562277c1b3feef347a6d7ca/metadata/en-US/images/phoneScreenshots/3.png?raw=true">
         <img src="https://github.com/vinaygopinath/launch-chat/blob/1104a294bc6116ab2562277c1b3feef347a6d7ca/metadata/en-US/images/phoneScreenshots/3.png?raw=true" alt="A screenshot demonstrating the use of the app from a browser app when a phone number is clicked" width="400px" />
       </a>
     </td>
