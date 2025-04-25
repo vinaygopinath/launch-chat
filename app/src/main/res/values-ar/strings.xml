@@ -18,9 +18,8 @@
     <string name="label_history_view_all">عرض الكل</string>
     <string name="phone_number_selection_dialog_title">تم العثور على العديد من أرقام الهواتف</string>
     <string name="button_choose_from_contacts">اختر من جهات الاتصال</string>
-    <string name="button_paste_from_clipboard">الحافظة</string>
     <string name="label_contacts_shortcut">جهات الاتصال</string>
-    <string name="menu_item_about">معلومات عن التطبيق</string>
+    <string name="main_menu_item_about">معلومات عن التطبيق</string>
     <string name="toast_whatsapp_not_installed">لا يوجد تطبيق واتساب أو متصفح مثبت على جهازك</string>
     <string name="activity_source_tel">رقم الهاتف</string>
     <string name="activity_source_sms">رابط لرسالة نصية قصيرة</string>
@@ -32,7 +31,7 @@
     <string name="activity_source_history">السجل</string>
     <string name="action_label"><![CDATA[تم فتح <strong>%1$s</strong> باستخدام <strong>%2$s</strong>]]></string>
     <string name="no_action_label">لا إجراءات</string>
-    <string name="action_more">...و أكثر من %1$d</string>
+    <string name="action_more">…و أكثر من %1$d</string>
     <string name="action_type_signal">سيجنال</string>
     <string name="replace_input_title">تغيير محتوى المدخل</string>
     <string name="replace_input_positive_button">استبدال الإدخال</string>

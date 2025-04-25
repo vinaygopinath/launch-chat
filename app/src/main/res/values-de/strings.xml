@@ -11,8 +11,7 @@
     <string name="label_history">Verlauf</string>
     <string name="label_history_view_all">Alles anzeigen</string>
     <string name="button_choose_from_contacts">Kontakt auswählen</string>
-    <string name="button_paste_from_clipboard">Zwischenablage</string>
-    <string name="menu_item_about">Über</string>
+    <string name="main_menu_item_about">Über</string>
     <string name="toast_invalid_phone_number">Ungültige Telefonnummer</string>
     <string name="toast_whatsapp_not_installed">Weder WhatsApp noch ein Browser ist installiert</string>
     <string name="toast_signal_not_installed">Weder Signal noch ein Browser ist installiert</string>
@@ -23,7 +22,7 @@
     <string name="activity_source_unknown">Unbekannt</string>
     <string name="activity_source_manual_input">Manuelle Eingabe</string>
     <string name="no_action_label">Keine Aktionen</string>
-    <string name="action_more">...und %1$d mehr</string>
+    <string name="action_more">…und %1$d mehr</string>
     <string name="action_type_whatsapp">WhatsApp</string>
     <string name="action_type_signal">Signal</string>
     <string name="action_type_telegram">Telegram</string>

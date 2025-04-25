@@ -7,7 +7,6 @@
     <string name="phone_number_selection_dialog_message">Tundub, et mitu telefoninumbrit on saadaval. Millisega neist soovid sa vestelda?</string>
     <string name="button_choose_from_contacts">Vali kontaktide hulgast</string>
     <string name="button_paste_from_clipboard_description">Aseta lõikelaualt</string>
-    <string name="button_paste_from_clipboard">Lõikelaud</string>
     <string name="label_contacts_shortcut">Kontaktid</string>
     <string name="main_menu_item_about">Rakenduse teave</string>
     <string name="toast_invalid_phone_number">Vigane telefoninumber</string>
@@ -26,7 +25,7 @@
     <string name="activity_source_dial">Numbrivalija</string>
     <string name="activity_source_unknown">Teadmata</string>
     <string name="action_label"><![CDATA[Opened <strong>„%1$s“</strong> rakendusega <strong>„%2$s“</strong>]]></string>
-    <string name="action_more">...ja veel „%1$d“</string>
+    <string name="action_more">…ja veel „%1$d“</string>
     <string name="action_type_whatsapp">WhatsApp</string>
     <string name="action_type_signal">Signal</string>
     <string name="replace_input_positive_button">Asenda sisend</string>
@@ -47,8 +46,6 @@
     <string name="main_menu_item_settings">Seadistused</string>
     <string name="pref_activity_history_off_description">Launch Chat ei salvesta tehtud toiminguid</string>
     <string name="pref_missing_country_code_action_entry_default_name">Kasuta vaikimisi riigikoodi</string>
-    <string name="pref_missing_country_code_action_short_title">Tegevus puuduva riigikoodi puhul</string>
-    <string name="pref_missing_country_code_action_description_missing">⚠️ Vali tegevus, kui sisestatud või jagatud telefoninumbril on riigikood puudu</string>
     <string name="pref_missing_country_code_action_description_recent_country_code_available">Kasuta viimatikasutatud riigikoodi +%1$d</string>
     <string name="pref_default_country_code_title">Vaikimisi riigikood</string>
     <string name="pref_default_country_code_description_missing">Kasutatav riigikood, kui telefoninumbri alguses seda pole</string>
