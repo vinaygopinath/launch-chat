@@ -1,152 +1,164 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_gravity="center"
-    android:orientation="vertical"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context=".screens.main.MainActivity">
+    android:fitsSystemWindows="true">
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/phone_number_input_layout"
+    <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_marginBottom="0dp"
-        android:hint="@string/input_hint_phone_number">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/phone_number_input"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:autofillHints="phone"
-            android:inputType="phone"
-            android:minLines="3" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/choose_from_contacts_button"
-        style="@style/Widget.Material3.Button.IconButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/phone_number_input_layout"
-        android:layout_alignEnd="@id/phone_number_input_layout"
-        android:contentDescription="@string/button_choose_from_contacts"
-        android:tooltipText="@string/button_choose_from_contacts"
-        app:icon="@drawable/ic_contact"
-        tools:targetApi="o" />
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/paste_from_clipboard_button"
-        style="@style/Widget.Material3.Button.IconButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/phone_number_input_layout"
-        android:layout_toStartOf="@id/choose_from_contacts_button"
-        android:contentDescription="@string/button_paste_from_clipboard_description"
-        android:tooltipText="@string/button_paste_from_clipboard_description"
-        app:icon="@drawable/ic_clipboard_paste"
-        tools:targetApi="o" />
-
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/open_button_card"
-        style="@style/Widget.Material3.CardView.Elevated"
-        android:layout_below="@id/paste_from_clipboard_button"
-        android:layout_marginBottom="@dimen/open_button_layout_vertical_padding"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true">
 
         <RelativeLayout
-            android:id="@+id/open_button_layout"
-            android:paddingTop="@dimen/open_button_layout_vertical_padding"
-            android:paddingBottom="@dimen/open_button_layout_vertical_padding"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal">
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:orientation="vertical"
+            android:paddingHorizontal="@dimen/activity_horizontal_margin"
+            android:paddingVertical="@dimen/activity_vertical_margin"
+            tools:context=".screens.main.MainActivity">
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/open_whatsapp_button"
-                style="@style/Widget.Material3.Button.OutlinedButton.Icon"
-                android:layout_width="wrap_content"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/phone_number_input_layout"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
-                android:layout_marginEnd="@dimen/open_button_margin"
-                android:text="@string/button_open"
-                android:tooltipText="@string/button_open_whatsapp_description"
-                app:icon="@drawable/ic_whatsapp"
-                app:iconTint="@null"
+                android:layout_marginBottom="0dp"
+                android:hint="@string/input_hint_phone_number">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/phone_number_input"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:autofillHints="phone"
+                    android:inputType="phone"
+                    android:minLines="3" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/choose_from_contacts_button"
+                style="@style/Widget.Material3.Button.IconButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/phone_number_input_layout"
+                android:layout_alignEnd="@id/phone_number_input_layout"
+                android:contentDescription="@string/button_choose_from_contacts"
+                android:tooltipText="@string/button_choose_from_contacts"
+                app:icon="@drawable/ic_contact"
                 tools:targetApi="o" />
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/open_signal_button"
-                style="@style/Widget.Material3.Button.OutlinedButton.Icon"
+                android:id="@+id/paste_from_clipboard_button"
+                style="@style/Widget.Material3.Button.IconButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:layout_marginEnd="@dimen/open_button_margin"
-                android:layout_toEndOf="@id/open_whatsapp_button"
-                android:text="@string/button_open"
-                android:tooltipText="@string/button_open_signal_description"
-                app:icon="@drawable/ic_signal"
-                app:iconTint="@null"
+                android:layout_below="@id/phone_number_input_layout"
+                android:layout_toStartOf="@id/choose_from_contacts_button"
+                android:contentDescription="@string/button_paste_from_clipboard_description"
+                android:tooltipText="@string/button_paste_from_clipboard_description"
+                app:icon="@drawable/ic_clipboard_paste"
                 tools:targetApi="o" />
 
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/open_button_card"
+                style="@style/Widget.Material3.CardView.Elevated"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/paste_from_clipboard_button"
+                android:layout_marginBottom="@dimen/open_button_layout_vertical_padding">
+
+                <RelativeLayout
+                    android:id="@+id/open_button_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:paddingTop="@dimen/open_button_layout_vertical_padding"
+                    android:paddingBottom="@dimen/open_button_layout_vertical_padding">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/open_whatsapp_button"
+                        style="@style/Widget.Material3.Button.OutlinedButton.Icon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginEnd="@dimen/open_button_margin"
+                        android:text="@string/button_open"
+                        android:tooltipText="@string/button_open_whatsapp_description"
+                        app:icon="@drawable/ic_whatsapp"
+                        app:iconTint="@null"
+                        tools:targetApi="o" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/open_signal_button"
+                        style="@style/Widget.Material3.Button.OutlinedButton.Icon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginEnd="@dimen/open_button_margin"
+                        android:layout_toEndOf="@id/open_whatsapp_button"
+                        android:text="@string/button_open"
+                        android:tooltipText="@string/button_open_signal_description"
+                        app:icon="@drawable/ic_signal"
+                        app:iconTint="@null"
+                        tools:targetApi="o" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/open_telegram_button"
+                        style="@style/Widget.Material3.Button.OutlinedButton.Icon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_toEndOf="@id/open_signal_button"
+                        android:text="@string/button_open"
+                        android:tooltipText="@string/button_open_telegram_description"
+                        app:icon="@drawable/ic_telegram"
+                        app:iconTint="@null"
+                        tools:targetApi="o" />
+                </RelativeLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/message_input_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/open_button_card"
+                android:hint="@string/input_hint_message">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/message_input"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:importantForAutofill="no"
+                    android:inputType="textCapSentences|textMultiLine"
+                    android:lines="4" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/history_title"
+                style="@style/TextAppearance.Material3.TitleMedium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/message_input_layout"
+                android:paddingTop="@dimen/activity_vertical_margin"
+                android:text="@string/label_history" />
+
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/open_telegram_button"
-                style="@style/Widget.Material3.Button.OutlinedButton.Icon"
+                android:id="@+id/history_view_all"
+                style="@style/Widget.Material3.Button.TextButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:layout_toEndOf="@id/open_signal_button"
-                android:text="@string/button_open"
-                android:tooltipText="@string/button_open_telegram_description"
-                app:icon="@drawable/ic_telegram"
-                app:iconTint="@null"
-                tools:targetApi="o" />
+                android:layout_alignBaseline="@id/history_title"
+                android:layout_alignParentEnd="true"
+                android:text="@string/label_history_view_all" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/history_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/history_title" />
         </RelativeLayout>
-    </com.google.android.material.card.MaterialCardView>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/message_input_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/open_button_card"
-        android:hint="@string/input_hint_message">
+    </com.google.android.material.appbar.AppBarLayout>
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/message_input"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:importantForAutofill="no"
-            android:inputType="textCapSentences|textMultiLine"
-            android:lines="4" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/history_title"
-        style="@style/TextAppearance.Material3.TitleMedium"
-        android:paddingTop="@dimen/activity_vertical_margin"
-        android:text="@string/label_history"
-        android:layout_below="@id/message_input_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-    
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/history_view_all"
-        style="@style/Widget.Material3.Button.TextButton"
-        android:layout_alignBaseline="@id/history_title"
-        android:text="@string/label_history_view_all"
-        android:layout_alignParentEnd="true"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/history_list"
-        android:layout_below="@id/history_title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-</RelativeLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
