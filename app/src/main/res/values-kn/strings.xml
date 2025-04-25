@@ -6,7 +6,6 @@
     <string name="label_share_contact">ಸಂಪರ್ಕವನ್ನು ತೆರೆ</string>
     <string name="phone_number_selection_dialog_title">ಹಲವಾರು ಫೋನ್ ಸಂಖ್ಯೆಗಳನ್ನು ಗುರುತಿಸಲಾಗಿದೆ</string>
     <string name="button_choose_from_contacts">ಸಂಪರ್ಕಗಳಿಂದ ಆಯ್ಕೆಮಾಡಿ</string>
-    <string name="button_paste_from_clipboard">ಕ್ಲಿಪ್ಬೋರ್ಡ್</string>
     <string name="button_open">ತೆರೆ</string>
     <string name="toast_whatsapp_not_installed">ವಾಟ್ಸಾಪ್ ಹಾಗು ಬ್ರೌಸರ್ ಅಪ್ಲಿಕೇಶನ್-ಗಳು ಸ್ಥಾಪಿಸಲಾಗಿಲ್ಲ</string>
     <string name="app_name">Launch Chat</string>
@@ -31,7 +30,7 @@
     <string name="action_label"><![CDATA[<strong>%1$s</strong> ಅನ್ನು <strong>%2$s</strong> ಅಲ್ಲಿ ತೆರೆಯಲಾಯಿತು]]></string>
     <string name="action_type_whatsapp">ವಾಟ್ಸಾಪ್</string>
     <string name="action_type_signal">ಸಿಗ್ನಲ್</string>
-    <string name="action_more">...ಹಾಗು ಇತರೆ %1$d</string>
+    <string name="action_more">…ಹಾಗು ಇತರೆ %1$d</string>
     <string name="replace_input_message">ಫೋನ್ ಸಂಖ್ಯೆಯ ಇನ್‌ಪುಟ್ ಖಾಲಿ ಇಲ್ಲದಿದ್ದಾಗ ನೀವು ಇತಿಹಾಸದ ಐಟಂ ಅನ್ನು ಕ್ಲಿಕ್ ಮಾಡಿದ್ದೀರಿ. ಬರೆದಿರುವುದನ್ನು ಅಳಿಸಿ ಇತಿಗಾಸದ ಐಟಂ ಅನ್ನು ತೋರಿಸುವುದೇ?</string>
     <string name="replace_input_positive_button">ಬರೆದಿರುವುದನ್ನು ಅಳಿಸು</string>
     <string name="replace_input_neutral_button">ವಜಾಗೊಳಿಸು</string>

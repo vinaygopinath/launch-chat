@@ -15,7 +15,6 @@
     <string name="phone_number_selection_dialog_message">Parece que hay varios números de teléfono disponibles. ¿Con cuál número quiere chatear?</string>
     <string name="button_choose_from_contacts">Elija entre los contactos</string>
     <string name="button_paste_from_clipboard_description">Pega desde el portapapeles</string>
-    <string name="button_paste_from_clipboard">Portapapeles</string>
     <string name="label_contacts_shortcut">Contactos</string>
     <string name="main_menu_item_about">Acerca de</string>
     <string name="toast_invalid_phone_number">Número de teléfono inválido</string>
@@ -32,7 +31,7 @@
     <string name="activity_source_manual_input">Entrada manual</string>
     <string name="activity_source_history">Historia</string>
     <string name="no_action_label">Sin acciones</string>
-    <string name="action_more">...y %1$d más</string>
+    <string name="action_more">…y %1$d más</string>
     <string name="action_type_whatsapp">WhatsApp</string>
     <string name="action_type_signal">Signal</string>
     <string name="action_type_telegram">Telegram</string>

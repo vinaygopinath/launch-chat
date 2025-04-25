@@ -15,7 +15,6 @@
     <string name="phone_number_selection_dialog_message">பல தொலைபேசி எண்கள் கிடைப்பது போல் தெரிகிறது. எந்த எண்ணுடன் அரட்டை அடிக்க விரும்புகிறீர்கள்?</string>
     <string name="button_choose_from_contacts">தொடர்புகளிலிருந்து தேர்வு செய்யவும்</string>
     <string name="button_paste_from_clipboard_description">கிளிப்போர்டிலிருந்து ஒட்டவும்</string>
-    <string name="button_paste_from_clipboard">இடைநிலைப் பலகை</string>
     <string name="main_menu_item_about">பற்றி</string>
     <string name="label_contacts_shortcut">தொடர்புகள்</string>
     <string name="main_menu_item_settings">அமைப்புகள்</string>
@@ -36,7 +35,7 @@
     <string name="activity_source_history">வரலாறு</string>
     <string name="action_type_whatsapp">வாட்ச்அப்</string>
     <string name="action_type_signal">குறிகை</string>
-    <string name="action_label">&lt;!</string>
+    <string name="action_label"><![CDATA[<strong>%2$s</strong> உடன் <strong>%1$s</strong> ஐத் திறந்தார்]]></string>
     <string name="action_type_telegram">தந்தி</string>
     <string name="replace_input_title">உள்ளீட்டை மாற்றவும்</string>
     <string name="replace_input_message">தொலைபேசி எண் உள்ளீடு காலியாக இல்லாதபோது வரலாற்று உருப்படியைக் சொடுக்கு செய்துள்ளீர்கள். உள்ளிடப்பட்ட உரையை வரலாற்று உருப்படியுடன் மாற்ற விரும்புகிறீர்களா?</string>
@@ -44,6 +43,6 @@
     <string name="phone_number_selection_dialog_title">பல தொலைபேசி எண்கள் கண்டறியப்பட்டன</string>
     <string name="toast_whatsapp_not_installed">வாட்ச்அப் அல்லது உலாவி பயன்பாடு நிறுவப்படவில்லை</string>
     <string name="no_action_label">செயல்கள் இல்லை</string>
-    <string name="action_more">... மற்றும் %1$d மேலும்</string>
+    <string name="action_more">… மற்றும் %1$d மேலும்</string>
     <string name="replace_input_neutral_button">தள்ளுபடி</string>
 </resources>

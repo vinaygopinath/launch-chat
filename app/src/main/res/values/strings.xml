@@ -20,7 +20,6 @@
     <string name="button_choose_from_contacts">Choose from contacts</string>
 
     <string name="button_paste_from_clipboard_description">Paste from clipboard</string>
-    <string name="button_paste_from_clipboard">Clipboard</string>
     <string name="label_contacts_shortcut">Contacts</string>
 
     <string name="main_menu_item_about">About</string>
@@ -47,7 +46,6 @@
     <string name="pref_missing_country_code_action_entry_recent_name">Use the most recent country code</string>
     <!-- Caution when editing: This maps to Settings.VALUE_MISSING_COUNTRY_CODE_ACTION_ENTRY_DEFAULT -->
     <string name="pref_missing_country_code_action_entry_recent_value" translatable="false">recent_country_code</string>
-    <string name="pref_missing_country_code_action_short_title">Missing country code action</string>
     <string name="pref_missing_country_code_action_description_default_country_code_available">Use the default country code +%1$d</string>
     <string name="pref_missing_country_code_action_description_default_country_code_missing">⚠️ Default country code selected, but country code not set</string>
     <string name="pref_missing_country_code_action_description_recent_country_code_available">Use the recent country code +%1$d</string>
@@ -68,11 +66,6 @@
     <string name="pref_default_country_code_description_set">Use the country code +%1$d</string>
     <string name="pref_default_country_code_invalid_format">Please enter a country code in the format +123, with no spaces</string>
 
-    <!-- Caution when editing: This maps to Settings.KEY_RECENT_COUNTRY_CODE -->
-    <string name="pref_recent_country_code_key" translatable="false">recent_country_code</string>
-
-    <string name="pref_last_region" translatable="false">pref_last_region</string>
-
     <string name="activity_source_tel">Phone number</string>
     <string name="activity_source_sms">SMS link</string>
     <string name="activity_source_mms">MMS link</string>
@@ -85,7 +78,7 @@
 
     <string name="action_label"><![CDATA[Opened <strong>%1$s</strong> with <strong>%2$s</strong>]]></string>
     <string name="no_action_label">No actions</string>
-    <string name="action_more">...and %1$d more</string>
+    <string name="action_more">…and %1$d more</string>
     <string name="action_type_whatsapp">WhatsApp</string>
     <string name="action_type_signal">Signal</string>
     <string name="action_type_telegram">Telegram</string>
