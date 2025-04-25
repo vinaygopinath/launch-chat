@@ -49,4 +49,14 @@
     <string name="pref_missing_country_code_action_title">ದೇಶದ ಕೋಡ್ ಲಭ್ಯವಿಲ್ಲದಿದ್ದಾಗ ತೆಗೆದುಕೊಳ್ಲುವ ಕ್ರಮ</string>
     <string name="pref_missing_country_code_action_entry_recent_name">ಇತ್ತೀಚಿನ ದೇಶದ ಕೋಡನ್ನು ಉಪಯೋಗಿಸು</string>
     <string name="pref_missing_country_code_action_description_default_country_code_available">ಡೀಫಾಲ್ಟ್ ದೇಶದ ಕೋಡ್ +%1$d ಅನ್ನುಉಪಯೋಗಿಸು</string>
+    <string name="select_contacts_not_ready_dialog_title">ಇನ್ನೂ ಜಾರಿಗೆ ಬಂದಿಲ್ಲ!</string>
+    <string name="select_contacts_not_ready_dialog_neutral_button">ಅರ್ಥವಾಯಿತು</string>
+    <string name="select_contacts_not_ready_dialog_message">ಈ ವೈಶಿಷ್ಟ್ಯವು ಇನ್ನೂ ಲಭ್ಯವಿಲ್ಲ. ಆದರೆ, ನೀವು ನಿಮ್ಮ ಸಂಪರ್ಕದ ಅಪ್ಲಿಕೇಷನ್ ತೆರೆದು ಒಂದು ಸಂಪರ್ಕವನ್ನುLaunch Chat ಜೊತೆಗೆ ಹಂಚಿದರೆ, Launch Chat ಸಂಪರ್ಕಗಳನ್ನು ತೆರೆಯಬಹುದು.\n\nಡೆಮೊ ವೀಡಿಯೊವನ್ನು ಇಲ್ಲಿ ನೋಡಿ https://github.com/vinaygopinath/launch-chat/pull/18</string>
+    <string name="pref_default_country_code_title">ಡೀಫಾಲ್ಟ್ ದೇಶದ ಕೋಡ್</string>
+    <string name="pref_default_country_code_invalid_format">ದಯವಿಟ್ಟು ದೇಶದ ಕೋಡನ್ನು +123 ಶೈಲಿಯಲ್ಲಿ ಸ್ಪೇಸ್ ಇಲ್ಲದೆ ಬರೆಯಿರಿ</string>
+    <string name="pref_default_country_code_description_set">ದೇಶದ ಕೋಡ್ +%1$d ಅನ್ನು ಉಪಯೋಗಿಸು</string>
+    <string name="main_menu_item_settings">ಸೆಟ್ಟಿಂಗ್ಗಳು</string>
+    <string name="pref_missing_country_code_action_description_recent_country_code_missing">ಇತ್ತೀಚಿನ ದೇಶದ ಕೋಡ್ ಆಯ್ಕೆ ಮಾಡಲಾಗಿದೆ, ಆದರೆ ಯಾವುದೇ ಇತ್ತೀಚಿನ ದೇಶದ ಕೋಡು ಇಲ್ಲ. ದೇಶದ ಕೋಡ್ ಹೊಂದಿರುವ ಫೋನ್ ಸಂಖ್ಯೆಯೊಂದಿಗೆ ಸಂಭಾಷಣೆಯನ್ನು ಆರಂಭಿಸಿ</string>
+    <string name="pref_default_country_code_description_missing">ದೇಶದ ಕೋಡ್ ಹೊಂದಿಲ್ಲದಿರುವ ಫೋನ್ ಸಂಖ್ಯೆ ಕಂಡುಬಂದಾಗ ಉಪಯೋಗಿಸುವ ದೇಶದ ಕೋಡ್</string>
+    <string name="pref_missing_country_code_action_description_recent_country_code_available">ಇತ್ತೀಚಿನ ದೇಶದ ಕೋಡ್ +%1$d ಅನ್ನು ಉಪಯೋಗಿಸು</string>
 </resources>
