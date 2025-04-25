@@ -6,11 +6,16 @@ import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.doOnLayout
 import androidx.core.view.setPadding
+import androidx.core.view.updatePadding
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.appbar.AppBarLayout
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -24,8 +29,6 @@ import javax.inject.Inject
 class HistoryActivity : AppCompatActivity() {
 
     private val viewModel: HistoryViewModel by viewModels()
-
-    private lateinit var recyclerView: RecyclerView
 
     @Inject
     lateinit var detailedActivityHelper: DetailedActivityHelper
@@ -49,23 +52,14 @@ class HistoryActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         enableEdgeToEdge()
         super.onCreate(savedInstanceState)
-        setContentView(
-            RecyclerView(this).apply {
-                layoutParams = RecyclerView.LayoutParams(
-                    RecyclerView.LayoutParams.MATCH_PARENT,
-                    RecyclerView.LayoutParams.MATCH_PARENT
-                )
-            }.also {
-                recyclerView = it
-            }
-        )
+        setContentView(R.layout.activity_history)
 
         initializeView()
         initializeObservers()
     }
 
     private fun initializeView() {
-        with(recyclerView) {
+        with(findViewById<RecyclerView>(R.id.history_recycler_view)) {
             val linearLayoutManager = LinearLayoutManager(this@HistoryActivity)
             layoutManager = linearLayoutManager
             setPadding(resources.getDimensionPixelSize(R.dimen.padding_medium))

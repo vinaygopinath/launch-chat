@@ -73,6 +73,6 @@ class HistoryAdapter(
     }
 
     interface HistoryClickListener {
-        fun onClick(activity: DetailedActivity)
+        fun onClick(detailedActivity: DetailedActivity)
     }
 }
