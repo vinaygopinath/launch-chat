@@ -6,5 +6,5 @@ class ClockProvider {
 
     private val clock = Clock.systemDefaultZone()
 
-    fun getClock() = clock
+    fun getClock(): Clock = clock
 }

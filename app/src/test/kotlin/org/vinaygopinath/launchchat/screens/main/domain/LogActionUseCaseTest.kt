@@ -70,7 +70,7 @@ class LogActionUseCaseTest {
         )
 
 
-        val activities = argumentCaptor<Activity>() {
+        val activities = argumentCaptor<Activity> {
             verify(activityRepository).create(capture())
         }.allValues
 
@@ -150,7 +150,7 @@ class LogActionUseCaseTest {
             rawInputText = somePhoneNumberInputFieldText
         )
 
-        val activity = argumentCaptor<Activity>() {
+        val activity = argumentCaptor<Activity> {
             verify(activityRepository).create(capture())
         }.firstValue
 

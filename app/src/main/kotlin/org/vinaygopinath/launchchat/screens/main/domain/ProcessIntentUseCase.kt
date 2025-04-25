@@ -52,9 +52,9 @@ class ProcessIntentUseCase @Inject constructor(
 
     private fun processHistoryIntent(intent: Intent): ExtractedContent {
         val activity = if (Build.VERSION.SDK_INT >= 33) {
-            intent.getParcelableExtra<Activity>(INTENT_EXTRA_HISTORY, Activity::class.java)
+            intent.getParcelableExtra(INTENT_EXTRA_HISTORY, Activity::class.java)
         } else {
-            intent.getParcelableExtra<Activity>(INTENT_EXTRA_HISTORY)
+            intent.getParcelableExtra(INTENT_EXTRA_HISTORY)
         }
 
         if (activity == null) {

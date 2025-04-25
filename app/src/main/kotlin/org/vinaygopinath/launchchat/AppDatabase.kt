@@ -11,7 +11,6 @@ import org.vinaygopinath.launchchat.daos.ActivityDao
 import org.vinaygopinath.launchchat.daos.DetailedActivityDao
 import org.vinaygopinath.launchchat.models.Action
 import org.vinaygopinath.launchchat.models.Activity
-import org.vinaygopinath.launchchat.models.DetailedActivity
 
 @Database(
     entities = [
