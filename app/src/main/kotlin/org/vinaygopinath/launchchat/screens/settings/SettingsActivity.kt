@@ -6,6 +6,7 @@ import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import dagger.hilt.android.AndroidEntryPoint
+import org.vinaygopinath.launchchat.R
 
 @AndroidEntryPoint
 class SettingsActivity : AppCompatActivity() {
@@ -13,8 +14,9 @@ class SettingsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         enableEdgeToEdge()
         super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_settings)
         supportFragmentManager.beginTransaction()
-            .replace(android.R.id.content, SettingsFragment())
+            .replace(R.id.settings_layout, SettingsFragment())
             .commit()
     }
 
