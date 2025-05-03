@@ -5,8 +5,8 @@
     <string name="button_open">Открыть</string>
     <string name="pref_missing_country_code_action_description_recent_country_code_missing">⚠️ Выбран последний код страны, но последний код страны недоступен. Попробуйте запустить чат с помощью номера телефона с кодом страны</string>
     <string name="input_hint_phone_number">Номер телефона с кодом страны</string>
-    <string name="action_type_whatsapp">WhatsApp</string>
-    <string name="action_type_signal">Signal</string>
+    <string name="action_type_whatsapp">WhatsApp (соц.сеть)</string>
+    <string name="action_type_signal">Signal (соц.сеть)</string>
     <string name="toast_whatsapp_not_installed">Ни WhatsApp, ни браузерное приложение не установлены</string>
     <string name="app_name">Запустить чат</string>
     <string name="activity_source_manual_input">Ручной ввод</string>
