@@ -11,13 +11,15 @@ import org.vinaygopinath.launchchat.daos.ActivityDao
 import org.vinaygopinath.launchchat.daos.DetailedActivityDao
 import org.vinaygopinath.launchchat.models.Action
 import org.vinaygopinath.launchchat.models.Activity
+import org.vinaygopinath.launchchat.models.ChatApp
 
 @Database(
     entities = [
         Activity::class,
-        Action::class
+        Action::class,
+        ChatApp::class
     ],
-    version = 1
+    version = 2
 )
 @TypeConverters(RoomTypeConverter::class)
 abstract class AppDatabase : RoomDatabase() {
