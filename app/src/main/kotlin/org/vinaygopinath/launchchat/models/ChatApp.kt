@@ -3,10 +3,12 @@ package org.vinaygopinath.launchchat.models
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import org.vinaygopinath.launchchat.models.ChatApp.Companion.TABLE_NAME
+import org.vinaygopinath.launchchat.utils.DateUtils
 import java.time.Instant
 
 @Entity(
-    tableName = "chat_apps",
+    tableName = TABLE_NAME,
     indices = [
 
     ]
@@ -36,6 +38,76 @@ data class ChatApp(
     enum class LaunchType(val internalName: String) {
         URL_ONLY("url_only"),
         INTENT_ONLY("intent_only"),
-        BOTH_USER_AND_INTENT("both_url_and_intent")
+        BOTH_URL_AND_INTENT("both_url_and_intent")
+    }
+
+    companion object {
+        const val TABLE_NAME = "chat_apps"
+        const val PREDEFINED_CHAT_APP_WHATSAPP_NAME = "WhatsApp"
+        const val PREDEFINED_CHAT_APP_WHATSAPP_BUSINESS_NAME = "WhatsApp Business"
+        const val PREDEFINED_CHAT_APP_SIGNAL_NAME = "Signal"
+        const val PREDEFINED_CHAT_APP_TELEGRAM_NAME = "Telegram"
+
+        fun getPredefinedChatApps(dateUtils: DateUtils): List<ChatApp> {
+            val currentTime = dateUtils.getCurrentInstant()
+            return listOf(
+                ChatApp(
+                    name = PREDEFINED_CHAT_APP_WHATSAPP_NAME,
+                    identifierType = IdentifierType.PHONE_NUMBER_ONLY,
+                    launchType = LaunchType.BOTH_URL_AND_INTENT,
+                    intentPackageSelection = "com.whatsapp",
+                    phoneNumberLaunchIntent = "whatsapp://send/?phone=[phone-number]&text=[message]",
+                    phoneNumberLaunchUrl = "https://wa.me/[phone-number]?text=[message]",
+                    usernameLaunchIntent = null,
+                    usernameLaunchUrl = null,
+                    isPredefined = true,
+                    isEnabled = true,
+                    createdAt = currentTime,
+                    deletedAt = null
+                ),
+                ChatApp(
+                    name = PREDEFINED_CHAT_APP_WHATSAPP_BUSINESS_NAME,
+                    identifierType = IdentifierType.PHONE_NUMBER_ONLY,
+                    launchType = LaunchType.BOTH_URL_AND_INTENT,
+                    intentPackageSelection = "com.whatsapp.w4b",
+                    phoneNumberLaunchIntent = "whatsapp://send/?phone=[phone-number]&text=[message]",
+                    phoneNumberLaunchUrl = "https://wa.me/[phone-number]?text=[message]",
+                    usernameLaunchIntent = null,
+                    usernameLaunchUrl = null,
+                    isPredefined = true,
+                    isEnabled = false,
+                    createdAt = currentTime,
+                    deletedAt = null
+                ),
+                ChatApp(
+                    name = PREDEFINED_CHAT_APP_SIGNAL_NAME,
+                    identifierType = IdentifierType.BOTH_PHONE_NUMBER_AND_USERNAME,
+                    launchType = LaunchType.URL_ONLY,
+                    intentPackageSelection = "org.thoughtcrime.securesms",
+                    phoneNumberLaunchIntent = null,
+                    phoneNumberLaunchUrl = "https://signal.me/#p/[phone-number]",
+                    usernameLaunchIntent = null,
+                    usernameLaunchUrl = "https://signal.me/#eu/[username]",
+                    isPredefined = true,
+                    isEnabled = true,
+                    createdAt = currentTime,
+                    deletedAt = null
+                ),
+                ChatApp(
+                    name = PREDEFINED_CHAT_APP_TELEGRAM_NAME,
+                    identifierType = IdentifierType.BOTH_PHONE_NUMBER_AND_USERNAME,
+                    launchType = LaunchType.URL_ONLY,
+                    intentPackageSelection = "org.telegram.messenger",
+                    phoneNumberLaunchIntent = null,
+                    phoneNumberLaunchUrl = "https://t.me/[phone-number]",
+                    usernameLaunchIntent = null,
+                    usernameLaunchUrl = "https://t.me/[username]",
+                    isPredefined = true,
+                    isEnabled = true,
+                    createdAt = currentTime,
+                    deletedAt = null
+                )
+            )
+        }
     }
 }
