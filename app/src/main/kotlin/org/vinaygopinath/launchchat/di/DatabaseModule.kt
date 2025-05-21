@@ -7,6 +7,7 @@ import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import org.vinaygopinath.launchchat.AppDatabase
+import org.vinaygopinath.launchchat.utils.DateUtils
 import org.vinaygopinath.launchchat.utils.TransactionUtil
 import javax.inject.Singleton
 
@@ -16,8 +17,11 @@ internal object DatabaseModule {
 
     @Provides
     @Singleton
-    fun provideAppDatabase(@ApplicationContext context: Context): AppDatabase {
-        return AppDatabase.buildDatabase(context)
+    fun provideAppDatabase(
+        @ApplicationContext context: Context,
+        dateUtils: DateUtils
+    ): AppDatabase {
+        return AppDatabase.buildDatabase(context, dateUtils)
     }
 
     @Provides
