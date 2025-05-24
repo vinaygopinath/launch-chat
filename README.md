@@ -55,6 +55,7 @@ If you're a developer, you're welcome to contribute code to this project.
 ### Before you start working on something
 * Make sure a Github issue exists for the issue you're interested in addressing (new feature, fixing a bug). Pull requests submitted without an associated GitHub issue will be considered unsolicited, and your efforts may go unused!
 * Leave a comment in the issue thread to indicate that you're interested in working on the issue. This ensures that there is no duplication of effort across contributors.
+* If you're new to Android development or would like to pair on an issue, I might be available at times. Please reach out via Mastodon or Signal DM, accessible through my GitHub profile, specifying the GitHub issue you're interested in and the specific part(s) and acceptance criteria you'd like to pair on.
 
 ### During development
 * Commit often - Prefer small commits that address one problem, even if it's only a few lines, versus a large commit that does a lot. This ensures that commits are readable and reviews are faster.
