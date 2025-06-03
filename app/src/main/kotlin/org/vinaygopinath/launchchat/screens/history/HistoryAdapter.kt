@@ -18,6 +18,9 @@ class HistoryAdapter(
 ) : PagingDataAdapter<DetailedActivity, HistoryAdapter.HistoryViewHolder>(
     DetailedActivityDiffCallback()
 ) {
+    private val selectedItems = mutableSetOf<DetailedActivity>()
+
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HistoryViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(
             R.layout.list_item_history,
@@ -41,11 +44,21 @@ class HistoryAdapter(
         }
 
         getItem(position)?.let { detailedActivity ->
+            holder.itemView.isSelected = selectedItems.contains(detailedActivity)
             holder.titleText.setText(helper.getSourceDisplayName(detailedActivity))
             holder.timestampText.text = helper.getActivityShortTimestamp(detailedActivity)
             holder.contentText.text = helper.getActivityContent(detailedActivity)
             holder.actionsText.text = helper.getActionsText(detailedActivity)
         }
+    }
+
+    fun toggleSelection(item: DetailedActivity) {
+        if (selectedItems.contains(item)) {
+            selectedItems.remove(item)
+        } else {
+            selectedItems.add(item)
+        }
+        notifyDataSetChanged()
     }
 
     inner class HistoryViewHolder(view: View) : ViewHolder(view) {
@@ -57,6 +70,11 @@ class HistoryAdapter(
             view.findViewById(R.id.history_list_content)
         val actionsText: MaterialTextView =
             view.findViewById(R.id.history_list_actions)
+    }
+
+    fun clearSelection() {
+        selectedItems.clear()
+        notifyDataSetChanged()
     }
 
     class DetailedActivityDiffCallback : ItemCallback<DetailedActivity>() {
@@ -74,5 +92,6 @@ class HistoryAdapter(
 
     interface HistoryClickListener {
         fun onClick(detailedActivity: DetailedActivity)
+        fun onLongClick(detailedActivity: DetailedActivity): Boolean
     }
 }
