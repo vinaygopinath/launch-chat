@@ -26,7 +26,7 @@ class LogActionUseCase @Inject constructor(
         if (!getSettingsUseCase.execute().isActivityHistoryEnabled) {
             return null
         }
-        
+
         val currentTime = dateUtils.getCurrentInstant()
         val associatedActivity = activity ?: createActivity(message, rawInputText, currentTime)
 

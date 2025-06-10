@@ -8,7 +8,7 @@ import javax.inject.Inject
 class LogActivityFromHistoryUseCase @Inject constructor(
     private val activityRepository: ActivityRepository,
     private val dateUtils: DateUtils
-){
+) {
 
     suspend fun execute(activity: Activity): ProcessIntentUseCase.ProcessedIntent {
         val newHistoryActivity = activityRepository.create(

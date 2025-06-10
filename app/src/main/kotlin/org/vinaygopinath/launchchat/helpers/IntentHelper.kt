@@ -49,13 +49,11 @@ class IntentHelper @Inject constructor() {
 
     @VisibleForTesting
     fun generateSignalUrl(phoneNumber: String): String {
-        return "https://signal.me/#p/${phoneNumber}"
+        return "https://signal.me/#p/$phoneNumber"
     }
 
     @VisibleForTesting
     fun generateTelegramUrl(phoneNumber: String): String {
-        return "https://t.me/${phoneNumber}"
+        return "https://t.me/$phoneNumber"
     }
-
-
 }
