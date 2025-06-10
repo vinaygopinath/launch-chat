@@ -61,7 +61,7 @@ class PhoneNumberHelperExtractPhoneNumbersTest {
 
         assertThat(extractedNumbers).containsExactly("+11234567890")
     }
-    
+
     @Test
     fun `extracts all phone numbers found in the raw string`() {
         val extractedNumbers = helper.extractPhoneNumbers(

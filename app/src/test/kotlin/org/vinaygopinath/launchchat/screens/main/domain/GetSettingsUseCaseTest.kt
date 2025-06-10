@@ -7,8 +7,8 @@ import org.mockito.kotlin.any
 import org.mockito.kotlin.eq
 import org.mockito.kotlin.verify
 import org.mockito.kotlin.whenever
-import org.vinaygopinath.launchchat.utils.PreferenceUtil
 import org.vinaygopinath.launchchat.R
+import org.vinaygopinath.launchchat.utils.PreferenceUtil
 
 class GetSettingsUseCaseTest {
     private val preferenceUtil = mock<PreferenceUtil>()

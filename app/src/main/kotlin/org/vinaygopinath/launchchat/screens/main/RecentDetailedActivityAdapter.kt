@@ -62,7 +62,6 @@ class RecentDetailedActivityAdapter(
         notifyDataSetChanged()
     }
 
-
     inner class RecentDetailedActivityViewHolder(view: View, listener: RecentHistoryClickListener) :
         RecyclerView.ViewHolder(view) {
         val titleText: MaterialTextView =

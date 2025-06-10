@@ -28,35 +28,50 @@ class PhoneNumberHelperBuildInternationalPhoneNumberStringTest {
     @Test
     fun `returns a phone number string in international format given a local phone number with a leading zero and country code`() {
         assertThat(
-            phoneNumberHelper.buildInternationalPhoneNumberString("0744444444", 254)
+            phoneNumberHelper.buildInternationalPhoneNumberString(
+                rawPhoneNumberWithoutCountryCode = "0744444444",
+                countryCode = 254
+            )
         ).isEqualTo("+254744444444")
     }
 
     @Test
     fun `returns a phone number string in international format given a local phone number with no leading zero and country code`() {
         assertThat(
-            phoneNumberHelper.buildInternationalPhoneNumberString("744444444", 254)
+            phoneNumberHelper.buildInternationalPhoneNumberString(
+                rawPhoneNumberWithoutCountryCode = "744444444",
+                countryCode = 254
+            )
         ).isEqualTo("+254744444444")
     }
 
     @Test
     fun `returns a phone number string in international format given a phone number already in international format and country code`() {
         assertThat(
-            phoneNumberHelper.buildInternationalPhoneNumberString("+254744444444", 254)
+            phoneNumberHelper.buildInternationalPhoneNumberString(
+                rawPhoneNumberWithoutCountryCode = "+254744444444",
+                countryCode = 254
+            )
         ).isEqualTo("+254744444444")
     }
 
     @Test
     fun `returns the input phone number string given a phone number and an invalid country code`() {
         assertThat(
-            phoneNumberHelper.buildInternationalPhoneNumberString("0254744444444", 111)
+            phoneNumberHelper.buildInternationalPhoneNumberString(
+                rawPhoneNumberWithoutCountryCode = "0254744444444",
+                countryCode = 111
+            )
         ).isEqualTo("0254744444444")
     }
 
     @Test
     fun `returns a best-attempt international phone number given an invalid phone number and a valid country code`() {
         assertThat(
-            phoneNumberHelper.buildInternationalPhoneNumberString("739********329", 91)
+            phoneNumberHelper.buildInternationalPhoneNumberString(
+                rawPhoneNumberWithoutCountryCode = "739********329",
+                countryCode = 91
+            )
         ).isEqualTo("+91739329") // The input phone number minus the special characters
     }
 }

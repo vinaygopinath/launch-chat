@@ -51,7 +51,7 @@ class ProcessIntentUseCase @Inject constructor(
     }
 
     private fun processHistoryIntent(intent: Intent): ExtractedContent {
-        val activity = if (Build.VERSION.SDK_INT >= 33) {
+        val activity = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             intent.getParcelableExtra(INTENT_EXTRA_HISTORY, Activity::class.java)
         } else {
             intent.getParcelableExtra(INTENT_EXTRA_HISTORY)
@@ -173,12 +173,13 @@ class ProcessIntentUseCase @Inject constructor(
         )
     }
 
-
     private fun getContentSourceFromMessageScheme(messageScheme: String): Source {
         return when (messageScheme) {
             "sms:", "smsto:" -> Source.SMS
             "mms:", "mmsto:" -> Source.MMS
-            else -> throw IllegalStateException("getContentSourceFromMessageScheme was called with an unknown scheme: \"$messageScheme\"")
+            else -> error(
+                "getContentSourceFromMessageScheme was called with an unknown scheme: \"$messageScheme\""
+            )
         }
     }
 
@@ -223,7 +224,7 @@ class ProcessIntentUseCase @Inject constructor(
                     )
                 }
             }
-        } catch (e: Exception) {
+        } catch (ignoredException: Exception) {
             ExtractedContent.NoContentFound
         }
     }
@@ -232,7 +233,7 @@ class ProcessIntentUseCase @Inject constructor(
         return when (extractedContent) {
             is ExtractedContent.PossibleResult -> {
                 Activity(
-                    content = extractedContent.rawInputText ?: "",
+                    content = extractedContent.rawInputText.orEmpty(),
                     source = extractedContent.source,
                     message = null,
                     occurredAt = dateUtils.getCurrentInstant()
@@ -288,5 +289,4 @@ class ProcessIntentUseCase @Inject constructor(
         const val TEL_SCHEME = "tel:"
         val MESSAGE_SCHEMES = listOf("smsto:", "sms:", "mmsto:", "mms:")
     }
-
 }

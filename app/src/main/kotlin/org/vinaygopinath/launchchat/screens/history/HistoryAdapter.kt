@@ -25,7 +25,7 @@ class HistoryAdapter(
             false
         )
         val viewHolder = HistoryViewHolder(view)
-        view.setOnClickListener {
+        view.setOnClickListener { _ ->
             val position = viewHolder.bindingAdapterPosition
             if (position != NO_POSITION) {
                 getItem(position)?.let { listener.onClick(it) }
@@ -69,7 +69,6 @@ class HistoryAdapter(
             oldItem: DetailedActivity,
             newItem: DetailedActivity
         ) = oldItem == newItem
-
     }
 
     interface HistoryClickListener {

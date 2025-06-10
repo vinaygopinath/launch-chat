@@ -336,14 +336,18 @@ class ProcessIntentUseCaseExtractedContentTest {
             action = Intent.ACTION_SEND
             whenever(toUri(0)).thenReturn(uri.toString())
         }
-        whenever(intent.extras).thenReturn(Bundle().apply {
-            putParcelable(Intent.EXTRA_STREAM, uri)
-        })
+        whenever(intent.extras).thenReturn(
+            Bundle().apply {
+                putParcelable(Intent.EXTRA_STREAM, uri)
+            }
+        )
 
-        val contact = ContactReader.fromVCard(VCard().apply {
-            addProperty(Telephone(phoneNumber1))
-            addProperty(Telephone(phoneNumber2))
-        })
+        val contact = ContactReader.fromVCard(
+            VCard().apply {
+                addProperty(Telephone(phoneNumber1))
+                addProperty(Telephone(phoneNumber2))
+            }
+        )
         val os = ByteArrayOutputStream()
         contact.writeVCard(VCardVersion.V4_0, os)
         val inputStream = ByteArrayInputStream(os.toByteArray())

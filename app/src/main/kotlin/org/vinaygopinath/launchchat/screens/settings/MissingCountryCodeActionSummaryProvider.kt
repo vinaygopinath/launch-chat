@@ -19,7 +19,9 @@ class MissingCountryCodeActionSummaryProvider(
             is DefaultCountryCode -> {
                 val defaultCountryCode = settings.missingCountryCodeAction.defaultCountryCode
                 if (defaultCountryCode == null) {
-                    context.getString(R.string.pref_missing_country_code_action_description_default_country_code_missing)
+                    context.getString(
+                        R.string.pref_missing_country_code_action_description_default_country_code_missing
+                    )
                 } else {
                     context.getString(
                         R.string.pref_missing_country_code_action_description_default_country_code_available,

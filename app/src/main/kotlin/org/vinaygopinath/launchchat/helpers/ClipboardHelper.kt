@@ -21,7 +21,7 @@ class ClipboardHelper @Inject constructor(
     }
 
     sealed class ClipboardContent {
-        data class ClipboardData(val content: String): ClipboardContent()
+        data class ClipboardData(val content: String) : ClipboardContent()
         data object InvalidClipboardData : ClipboardContent()
         data object Empty : ClipboardContent()
     }
