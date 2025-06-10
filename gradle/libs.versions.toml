@@ -8,6 +8,7 @@ ksp = "2.1.20-1.0.32"
 paging = "3.3.6"
 room = "2.7.1"
 vcard4android = "03a37a8"
+detekt = "1.23.8"
 
 [libraries]
 gradle = { module = "com.android.tools.build:gradle", version.ref = "gradle" }
@@ -49,6 +50,8 @@ coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", ve
 
 paging = { group = "androidx.paging", name = "paging-runtime", version.ref = "paging" }
 
+detekt-formatting = { module = "io.gitlab.arturbosch.detekt:detekt-formatting", version.ref = "detekt" }
+
 [bundles]
 test = ["test-core", "test-runner", "test-rules"]
 espresso = ["espresso-core", "espresso-intents"]
@@ -58,3 +61,4 @@ hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 kotlin = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 room = { id = "androidx.room", version.ref = "room" }
+detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
