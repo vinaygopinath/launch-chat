@@ -60,6 +60,7 @@ If you're a developer, you're welcome to contribute code to this project.
 ### During development
 * Commit often - Prefer small commits that address one problem, even if it's only a few lines, versus a large commit that does a lot. This ensures that commits are readable and reviews are faster.
 * Uphold code quality - Ensure that code changes are readable, performant and properly tested.
+  * This project uses Detekt to ensure a consistent coding style and automate code quality checks. Use the "Detekt checks" run configuration to check for code quality issues. The "check + fix" run configurations might be able to automatically address them. If not, refer to the [Detekt documentation](https://detekt.dev/docs/intro). 
 
 ### After development
 * Open a pull request targeting the `main` branch of this project, including a succinct PR title, a summary of changes in the PR description, a link to the GitHub issue that the PR addresses, steps to test and any additional documentation (links to reference articles/websites, screenshots and/or screencasts) that might be relevant to reviewers.
