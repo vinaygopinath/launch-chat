@@ -3,10 +3,11 @@ package org.vinaygopinath.launchchat.screens.history
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.paging.PagingData
 import androidx.paging.PagingDataAdapter
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.DiffUtil.ItemCallback
-import androidx.recyclerview.widget.RecyclerView.NO_POSITION
-import androidx.recyclerview.widget.RecyclerView.ViewHolder
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.textview.MaterialTextView
 import org.vinaygopinath.launchchat.R
 import org.vinaygopinath.launchchat.helpers.DetailedActivityHelper
@@ -14,52 +15,85 @@ import org.vinaygopinath.launchchat.models.DetailedActivity
 
 class HistoryAdapter(
     private val helper: DetailedActivityHelper,
-    private val listener: HistoryClickListener
-) : PagingDataAdapter<DetailedActivity, HistoryAdapter.HistoryViewHolder>(
-    DetailedActivityDiffCallback()
-) {
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HistoryViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(
-            R.layout.list_item_history,
-            parent,
-            false
-        )
-        val viewHolder = HistoryViewHolder(view)
-        view.setOnClickListener {
-            val position = viewHolder.bindingAdapterPosition
-            if (position != NO_POSITION) {
-                getItem(position)?.let { listener.onClick(it) }
-            }
-        }
+    private val listener: HistoryClickListener,
+    private val selectionListener: SelectionListener
+) : PagingDataAdapter<DetailedActivity, HistoryAdapter.HistoryViewHolder>(DetailedActivityDiffCallback()) {
+    
+    private val selectedItem = mutableSetOf<DetailedActivity>()
 
-        return viewHolder
+
+    interface SelectionListener {
+        fun onSelectionChanged(selectedCount: Int)
+        fun onItemLongPress(detailedActivity: DetailedActivity)
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HistoryViewHolder {
+        val view = LayoutInflater.from(parent.context)
+            .inflate(R.layout.list_item_history, parent, false)
+        return HistoryViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: HistoryViewHolder, position: Int) {
-        if (position == NO_POSITION) {
-            return
-        }
-
-        getItem(position)?.let { detailedActivity ->
-            holder.titleText.setText(helper.getSourceDisplayName(detailedActivity))
-            holder.timestampText.text = helper.getActivityShortTimestamp(detailedActivity)
-            holder.contentText.text = helper.getActivityContent(detailedActivity)
-            holder.actionsText.text = helper.getActionsText(detailedActivity)
+        val item = getItem(position)
+        if (item != null) {
+            val isSelected = selectedItem.contains(item)
+            holder.bind(item, isSelected)
         }
     }
 
-    inner class HistoryViewHolder(view: View) : ViewHolder(view) {
-        val titleText: MaterialTextView =
-            view.findViewById(R.id.history_list_title)
-        val timestampText: MaterialTextView =
-            view.findViewById(R.id.history_list_timestamp)
-        val contentText: MaterialTextView =
-            view.findViewById(R.id.history_list_content)
-        val actionsText: MaterialTextView =
-            view.findViewById(R.id.history_list_actions)
+
+    fun toggleSelection(item: DetailedActivity) {
+        if (selectedItem.contains(item)) selectedItem.remove(item)
+        else selectedItem.add(item)
+        notifyDataSetChanged()
+        selectionListener.onSelectionChanged(selectedItem.size)
     }
 
-    class DetailedActivityDiffCallback : ItemCallback<DetailedActivity>() {
+    fun selectItem(item: DetailedActivity) {
+        selectedItem.add(item)
+        notifyDataSetChanged()
+        selectionListener.onSelectionChanged(selectedItem.size)
+    }
+
+    fun clearSelection() {
+        selectedItem.clear()
+        notifyDataSetChanged()
+        selectionListener.onSelectionChanged(0)
+    }
+
+    fun getSelectedItems(): List<DetailedActivity> = selectedItem.toList()
+
+    inner class HistoryViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+        private val titleText: MaterialTextView = view.findViewById(R.id.history_list_title)
+        private val timestampText: MaterialTextView = view.findViewById(R.id.history_list_timestamp)
+        private val contentText: MaterialTextView = view.findViewById(R.id.history_list_content)
+        private val actionsText: MaterialTextView = view.findViewById(R.id.history_list_actions)
+
+        fun bind(item: DetailedActivity, selected: Boolean){
+//            titleText.text = item.title
+//            timestampText.text = item.timestamp.toString()
+//            contentText.text = item.content
+            actionsText.text = item.actions.toString()
+
+
+            itemView.isSelected = selected
+            itemView.setBackgroundColor(
+                if (selected) 0xFFE0E0E0.toInt() // Light gray for selected items
+                else 0xFFFFFFFF.toInt() // White for unselected items
+            )
+
+            itemView.setOnLongClickListener{
+                selectionListener.onItemLongPress(item)
+                true
+            }
+
+            itemView.setOnClickListener{
+                listener.onClick(item)
+            }
+        }
+    }
+
+    class DetailedActivityDiffCallback : DiffUtil.ItemCallback<DetailedActivity>() {
         override fun areItemsTheSame(
             oldItem: DetailedActivity,
             newItem: DetailedActivity
