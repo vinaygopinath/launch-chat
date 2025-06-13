@@ -76,6 +76,8 @@ class HistoryActivity : AppCompatActivity() {
         lifecycleScope.launch {
             viewModel.deleteActivitiesAndActions(selected)
             exitSelectionMode()
+            startActivity(Intent(this@HistoryActivity, MainActivity::class.java))
+            finish()
         }
     }
 
