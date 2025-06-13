@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Iniciar chat</string>
-    <string name="button_open">Abre</string>
-    <string name="button_open_whatsapp_description">Abre con WhatsApp</string>
-    <string name="button_open_signal_description">Abre con Signal</string>
-    <string name="button_open_telegram_description">Abre con Telegram</string>
+    <string name="button_open">Abrir</string>
+    <string name="button_open_whatsapp_description">Abrir con WhatsApp</string>
+    <string name="button_open_signal_description">Abrir con Signal</string>
+    <string name="button_open_telegram_description">Abrir con Telegram</string>
     <string name="input_hint_phone_number">Número de teléfono con código de país</string>
     <string name="input_hint_message">(Opcional) Mensaje</string>
-    <string name="label_share">Abre número de teléfono</string>
-    <string name="label_share_contact">Abre contacto</string>
+    <string name="label_share">Abrir número de teléfono</string>
+    <string name="label_share_contact">Abrir contacto</string>
     <string name="label_history">Historia</string>
     <string name="label_history_view_all">Ver todo</string>
     <string name="phone_number_selection_dialog_title">Se detectaron varios números de teléfono</string>
@@ -40,4 +40,23 @@
     <string name="replace_input_positive_button">Reemplaza entrada</string>
     <string name="replace_input_neutral_button">Descartar</string>
     <string name="action_label"><![CDATA[Abrió <strong>%1$s</strong> con <strong>%2$s</strong>]]></string>
+    <string name="pref_missing_country_code_action_description_default_country_code_available">Usar el código por defecto +%1$d</string>
+    <string name="select_contacts_not_ready_dialog_title">¡Aún no se implementó!</string>
+    <string name="select_contacts_not_ready_dialog_message">Esta función aún no está disponible. Sin embargo, Launch Chat puede abrir contactos si abres la aplicación Contactos y compartes un contacto con Launch Chat. \n\nRevisa el vídeo de demostración en https://github.com/vinaygopinath/launch-chat/pull/18</string>
+    <string name="select_contacts_not_ready_dialog_neutral_button">Vamos</string>
+    <string name="label_settings">Ajustes</string>
+    <string name="pref_default_country_code_title">Código de país por defecto</string>
+    <string name="main_menu_item_settings">Ajustes</string>
+    <string name="pref_activity_history_title">Guardar historia de actividad</string>
+    <string name="pref_activity_history_on_description">Launch Chat grabará la historia de actividad</string>
+    <string name="pref_activity_history_off_description">Launch Chat no grabará la historia de actividad</string>
+    <string name="pref_missing_country_code_action_title">Acción cuando no hay código de país</string>
+    <string name="pref_missing_country_code_action_entry_default_name">Usar el código de país por defecto</string>
+    <string name="pref_missing_country_code_action_entry_recent_name">Usar el código de país más reciente</string>
+    <string name="pref_missing_country_code_action_description_default_country_code_missing">⚠️ Se seleccionó el código de país por defecto, pero no se definió cuál</string>
+    <string name="pref_missing_country_code_action_description_recent_country_code_available">Usar el código de país reciente +%1$d</string>
+    <string name="pref_missing_country_code_action_description_recent_country_code_missing">⚠️ Se seleccionó el código de país reciente, pero no se estableció cuál. Intenta lanzar un chat de un número telefónico con el código de país</string>
+    <string name="pref_default_country_code_description_missing">El código de país que se utilizará cuando el número de teléfono no empiece por un código de país</string>
+    <string name="pref_default_country_code_description_set">Usar el código de país +%1$d</string>
+    <string name="pref_default_country_code_invalid_format">Introduce un código de país con el formato +123, sin espacios</string>
 </resources>
