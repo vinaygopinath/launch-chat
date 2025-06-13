@@ -3,8 +3,11 @@ package org.vinaygopinath.launchchat.screens.history
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.setPadding
 import androidx.lifecycle.lifecycleScope
@@ -23,7 +26,58 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class HistoryActivity : AppCompatActivity() {
 
+
     private val viewModel: HistoryViewModel by viewModels()
+    private var isSelectionMode = false
+
+    private fun enterSelectionMode(selected: DetailedActivity){
+        isSelectionMode = true
+        historyAdapter.selectItem(selected)
+        invalidateOptionsMenu()
+    }
+
+    private fun exitSelectionMode() {
+        isSelectionMode = false
+        historyAdapter.clearSelection()
+        invalidateOptionsMenu()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.history_menu, menu)
+        menu?.findItem(R.id.action_delete)?.isVisible = isSelectionMode
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.action_delete -> {
+                showDeleteConfirmationDialog()
+                true
+            }
+            android.R.id.home -> {
+                exitSelectionMode()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+
+    private fun showDeleteConfirmationDialog() {
+        AlertDialog.Builder(this)
+            .setTitle("Delete history confirmation")
+            .setMessage("Are you sure you want to delete the selected activity history entries? This action is irreversible.")
+            .setPositiveButton("Delete") { _, _ -> deleteSelectedEntries() }
+            .setNeutralButton("Dismiss", null)
+            .show()
+    }
+
+    private fun deleteSelectedEntries() {
+        val selected = historyAdapter.getSelectedItems()
+        lifecycleScope.launch {
+            viewModel.deleteActivitiesAndActions(selected)
+            exitSelectionMode()
+        }
+    }
 
     @Inject
     lateinit var detailedActivityHelper: DetailedActivityHelper
@@ -39,6 +93,15 @@ class HistoryActivity : AppCompatActivity() {
                             detailedActivity.activity
                         )
                     )
+                }
+            },
+            selectionListener = object : HistoryAdapter.SelectionListener{
+                override fun onSelectionChanged(selectedCount: Int) {
+                    invalidateOptionsMenu()
+                }
+
+                override fun onItemLongPress(detailedActivity: DetailedActivity) {
+                    enterSelectionMode(detailedActivity)
                 }
             }
         )
@@ -70,8 +133,8 @@ class HistoryActivity : AppCompatActivity() {
 
     private fun initializeObservers() {
         lifecycleScope.launch {
-            viewModel.detailedActivities.collectLatest { pagingData ->
-                historyAdapter.submitData(pagingData)
+            viewModel.detailedActivities.collectLatest { data ->
+                historyAdapter.submitData(data)
             }
         }
     }
