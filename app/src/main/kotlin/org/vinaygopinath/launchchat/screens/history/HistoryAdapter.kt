@@ -41,14 +41,6 @@ class HistoryAdapter(
         }
     }
 
-
-    fun toggleSelection(item: DetailedActivity) {
-        if (selectedItem.contains(item)) selectedItem.remove(item)
-        else selectedItem.add(item)
-        notifyDataSetChanged()
-        selectionListener.onSelectionChanged(selectedItem.size)
-    }
-
     fun selectItem(item: DetailedActivity) {
         selectedItem.add(item)
         notifyDataSetChanged()
@@ -64,15 +56,9 @@ class HistoryAdapter(
     fun getSelectedItems(): List<DetailedActivity> = selectedItem.toList()
 
     inner class HistoryViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        private val titleText: MaterialTextView = view.findViewById(R.id.history_list_title)
-        private val timestampText: MaterialTextView = view.findViewById(R.id.history_list_timestamp)
-        private val contentText: MaterialTextView = view.findViewById(R.id.history_list_content)
         private val actionsText: MaterialTextView = view.findViewById(R.id.history_list_actions)
 
         fun bind(item: DetailedActivity, selected: Boolean){
-//            titleText.text = item.title
-//            timestampText.text = item.timestamp.toString()
-//            contentText.text = item.content
             actionsText.text = item.actions.toString()
 
 
