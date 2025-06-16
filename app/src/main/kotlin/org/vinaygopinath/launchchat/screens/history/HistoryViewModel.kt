@@ -25,10 +25,9 @@ class HistoryViewModel @Inject constructor(
 
     fun deleteActivitiesAndActions(activities: List<DetailedActivity>){
         viewModelScope.launch {
-            activities.forEach{ activity ->
-                actionRepository.deleteActionsByActivityIds(activity.activity.id)
-                activityRepository.delete(activity.activity)
-            }
+          val acticityIds = activities.map { it.activity.id }
+            actionRepository.deleteActionsByActivityIds(acticityIds)
+            activityRepository.deleteActivitiesByIds(acticityIds)
         }
     }
 }

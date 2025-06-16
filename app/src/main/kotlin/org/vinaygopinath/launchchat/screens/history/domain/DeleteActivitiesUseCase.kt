@@ -8,7 +8,7 @@ class DeleteActivitiesUseCase @Inject constructor(
 ) {
     suspend fun deleteActivitiesAndActions(activityIds: Set<Long>) {
         repository.deleteActionsByActivityIds(activityIds)
-        repository.deleteActivitiesByIds(activityIds)
+        repository.deleteByIds(activityIds)
     }
 
 }

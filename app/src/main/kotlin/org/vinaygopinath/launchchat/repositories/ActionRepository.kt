@@ -12,7 +12,7 @@ class ActionRepository @Inject constructor(
         return action.copy(id = newId)
     }
 
-    suspend fun deleteActionsByActivityIds(activityId: Long) {
-        actionDao.deleteByActivityIds(listOf(activityId))
+    suspend fun deleteActionsByActivityIds(activityIds: List<Long>) {
+        actionDao.deleteByActivityIds(activityIds)
     }
 }
