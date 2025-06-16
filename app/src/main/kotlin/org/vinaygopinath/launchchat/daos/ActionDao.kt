@@ -10,8 +10,12 @@ interface ActionDao {
 
     @Insert
     suspend fun create(action: Action): Long
+<<<<<<< main
 
     @Query("DELETE FROM actions WHERE activity_id IN (:activityId)")
     suspend fun deleteByActivityIds(activityId: List<Long>)
 
 }
+=======
+}
+>>>>>>> main

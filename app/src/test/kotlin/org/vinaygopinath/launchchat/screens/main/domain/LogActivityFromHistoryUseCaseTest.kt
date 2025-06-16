@@ -1,7 +1,6 @@
 package org.vinaygopinath.launchchat.screens.main.domain
 
 import com.google.common.truth.Truth.assertThat
-import org.vinaygopinath.launchchat.factories.ActivityFactory
 import kotlinx.coroutines.test.runTest
 import org.junit.Test
 import org.mockito.Mockito.mock
@@ -10,6 +9,7 @@ import org.mockito.kotlin.argumentCaptor
 import org.mockito.kotlin.verify
 import org.mockito.kotlin.whenever
 import org.vinaygopinath.launchchat.extensions.withMillisecondPrecision
+import org.vinaygopinath.launchchat.factories.ActivityFactory
 import org.vinaygopinath.launchchat.models.Activity
 import org.vinaygopinath.launchchat.repositories.ActivityRepository
 import org.vinaygopinath.launchchat.utils.DateUtils

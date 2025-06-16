@@ -56,7 +56,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
                     /*
                                    Preference does not provide a way to refresh the summary,
                                    so we're toggling its visibility as a workaround.
-                                 */
+                     */
                     missingCountryCodePref?.isVisible = false
                     missingCountryCodePref?.isVisible = true
                 } else {

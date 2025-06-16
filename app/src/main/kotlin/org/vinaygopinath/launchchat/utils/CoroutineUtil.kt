@@ -24,8 +24,8 @@ object CoroutineUtil {
                 var result: CoroutineResult<T> = CoroutineResult.Empty()
                 try {
                     result = CoroutineResult.Success(doWork())
-                } catch (t: Throwable) {
-                    onError(t)
+                } catch (genericThrowable: Throwable) {
+                    onError(genericThrowable)
                 }
 
                 if (result is CoroutineResult.Success) {
@@ -48,8 +48,8 @@ object CoroutineUtil {
                 try {
                     doWork()
                     hasCompleted = true
-                } catch (t: Throwable) {
-                    onError(t)
+                } catch (genericThrowable: Throwable) {
+                    onError(genericThrowable)
                 }
 
                 if (hasCompleted) {

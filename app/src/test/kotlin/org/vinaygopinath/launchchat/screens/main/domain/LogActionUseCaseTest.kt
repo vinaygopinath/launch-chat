@@ -19,7 +19,6 @@ import org.vinaygopinath.launchchat.repositories.ActivityRepository
 import org.vinaygopinath.launchchat.utils.DateUtils
 import java.time.Instant
 
-
 class LogActionUseCaseTest {
     private val getSettingsUseCase = mock<GetSettingsUseCase>()
     private val activityRepository = mock<ActivityRepository>()
@@ -69,7 +68,6 @@ class LogActionUseCaseTest {
             rawInputText = somePhoneNumberInputFieldText
         )
 
-
         val activities = argumentCaptor<Activity> {
             verify(activityRepository).create(capture())
         }.allValues
@@ -112,7 +110,7 @@ class LogActionUseCaseTest {
             type = type,
             number = selectedPhoneNumber,
             message = message,
-            activity =  someActivity,
+            activity = someActivity,
             rawInputText = somePhoneNumberInputFieldText
         )
 
@@ -146,7 +144,7 @@ class LogActionUseCaseTest {
             type = type,
             number = selectedPhoneNumber,
             message = message,
-            activity =  null,
+            activity = null,
             rawInputText = somePhoneNumberInputFieldText
         )
 

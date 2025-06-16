@@ -51,8 +51,8 @@ class DetailedActivityRepository @Inject constructor(
                         currentPage - 1
                     }
                 )
-            } catch (exception: Exception) {
-                LoadResult.Error(exception)
+            } catch (genericException: Exception) {
+                LoadResult.Error(genericException)
             }
         }
 

@@ -1,0 +1,7 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Detekt checks" type="CompoundRunConfigurationType">
+    <toRun name="Advanced Detekt check" type="ShConfigurationType" />
+    <toRun name="Simple Detekt check" type="ShConfigurationType" />
+    <method v="2" />
+  </configuration>
+</component>
