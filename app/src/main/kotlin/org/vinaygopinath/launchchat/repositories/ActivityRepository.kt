@@ -10,7 +10,7 @@ class ActivityRepository @Inject constructor(
     private val actionDao: ActionDao
 ) {
 
-    suspend fun deleteActivitiesByIds(activityIds: Set<Long>) {
+    suspend fun deleteByIds(activityIds: Set<Long>) {
         actionDao.deleteByActivityIds(activityIds.toList())
     }
 
