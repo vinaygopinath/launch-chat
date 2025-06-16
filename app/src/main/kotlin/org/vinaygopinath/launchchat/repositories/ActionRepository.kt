@@ -15,4 +15,8 @@ class ActionRepository @Inject constructor(
     suspend fun deleteActionsByActivityIds(activityId: Long) {
         actionDao.deleteByActivityIds(listOf(activityId))
     }
+
+    suspend fun deleteActionsByActivityIds(activityIds: List<Long>) {
+        actionDao.deleteByActivityIds(activityIds)
+    }
 }
