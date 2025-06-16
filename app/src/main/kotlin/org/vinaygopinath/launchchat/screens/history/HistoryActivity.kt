@@ -64,10 +64,10 @@ class HistoryActivity : AppCompatActivity() {
 
     private fun showDeleteConfirmationDialog() {
         AlertDialog.Builder(this)
-            .setTitle("Delete history confirmation")
-            .setMessage("Are you sure you want to delete the selected activity history entries? This action is irreversible.")
-            .setPositiveButton("Delete") { _, _ -> deleteSelectedEntries() }
-            .setNeutralButton("Dismiss", null)
+            .setTitle(R.string.delete_confirmation_title)
+            .setMessage(R.string.delete_confirmation_text)
+            .setPositiveButton(R.string.delete_confirmation_positive_button) { _, _ -> deleteSelectedEntries() }
+            .setNeutralButton(R.string.delete_confirmation_negative_button, null)
             .show()
     }
 
