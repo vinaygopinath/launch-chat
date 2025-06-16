@@ -15,6 +15,5 @@ class ActionRepository @Inject constructor(
     suspend fun deleteActionsByActivityIds(activityIds: List<Long>) {
         actionDao.deleteByActivityIds(activityIds)
     }
-  }
 }
 
