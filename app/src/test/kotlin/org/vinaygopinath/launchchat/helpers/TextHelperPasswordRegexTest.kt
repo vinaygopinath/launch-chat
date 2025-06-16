@@ -19,14 +19,12 @@ class TextHelperPasswordRegexTest {
         assertThat(TextHelper.doesTextMatchPhoneNumberRegex(inputText)).isTrue()
     }
 
-
     @Test
     fun `returns true when text is phone number with space formatting`() {
         val inputText = "111 222 333"
 
         assertThat(TextHelper.doesTextMatchPhoneNumberRegex(inputText)).isTrue()
     }
-
 
     @Test
     fun `returns true when text is phone number with parentheses and space formatting`() {
@@ -41,7 +39,6 @@ class TextHelperPasswordRegexTest {
 
         assertThat(TextHelper.doesTextMatchPhoneNumberRegex(inputText)).isTrue()
     }
-
 
     @Test
     fun `returns false when text includes non-numerical and non-formatting characters`() {

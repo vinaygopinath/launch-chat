@@ -22,12 +22,22 @@ class PrefixCountryCodeUseCase @Inject constructor(
         } else {
             val missingCountryCodeAction = Settings.build(preferenceUtil).missingCountryCodeAction
             when {
-                missingCountryCodeAction is RecentCountryCode && missingCountryCodeAction.recentCountryCode != null -> {
-                    phoneNumberHelper.buildInternationalPhoneNumberString(rawPhoneNumber, missingCountryCodeAction.recentCountryCode)
+                missingCountryCodeAction is RecentCountryCode &&
+                    missingCountryCodeAction.recentCountryCode != null -> {
+                    phoneNumberHelper.buildInternationalPhoneNumberString(
+                        rawPhoneNumber,
+                        missingCountryCodeAction.recentCountryCode
+                    )
                 }
-                missingCountryCodeAction is DefaultCountryCode && missingCountryCodeAction.defaultCountryCode != null -> {
-                    phoneNumberHelper.buildInternationalPhoneNumberString(rawPhoneNumber, missingCountryCodeAction.defaultCountryCode)
+
+                missingCountryCodeAction is DefaultCountryCode &&
+                    missingCountryCodeAction.defaultCountryCode != null -> {
+                    phoneNumberHelper.buildInternationalPhoneNumberString(
+                        rawPhoneNumber,
+                        missingCountryCodeAction.defaultCountryCode
+                    )
                 }
+
                 else -> {
                     rawPhoneNumber
                 }

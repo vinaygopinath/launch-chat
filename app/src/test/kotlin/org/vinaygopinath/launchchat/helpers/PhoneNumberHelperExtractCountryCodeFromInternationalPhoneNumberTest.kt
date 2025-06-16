@@ -54,5 +54,4 @@ class PhoneNumberHelperExtractCountryCodeFromInternationalPhoneNumberTest {
             phoneNumberHelper.extractCountryCodeFromInternationalPhoneNumber("SomeUsername")
         ).isEqualTo(null)
     }
-
 }

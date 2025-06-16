@@ -1,6 +1,5 @@
 package org.vinaygopinath.launchchat.helpers
 
-import org.vinaygopinath.launchchat.helpers.ClipboardHelper.ClipboardContent
 import android.content.ClipData
 import android.content.ClipDescription
 import android.content.ClipboardManager
@@ -12,6 +11,7 @@ import org.mockito.Mockito.`when`
 import org.mockito.kotlin.any
 import org.mockito.kotlin.mock
 import org.mockito.kotlin.whenever
+import org.vinaygopinath.launchchat.helpers.ClipboardHelper.ClipboardContent
 
 @RunWith(JUnit4::class)
 class ClipboardHelperReadClipboardContentTest {

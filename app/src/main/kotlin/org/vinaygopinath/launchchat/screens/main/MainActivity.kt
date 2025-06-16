@@ -81,7 +81,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var phoneNumberInput: TextInputEditText
     private lateinit var phoneNumberInputLayout: TextInputLayout
     private lateinit var messageInput: EditText
-    private lateinit var chooseContactButton: MaterialButton
     private lateinit var historyTitle: MaterialTextView
     private lateinit var historyListView: RecyclerView
     private lateinit var historyViewAllButton: Button
@@ -90,7 +89,7 @@ class MainActivity : AppCompatActivity() {
         object : RecentDetailedActivityAdapter.Companion.RecentHistoryClickListener {
             override fun onRecentHistoryItemClick(detailedActivity: DetailedActivity) {
                 if (phoneNumberInput.text.isNullOrEmpty()) {
-                    showHistory(detailedActivity.activity)
+                    viewModel.logActivityFromHistory(detailedActivity.activity)
                 } else {
                     showReplaceInputWithHistoryDialog(detailedActivity.activity)
                 }
@@ -145,7 +144,7 @@ class MainActivity : AppCompatActivity() {
                 phoneNumberInput.setText(content.content)
             }
         }
-        findViewById<View>(R.id.choose_from_contacts_button).setOnClickListener {
+        findViewById<View>(R.id.choose_from_contacts_button).setOnClickListener { _ ->
             AlertDialog.Builder(this)
                 .setTitle(R.string.select_contacts_not_ready_dialog_title)
                 .setMessage(
@@ -213,8 +212,8 @@ class MainActivity : AppCompatActivity() {
                 launch {
                     viewModel.getRecentDetailedActivities().collectLatest { detailedActivityList ->
                         toggleHistoryViews(
-                            showHistory = detailedActivityList.isNotEmpty()
-                                    && viewModel.uiState.value.settings?.isActivityHistoryEnabled != false
+                            showHistory = detailedActivityList.isNotEmpty() &&
+                                viewModel.uiState.value.settings?.isActivityHistoryEnabled != false
                         )
                         historyAdapter.setItems(detailedActivityList)
                     }
@@ -267,7 +266,7 @@ class MainActivity : AppCompatActivity() {
         val message = messageInput.text.toString().trim()
         try {
             startActivity(getButtonIntent(possiblePhoneNumberWithCountryCode, message))
-        } catch (e: ActivityNotFoundException) {
+        } catch (ignoredException: ActivityNotFoundException) {
             showToast(errorToast)
         }
     }
@@ -336,14 +335,10 @@ class MainActivity : AppCompatActivity() {
             .setTitle(R.string.replace_input_title)
             .setMessage(R.string.replace_input_message)
             .setPositiveButton(R.string.replace_input_positive_button) { _, _ ->
-                showHistory(activity)
+                viewModel.logActivityFromHistory(activity)
             }
             .setNeutralButton(R.string.replace_input_neutral_button, null)
             .show()
-    }
-
-    private fun showHistory(activity: Activity) {
-        viewModel.logActivityFromHistory(activity)
     }
 
     private fun updatePhoneNumberInputType() {

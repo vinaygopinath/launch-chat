@@ -24,6 +24,23 @@ class HistoryAdapter(
         fun onSelectionChanged(selectedCount: Int)
         fun onItemLongPress(detailedActivity: DetailedActivity)
     }
+    private val listener: HistoryClickListener
+) : PagingDataAdapter<DetailedActivity, HistoryAdapter.HistoryViewHolder>(
+    DetailedActivityDiffCallback()
+) {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HistoryViewHolder {
+        val view = LayoutInflater.from(parent.context).inflate(
+            R.layout.list_item_history,
+            parent,
+            false
+        )
+        val viewHolder = HistoryViewHolder(view)
+        view.setOnClickListener { _ ->
+            val position = viewHolder.bindingAdapterPosition
+            if (position != NO_POSITION) {
+                getItem(position)?.let { listener.onClick(it) }
+            }
+        }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HistoryViewHolder {
         val view = LayoutInflater.from(parent.context)
@@ -87,7 +104,6 @@ class HistoryAdapter(
             oldItem: DetailedActivity,
             newItem: DetailedActivity
         ) = oldItem == newItem
-
     }
 
     interface HistoryClickListener {

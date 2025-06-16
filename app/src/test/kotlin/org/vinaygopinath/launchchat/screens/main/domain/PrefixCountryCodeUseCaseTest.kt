@@ -16,7 +16,6 @@ import org.vinaygopinath.launchchat.models.Settings.Companion.VALUE_MISSING_COUN
 import org.vinaygopinath.launchchat.utils.PreferenceUtil
 import javax.inject.Inject
 
-
 @RunWith(RobolectricTestRunner::class)
 @HiltAndroidTest
 class PrefixCountryCodeUseCaseTest {
