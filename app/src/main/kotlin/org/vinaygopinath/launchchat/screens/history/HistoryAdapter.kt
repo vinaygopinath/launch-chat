@@ -3,6 +3,7 @@ package org.vinaygopinath.launchchat.screens.history
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -79,10 +80,11 @@ class HistoryAdapter(
         fun bind(item: DetailedActivity, selected: Boolean){
             actionsText.text = item.actions.toString()
             itemView.isSelected = selected
-            itemView.setBackgroundColor(
-                if (selected) 0xFFE0E0E0.toInt()
-                else 0xFFFFFFFF.toInt()
-            )
+            val color = if (selected)
+                ContextCompat.getColor(itemView.context, R.color.history_selected)
+            else
+                ContextCompat.getColor(itemView.context, R.color.history_unselected)
+            itemView.setBackgroundColor(color)
         }
     }
 
