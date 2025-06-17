@@ -28,7 +28,27 @@ class HistoryAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HistoryViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.list_item_history, parent, false)
-        return HistoryViewHolder(view)
+        val holder = HistoryViewHolder(view)
+
+        holder.itemView.setOnLongClickListener{
+            val position = holder.bindingAdapterPosition
+            if (position != RecyclerView.NO_POSITION){
+                getItem(position)?.let { item ->
+                    selectionListener.onItemLongPress(item)
+                }
+            }
+            true
+        }
+
+        holder.itemView.setOnClickListener {
+            val position = holder.bindingAdapterPosition
+            if (position != RecyclerView.NO_POSITION) {
+                getItem(position)?.let { item ->
+                    listener.onClick(item)
+                }
+            }
+        }
+        return holder
     }
 
     override fun onBindViewHolder(holder: HistoryViewHolder, position: Int) {
@@ -58,22 +78,11 @@ class HistoryAdapter(
 
         fun bind(item: DetailedActivity, selected: Boolean){
             actionsText.text = item.actions.toString()
-
-
             itemView.isSelected = selected
             itemView.setBackgroundColor(
-                if (selected) 0xFFE0E0E0.toInt() // Light gray for selected items
-                else 0xFFFFFFFF.toInt() // White for unselected items
+                if (selected) 0xFFE0E0E0.toInt()
+                else 0xFFFFFFFF.toInt()
             )
-
-            itemView.setOnLongClickListener{
-                selectionListener.onItemLongPress(item)
-                true
-            }
-
-            itemView.setOnClickListener{
-                listener.onClick(item)
-            }
         }
     }
 
