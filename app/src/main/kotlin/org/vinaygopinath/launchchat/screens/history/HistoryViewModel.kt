@@ -23,12 +23,12 @@ class HistoryViewModel @Inject constructor(
         .distinctUntilChanged()
         .cachedIn(viewModelScope)
 
-    fun deleteActivitiesAndActions(activities: List<DetailedActivity>){
-        viewModelScope.launch {
-          val acticityIds = activities.map { it.activity.id }
-            actionRepository.deleteActionsByActivityIds(acticityIds)
-            activityRepository.deleteActivitiesByIds(acticityIds)
-        }
-    }
+//    fun deleteActivitiesAndActions(activities: List<DetailedActivity>){
+//        viewModelScope.launch {
+//          val acticityIds = activities.map { it.activity.id }
+////            actionRepository.deleteActionsByActivityIds(acticityIds)
+//            activityRepository.deleteActivitiesByIds(acticityIds)
+//        }
+//    }
 
 }

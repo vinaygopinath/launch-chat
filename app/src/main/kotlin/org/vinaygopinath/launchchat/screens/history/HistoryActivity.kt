@@ -74,7 +74,7 @@ class HistoryActivity : AppCompatActivity() {
     private fun deleteSelectedEntries() {
         val selected = historyAdapter.getSelectedItems()
         lifecycleScope.launch {
-            viewModel.deleteActivitiesAndActions(selected)
+//            viewModel.deleteActivitiesAndActions(selected)
             exitSelectionMode()
             startActivity(Intent(this@HistoryActivity, MainActivity::class.java))
             finish()
