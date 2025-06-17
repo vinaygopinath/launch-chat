@@ -55,6 +55,13 @@ class RecentDetailedActivityAdapter(
         }
     }
 
+    fun updateItem(position: Int, updatedActivity: DetailedActivity) {
+        if (position in dataSet.indices) {
+            dataSet[position] = updatedActivity
+            notifyItemChanged(position)
+        }
+    }
+
     @SuppressLint("NotifyDataSetChanged")
     fun setItems(detailedActivityList: List<DetailedActivity>) {
         dataSet.clear()

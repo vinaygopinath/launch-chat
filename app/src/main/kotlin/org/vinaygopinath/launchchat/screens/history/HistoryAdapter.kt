@@ -17,7 +17,7 @@ class HistoryAdapter(
     private val selectionListener: SelectionListener
 ) : PagingDataAdapter<DetailedActivity, HistoryAdapter.HistoryViewHolder>(DetailedActivityDiffCallback()) {
     
-    private val selectedItem = mutableSetOf<DetailedActivity>()
+    private val selectedItems = mutableSetOf<DetailedActivity>()
 
 
     interface SelectionListener {
@@ -54,24 +54,24 @@ class HistoryAdapter(
     override fun onBindViewHolder(holder: HistoryViewHolder, position: Int) {
         val item = getItem(position)
         if (item != null) {
-            val isSelected = selectedItem.contains(item)
+            val isSelected = selectedItems.contains(item)
             holder.bind(item, isSelected)
         }
     }
 
     fun selectItem(item: DetailedActivity) {
-        selectedItem.add(item)
-        notifyDataSetChanged()
-        selectionListener.onSelectionChanged(selectedItem.size)
+        selectedItems.add(item)
+        notifyItemChanged(selectedItems.size - 1)
+        selectionListener.onSelectionChanged(selectedItems.size)
     }
 
     fun clearSelection() {
-        selectedItem.clear()
-        notifyDataSetChanged()
+        selectedItems.clear()
+        notifyItemChanged(0, itemCount)
         selectionListener.onSelectionChanged(0)
     }
 
-    fun getSelectedItems(): List<DetailedActivity> = selectedItem.toList()
+    fun getSelectedItems(): List<DetailedActivity> = selectedItems.toList()
 
     inner class HistoryViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         private val actionsText: MaterialTextView = view.findViewById(R.id.history_list_actions)
