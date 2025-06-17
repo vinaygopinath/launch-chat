@@ -30,5 +30,5 @@ class HistoryViewModel @Inject constructor(
             activityRepository.deleteActivitiesByIds(acticityIds)
         }
     }
-  }
+
 }
