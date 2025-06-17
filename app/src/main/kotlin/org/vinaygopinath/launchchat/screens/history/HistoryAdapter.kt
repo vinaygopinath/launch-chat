@@ -18,7 +18,7 @@ class HistoryAdapter(
     private val selectionListener: SelectionListener
 ) : PagingDataAdapter<DetailedActivity, HistoryAdapter.HistoryViewHolder>(DetailedActivityDiffCallback()) {
     
-    private val selectedItems = mutableSetOf<DetailedActivity>()
+    val selectedItems = mutableSetOf<DetailedActivity>()
 
 
     interface SelectionListener {

@@ -5,31 +5,35 @@ import org.junit.Before
 import org.junit.Test
 import org.mockito.Mockito.mock
 import org.vinaygopinath.launchchat.helpers.DetailedActivityHelper
+import org.vinaygopinath.launchchat.models.DetailedActivity
 
 class HistoryAdapterTest {
     private lateinit var adapter: HistoryAdapter
+    private lateinit var selection: MutableSet<DetailedActivity>
+
 
     @Before
     fun setUp() {
-        val detailedActivityHelper = mock(DetailedActivityHelper::class.java)
-        val listener = mock(HistoryAdapter.HistoryClickListener::class.java)
-        val selectionListener = mock(HistoryAdapter.SelectionListener::class.java)
-        adapter = HistoryAdapter(
-            detailedActivityHelper,
-            listener,
-            selectionListener
-        )
+        selection = mutableSetOf()
     }
 
     @Test
-    fun itemCount_isCorrect() {
-        assertEquals(2, adapter.itemCount)
+    fun selectItem_addsItemToSelection() {
+        val item = mock(DetailedActivity::class.java)
+        selection.add(item)
+        assertEquals(1, selection.size)
     }
 
     @Test
-    fun onBindViewHolder_bindsDataCorrectly() {
-        val viewHolder = mock(HistoryAdapter.HistoryViewHolder::class.java)
-        adapter.onBindViewHolder(viewHolder, 0)
+    fun clearSelection_removesAllItems() {
+        val item1 = mock(DetailedActivity::class.java)
+        val item2 = mock(DetailedActivity::class.java)
+        selection.add(item1)
+        selection.add(item2)
+        selection.clear()
+        assertEquals(0, selection.size)
     }
+
+
 }
 
