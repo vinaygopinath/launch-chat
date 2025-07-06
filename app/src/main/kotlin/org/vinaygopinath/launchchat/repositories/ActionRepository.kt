@@ -11,4 +11,8 @@ class ActionRepository @Inject constructor(
         val newId = actionDao.create(action)
         return action.copy(id = newId)
     }
+
+    suspend fun deleteByActivityIds(activityIds: Set<Long>) {
+        actionDao.deleteByActivityIds(activityIds)
+    }
 }
