@@ -26,7 +26,7 @@ test-rules = { module = "androidx.test:rules", version = "1.6.1" }
 espresso-core = { module = "androidx.test.espresso:espresso-core", version.ref = "espresso" }
 espresso-intents = { module = "androidx.test.espresso:espresso-intents", version.ref = "espresso" }
 
-libphonenumber = { module = "io.michaelrocks:libphonenumber-android", version = "8.13.52" }
+libphonenumber = { module = "io.michaelrocks:libphonenumber-android", version = "9.0.5" }
 junit = { module = "junit:junit", version = "4.13.2" }
 truth = { module = "com.google.truth:truth", version = "1.4.4" }
 mockito = { module = "org.mockito.kotlin:mockito-kotlin", version = "5.4.0" }
