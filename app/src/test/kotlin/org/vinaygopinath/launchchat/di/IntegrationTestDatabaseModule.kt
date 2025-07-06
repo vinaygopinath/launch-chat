@@ -8,7 +8,7 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import dagger.hilt.testing.TestInstallIn
 import org.vinaygopinath.launchchat.AppDatabase
-import org.vinaygopinath.launchchat.fakes.TransactionUtilFake
+import org.vinaygopinath.launchchat.helpers.QueryHelper
 import org.vinaygopinath.launchchat.utils.TransactionUtil
 import javax.inject.Singleton
 
@@ -17,7 +17,7 @@ import javax.inject.Singleton
     replaces = [DatabaseModule::class],
     components = [SingletonComponent::class]
 )
-class TestDatabaseModule {
+class IntegrationTestDatabaseModule {
 
     @Provides
     @Singleton
@@ -30,6 +30,12 @@ class TestDatabaseModule {
     @Provides
     @Singleton
     fun provideTransactionUtil(database: AppDatabase): TransactionUtil {
-        return TransactionUtilFake(database)
+        return TransactionUtil(database)
+    }
+
+    @Provides
+    @Singleton
+    fun provideQueryHelper(database: AppDatabase): QueryHelper {
+        return QueryHelper(database)
     }
 }
