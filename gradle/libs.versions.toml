@@ -6,7 +6,7 @@ kotlin = "2.1.20"
 coroutines = "1.10.2"
 ksp = "2.1.20-1.0.32"
 paging = "3.3.6"
-room = "2.7.1"
+room = "2.7.2"
 vcard4android = "03a37a8"
 detekt = "1.23.8"
 
