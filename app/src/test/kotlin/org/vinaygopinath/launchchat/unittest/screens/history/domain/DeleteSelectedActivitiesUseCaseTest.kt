@@ -1,4 +1,4 @@
-package org.vinaygopinath.launchchat.screens.history.domain
+package org.vinaygopinath.launchchat.unittest.screens.history.domain
 
 import kotlinx.coroutines.test.runTest
 import org.junit.Test
@@ -9,6 +9,7 @@ import org.mockito.kotlin.any
 import org.vinaygopinath.launchchat.fakes.TransactionUtilFake
 import org.vinaygopinath.launchchat.repositories.ActionRepository
 import org.vinaygopinath.launchchat.repositories.ActivityRepository
+import org.vinaygopinath.launchchat.screens.history.domain.DeleteSelectedActivitiesUseCase
 
 class DeleteSelectedActivitiesUseCaseTest {
 

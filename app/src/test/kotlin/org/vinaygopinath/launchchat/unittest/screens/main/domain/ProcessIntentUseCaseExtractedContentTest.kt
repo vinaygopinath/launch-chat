@@ -1,4 +1,4 @@
-package org.vinaygopinath.launchchat.screens.main.domain
+package org.vinaygopinath.launchchat.unittest.screens.main.domain
 
 import android.content.ClipData
 import android.content.ContentResolver
@@ -22,6 +22,8 @@ import org.robolectric.RobolectricTestRunner
 import org.vinaygopinath.launchchat.factories.SettingsFactory
 import org.vinaygopinath.launchchat.models.Activity.Source
 import org.vinaygopinath.launchchat.repositories.ActivityRepository
+import org.vinaygopinath.launchchat.screens.main.domain.GetSettingsUseCase
+import org.vinaygopinath.launchchat.screens.main.domain.ProcessIntentUseCase
 import org.vinaygopinath.launchchat.utils.DateUtils
 import java.io.ByteArrayInputStream
 import java.io.ByteArrayOutputStream

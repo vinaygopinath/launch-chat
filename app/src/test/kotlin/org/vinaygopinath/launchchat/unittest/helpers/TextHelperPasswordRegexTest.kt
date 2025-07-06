@@ -1,7 +1,8 @@
-package org.vinaygopinath.launchchat.helpers
+package org.vinaygopinath.launchchat.unittest.helpers
 
 import com.google.common.truth.Truth.assertThat
 import org.junit.Test
+import org.vinaygopinath.launchchat.helpers.TextHelper
 
 class TextHelperPasswordRegexTest {
 

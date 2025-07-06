@@ -1,10 +1,11 @@
-package org.vinaygopinath.launchchat.helpers
+package org.vinaygopinath.launchchat.unittest.helpers
 
 import com.google.common.truth.Truth.assertThat
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.mockito.kotlin.mock
+import org.vinaygopinath.launchchat.helpers.PhoneNumberHelper
 
 @RunWith(JUnit4::class)
 class PhoneNumberHelperExtractPhoneNumbersTest {
