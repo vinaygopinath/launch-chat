@@ -3,6 +3,7 @@ import io.gitlab.arturbosch.detekt.Detekt
 
 plugins {
     id 'com.android.application'
+    id 'kotlin-allopen'
     id 'kotlin-android'
     id 'kotlin-parcelize'
     id 'org.jetbrains.kotlin.android'
@@ -83,6 +84,10 @@ tasks.withType(Detekt).configureEach {
         xml.required.set(false)
         txt.required.set(false)
     }
+}
+
+allOpen {
+    annotation "androidx.annotation.OpenForTesting"
 }
 
 dependencies {
