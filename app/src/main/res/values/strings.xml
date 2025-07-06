@@ -91,4 +91,11 @@
     <string name="select_contacts_not_ready_dialog_title">Not implemented yet!</string>
     <string name="select_contacts_not_ready_dialog_message">This feature is not available yet. However, Launch Chat can open contacts if you open your Contacts app and share a contact with Launch Chat. \n\nSee demo video at https://github.com/vinaygopinath/launch-chat/pull/18</string>
     <string name="select_contacts_not_ready_dialog_neutral_button">Got it</string>
+
+    <string name="delete_confirmation_title">Delete history confirmation</string>
+    <string name="delete_confirmation_text">Are you sure you want to delete the selected activity history entries? This action is irreversible.</string>
+    <string name="delete_confirmation_positive_button">Delete</string>
+    <string name="delete_confirmation_negative_button">Cancel</string>
+
+    <string name="button_delete">Delete</string>
 </resources>
