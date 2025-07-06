@@ -34,7 +34,7 @@ hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hilt"
 hilt-compiler = { module = "com.google.dagger:hilt-compiler", version.ref = "hilt" }
 hilt-testing = { module = "com.google.dagger:hilt-android-testing", version.ref = "hilt" }
 
-robolectric = { module = "org.robolectric:robolectric", version = "4.14.1" }
+robolectric = { module = "org.robolectric:robolectric", version = "4.15.1" }
 material = { module = "com.google.android.material:material", version = "1.12.0" }
 vcard4android = { module = "com.github.bitfireAT:vcard4android", version.ref = "vcard4android" }
 desugarjdklibs = { module = "com.android.tools:desugar_jdk_libs", version = "2.1.5" }
