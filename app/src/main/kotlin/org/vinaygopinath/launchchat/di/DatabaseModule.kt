@@ -7,6 +7,7 @@ import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import org.vinaygopinath.launchchat.AppDatabase
+import org.vinaygopinath.launchchat.utils.TransactionUtil
 import javax.inject.Singleton
 
 @Module
@@ -17,5 +18,11 @@ internal object DatabaseModule {
     @Singleton
     fun provideAppDatabase(@ApplicationContext context: Context): AppDatabase {
         return AppDatabase.buildDatabase(context)
+    }
+
+    @Provides
+    @Singleton
+    fun provideTransactionUtil(database: AppDatabase): TransactionUtil {
+        return TransactionUtil(database)
     }
 }
