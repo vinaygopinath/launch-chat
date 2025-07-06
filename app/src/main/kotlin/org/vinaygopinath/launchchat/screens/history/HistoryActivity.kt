@@ -3,11 +3,16 @@ package org.vinaygopinath.launchchat.screens.history
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.setPadding
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -23,15 +28,15 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class HistoryActivity : AppCompatActivity() {
 
-    private val viewModel: HistoryViewModel by viewModels()
-
     @Inject
     lateinit var detailedActivityHelper: DetailedActivityHelper
+
+    private val viewModel: HistoryViewModel by viewModels()
 
     private val historyAdapter by lazy {
         HistoryAdapter(
             detailedActivityHelper,
-            object : HistoryAdapter.HistoryClickListener {
+            object : HistoryAdapter.HistoryAdapterListener {
                 override fun onClick(detailedActivity: DetailedActivity) {
                     startActivity(
                         MainActivity.getHistoryIntent(
@@ -39,6 +44,10 @@ class HistoryActivity : AppCompatActivity() {
                             detailedActivity.activity
                         )
                     )
+                }
+
+                override fun onItemSelectionChanged(selectedItems: Set<DetailedActivity>) {
+                    toggleDeleteSelectedItemsMenuItem()
                 }
             }
         )
@@ -49,8 +58,52 @@ class HistoryActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_history)
 
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setHomeButtonEnabled(true)
+
         initializeView()
         initializeObservers()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.menu_history, menu)
+        return true
+    }
+
+    override fun onPrepareOptionsMenu(menu: Menu): Boolean {
+        val menuItem = menu.findItem(R.id.action_delete)
+        val isItemVisibleNew = historyAdapter.hasSelectedItems()
+        val isItemVisibleOld = menuItem.isVisible
+
+        return if (isItemVisibleNew != isItemVisibleOld) {
+            menuItem.isVisible = isItemVisibleNew
+            true
+        } else {
+            super.onPrepareOptionsMenu(menu)
+        }
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.action_delete -> {
+                showDeleteConfirmationDialog()
+                true
+            }
+
+            android.R.id.home -> {
+                if (historyAdapter.hasSelectedItems()) {
+                    historyAdapter.clearSelection()
+                    true
+                } else {
+                    finish()
+                    false
+                }
+            }
+
+            else -> {
+                super.onOptionsItemSelected(item)
+            }
+        }
     }
 
     private fun initializeView() {
@@ -70,10 +123,46 @@ class HistoryActivity : AppCompatActivity() {
 
     private fun initializeObservers() {
         lifecycleScope.launch {
-            viewModel.detailedActivities.collectLatest { pagingData ->
-                historyAdapter.submitData(pagingData)
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                launch {
+                    viewModel.detailedActivities.collectLatest { data ->
+                        historyAdapter.submitData(data)
+                    }
+                }
+                launch {
+                    viewModel.uiState.collectLatest { uiState ->
+                        when (uiState) {
+                            is HistoryViewModel.UiState.DeleteSuccessful -> {
+                                historyAdapter.clearSelection()
+                                historyAdapter.refresh()
+                            }
+
+                            is HistoryViewModel.UiState.None -> {
+                                /* do nothing */
+                            }
+                        }
+                    }
+                }
             }
         }
+    }
+
+    private fun showDeleteConfirmationDialog() {
+        AlertDialog.Builder(this)
+            .setTitle(R.string.delete_confirmation_title)
+            .setMessage(R.string.delete_confirmation_text)
+            .setPositiveButton(R.string.delete_confirmation_positive_button) { _, _ -> deleteSelectedActivities() }
+            .setNeutralButton(R.string.delete_confirmation_negative_button, null)
+            .show()
+    }
+
+    private fun deleteSelectedActivities() {
+        val selectedActivityIds = historyAdapter.getSelectedItems().map { it.activity.id }.toSet()
+        viewModel.deleteSelectedActivitiesAndActions(selectedActivityIds)
+    }
+
+    private fun toggleDeleteSelectedItemsMenuItem() {
+        invalidateOptionsMenu()
     }
 
     companion object {
