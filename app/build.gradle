@@ -126,6 +126,7 @@ dependencies {
     annotationProcessor(libs.room.compiler)
     ksp(libs.room.compiler)
     testImplementation(libs.room.testing)
+    testFixturesImplementation(libs.room.testing)
 
     testImplementation(libs.junit)
     testImplementation(libs.robolectric)
