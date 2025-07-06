@@ -1,4 +1,4 @@
-package org.vinaygopinath.launchchat.screens.main.domain
+package org.vinaygopinath.launchchat.unittest.screens.main.domain
 
 import com.google.common.truth.Truth.assertThat
 import kotlinx.coroutines.test.runTest
@@ -16,6 +16,8 @@ import org.vinaygopinath.launchchat.models.Activity
 import org.vinaygopinath.launchchat.models.Activity.Source
 import org.vinaygopinath.launchchat.repositories.ActionRepository
 import org.vinaygopinath.launchchat.repositories.ActivityRepository
+import org.vinaygopinath.launchchat.screens.main.domain.GetSettingsUseCase
+import org.vinaygopinath.launchchat.screens.main.domain.LogActionUseCase
 import org.vinaygopinath.launchchat.utils.DateUtils
 import java.time.Instant
 

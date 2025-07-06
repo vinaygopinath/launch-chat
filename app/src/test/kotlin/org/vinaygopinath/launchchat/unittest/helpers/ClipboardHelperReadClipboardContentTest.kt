@@ -1,4 +1,4 @@
-package org.vinaygopinath.launchchat.helpers
+package org.vinaygopinath.launchchat.unittest.helpers
 
 import android.content.ClipData
 import android.content.ClipDescription
@@ -11,6 +11,7 @@ import org.mockito.Mockito.`when`
 import org.mockito.kotlin.any
 import org.mockito.kotlin.mock
 import org.mockito.kotlin.whenever
+import org.vinaygopinath.launchchat.helpers.ClipboardHelper
 import org.vinaygopinath.launchchat.helpers.ClipboardHelper.ClipboardContent
 
 @RunWith(JUnit4::class)

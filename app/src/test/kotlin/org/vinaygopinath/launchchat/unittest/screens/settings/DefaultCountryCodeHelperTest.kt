@@ -1,4 +1,4 @@
-package org.vinaygopinath.launchchat.screens.settings
+package org.vinaygopinath.launchchat.unittest.screens.settings
 
 import com.google.common.truth.Truth.assertThat
 import org.junit.Test

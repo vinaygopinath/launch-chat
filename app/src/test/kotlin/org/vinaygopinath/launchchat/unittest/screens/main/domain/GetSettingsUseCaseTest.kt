@@ -1,4 +1,4 @@
-package org.vinaygopinath.launchchat.screens.main.domain
+package org.vinaygopinath.launchchat.unittest.screens.main.domain
 
 import com.google.common.truth.Truth.assertThat
 import org.junit.Test
@@ -8,6 +8,7 @@ import org.mockito.kotlin.eq
 import org.mockito.kotlin.verify
 import org.mockito.kotlin.whenever
 import org.vinaygopinath.launchchat.R
+import org.vinaygopinath.launchchat.screens.main.domain.GetSettingsUseCase
 import org.vinaygopinath.launchchat.utils.PreferenceUtil
 
 class GetSettingsUseCaseTest {

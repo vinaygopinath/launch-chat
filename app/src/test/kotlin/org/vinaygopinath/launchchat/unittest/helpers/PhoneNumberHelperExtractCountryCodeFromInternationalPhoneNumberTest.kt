@@ -1,4 +1,4 @@
-package org.vinaygopinath.launchchat.helpers
+package org.vinaygopinath.launchchat.unittest.helpers
 
 import com.google.common.truth.Truth.assertThat
 import dagger.hilt.android.testing.HiltAndroidRule
@@ -8,6 +8,7 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
+import org.vinaygopinath.launchchat.helpers.PhoneNumberHelper
 import javax.inject.Inject
 
 @HiltAndroidTest

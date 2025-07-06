@@ -1,4 +1,4 @@
-package org.vinaygopinath.launchchat.screens.main.domain
+package org.vinaygopinath.launchchat.unittest.screens.main.domain
 
 import com.google.common.truth.Truth.assertThat
 import dagger.hilt.android.testing.HiltAndroidRule
@@ -16,6 +16,7 @@ import org.vinaygopinath.launchchat.factories.ActionFactory
 import org.vinaygopinath.launchchat.factories.ActivityFactory
 import org.vinaygopinath.launchchat.repositories.ActionRepository
 import org.vinaygopinath.launchchat.repositories.ActivityRepository
+import org.vinaygopinath.launchchat.screens.main.domain.GetRecentDetailedActivityUseCase
 import java.time.Instant
 import javax.inject.Inject
 
