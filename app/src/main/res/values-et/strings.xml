@@ -59,4 +59,9 @@
     <string name="select_contacts_not_ready_dialog_title">Pole veel implementeeritud!</string>
     <string name="select_contacts_not_ready_dialog_message">See funktsionaalsus pole veel saadaval. Siiski oskab Launch Chat avada kontaktiandmeid, kui avad oma nutiseadmes kontaktide rakenduse ning jagad sealt kontakti Launch Chatiga. \n\nVaata õppevideot https://github.com/vinaygopinath/launch-chat/pull/18</string>
     <string name="select_contacts_not_ready_dialog_neutral_button">Selge</string>
+    <string name="delete_confirmation_title">Kinnitus ajaloo kustutamisele</string>
+    <string name="delete_confirmation_text">Kas oled kindel, et soovid valitud kirjed ajaloost kustutada? Seda tegevust ei saa tagasi pöörata.</string>
+    <string name="delete_confirmation_positive_button">Kustuta</string>
+    <string name="delete_confirmation_negative_button">Katkesta</string>
+    <string name="button_delete">Kustuta</string>
 </resources>
