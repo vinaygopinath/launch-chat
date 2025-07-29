@@ -29,7 +29,7 @@ espresso-intents = { module = "androidx.test.espresso:espresso-intents", version
 libphonenumber = { module = "io.michaelrocks:libphonenumber-android", version = "9.0.5" }
 junit = { module = "junit:junit", version = "4.13.2" }
 truth = { module = "com.google.truth:truth", version = "1.4.4" }
-mockito = { module = "org.mockito.kotlin:mockito-kotlin", version = "5.4.0" }
+mockito = { module = "org.mockito.kotlin:mockito-kotlin", version = "6.0.0" }
 hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hilt" }
 hilt-compiler = { module = "com.google.dagger:hilt-compiler", version.ref = "hilt" }
 hilt-testing = { module = "com.google.dagger:hilt-android-testing", version.ref = "hilt" }
