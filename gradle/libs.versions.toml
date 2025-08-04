@@ -1,5 +1,5 @@
 [versions]
-espresso = "3.6.1"
+espresso = "3.7.0"
 gradle = "8.10.1"
 hilt = "2.57"
 kotlin = "2.2.0"
