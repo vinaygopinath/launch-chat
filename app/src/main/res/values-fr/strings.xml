@@ -59,4 +59,9 @@
     <string name="select_contacts_not_ready_dialog_title">Pas encore implémenté !</string>
     <string name="select_contacts_not_ready_dialog_neutral_button">J\'ai compris</string>
     <string name="select_contacts_not_ready_dialog_message">Cette fonctionnalité n\'est pas encore implémentée. Néanmoins, l\'application Lanceur de conversation peut être utilisée en vous rendant dans votre application de contacts et en partageant un contact avec elle.\n\nVous pouvez voir une démonstration de comment faire à l\'adresse https://github.com/vinaygopinath/launch-chat/pull/18</string>
+    <string name="delete_confirmation_title">Confirmation de suppression d\'historique</string>
+    <string name="delete_confirmation_text">Êtes-vous sûr·e de vouloir supprimer l\'historique des entrées de l\'activité sélectionnée ? Cette action est irréversible.</string>
+    <string name="delete_confirmation_positive_button">Supprimer</string>
+    <string name="delete_confirmation_negative_button">Annuler</string>
+    <string name="button_delete">Supprimer</string>
 </resources>
