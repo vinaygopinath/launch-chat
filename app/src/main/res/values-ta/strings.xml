@@ -45,4 +45,23 @@
     <string name="no_action_label">செயல்கள் இல்லை</string>
     <string name="action_more">… மற்றும் %1$d மேலும்</string>
     <string name="replace_input_neutral_button">தள்ளுபடி</string>
+    <string name="pref_missing_country_code_action_title">நாட்டின் குறியீடு காணாமல் போகும்போது நடவடிக்கை</string>
+    <string name="pref_missing_country_code_action_entry_default_name">இயல்புநிலை நாட்டின் குறியீட்டைப் பயன்படுத்தவும்</string>
+    <string name="pref_missing_country_code_action_entry_recent_name">மிக அண்மைக் கால நாட்டு குறியீட்டைப் பயன்படுத்தவும்</string>
+    <string name="pref_missing_country_code_action_description_default_country_code_available">இயல்புநிலை நாட்டு குறியீடு +%1$d ஐப் பயன்படுத்தவும்</string>
+    <string name="pref_missing_country_code_action_description_default_country_code_missing">Stature இயல்புநிலை நாட்டின் குறியீடு தேர்ந்தெடுக்கப்பட்டது, ஆனால் நாட்டின் குறியீடு அமைக்கப்படவில்லை</string>
+    <string name="pref_missing_country_code_action_description_recent_country_code_available">அண்மைக் கால நாட்டு குறியீடு +%1$d ஐப் பயன்படுத்தவும்</string>
+    <string name="pref_missing_country_code_action_description_recent_country_code_missing">Codey அண்மைக் கால நாட்டின் குறியீடு தேர்ந்தெடுக்கப்பட்டது, ஆனால் அண்மைக் கால நாட்டுக் குறியீடு எதுவும் கிடைக்கவில்லை. நாட்டு குறியீட்டைக் கொண்ட தொலைபேசி எண்ணுடன் அரட்டையைத் தொடங்க முயற்சிக்கவும்</string>
+    <string name="pref_default_country_code_title">இயல்புநிலை நாட்டு குறியீடு</string>
+    <string name="pref_default_country_code_description_missing">நாட்டு குறியீட்டில் தொலைபேசி எண் தொடங்காதபோது பயன்படுத்த வேண்டிய நாட்டு குறியீடு</string>
+    <string name="pref_default_country_code_description_set">நாட்டின் குறியீடு +%1$d ஐப் பயன்படுத்தவும்</string>
+    <string name="pref_default_country_code_invalid_format">எந்த இடங்களும் இல்லாமல் +123 வடிவத்தில் ஒரு நாட்டின் குறியீட்டை உள்ளிடவும்</string>
+    <string name="select_contacts_not_ready_dialog_title">இன்னும் செயல்படுத்தப்படவில்லை!</string>
+    <string name="select_contacts_not_ready_dialog_message">இந்த நற்பொருத்தம் இன்னும் கிடைக்கவில்லை. இருப்பினும், உங்கள் தொடர்புகள் பயன்பாட்டைத் திறந்து வெளியீட்டு அரட்டையுடன் தொடர்பைப் பகிர்ந்து கொண்டால், துவக்க அரட்டை தொடர்புகளைத் திறக்கலாம். \n\nடெமோ வீடியோவைப் பார்க்கவும் https://github.com/vinaygopinath/launch-chat/pull/18</string>
+    <string name="select_contacts_not_ready_dialog_neutral_button">கிடைத்தது</string>
+    <string name="delete_confirmation_title">வரலாற்று உறுதிப்படுத்தலை நீக்கு</string>
+    <string name="delete_confirmation_text">தேர்ந்தெடுக்கப்பட்ட செயல்பாட்டு வரலாற்று உள்ளீடுகளை நீக்க விரும்புகிறீர்களா? இந்த நடவடிக்கை மாற்ற முடியாதது.</string>
+    <string name="delete_confirmation_positive_button">நீக்கு</string>
+    <string name="delete_confirmation_negative_button">ரத்துசெய்</string>
+    <string name="button_delete">நீக்கு</string>
 </resources>
