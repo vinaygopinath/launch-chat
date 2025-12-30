@@ -9,4 +9,5 @@
 
     <dimen name="open_button_layout_vertical_padding">10dp</dimen>
     <dimen name="open_button_margin">10dp</dimen>
+    <dimen name="chat_app_button_margin">4dp</dimen>
 </resources>

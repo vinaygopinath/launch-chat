@@ -29,6 +29,7 @@
     <string name="toast_whatsapp_not_installed">Neither WhatsApp nor a browser app is installed</string>
     <string name="toast_signal_not_installed">Neither Signal nor a browser app is installed</string>
     <string name="toast_telegram_not_installed">Neither Telegram nor a browser app is installed</string>
+    <string name="toast_chat_app_not_installed">The chat app or a browser is not installed</string>
 
     <!-- Preference ID's -->
     <!-- Caution when editing: This maps to Settings.KEY_ACTIVITY_HISTORY -->
