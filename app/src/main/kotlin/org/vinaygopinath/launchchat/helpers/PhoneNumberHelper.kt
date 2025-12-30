@@ -6,12 +6,20 @@ import javax.inject.Inject
 
 class PhoneNumberHelper @Inject constructor(private val phoneNumberUtil: PhoneNumberUtil) {
 
+    companion object {
+        private const val MINIMUM_PHONE_NUMBER_LENGTH = 7
+    }
+
     private val phoneNumberRegex by lazy {
-        Regex("(?:tel:)?(\\+?[\\d- ()]+)")
+        Regex("(?:tel:)?(\\+?[\\d- ()]{$MINIMUM_PHONE_NUMBER_LENGTH,})")
     }
 
     private val invalidPhoneNumberCharactersRegex by lazy {
         Regex("[-() ]*")
+    }
+
+    fun containsPhoneNumbers(text: String): Boolean {
+        return extractPhoneNumbers(text).isNotEmpty()
     }
 
     fun extractPhoneNumbers(rawString: String): List<String> {
@@ -20,6 +28,7 @@ class PhoneNumberHelper @Inject constructor(private val phoneNumberUtil: PhoneNu
             .map { matchResult -> matchResult.groupValues[1] }
             .filter { match -> match.isNotBlank() }
             .map { match -> match.replace(invalidPhoneNumberCharactersRegex, "") }
+            .filter { phoneNumber -> phoneNumber.length >= MINIMUM_PHONE_NUMBER_LENGTH }
             .toList()
     }
 
