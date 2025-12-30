@@ -45,7 +45,6 @@ import org.vinaygopinath.launchchat.helpers.ClipboardHelper
 import org.vinaygopinath.launchchat.helpers.DetailedActivityHelper
 import org.vinaygopinath.launchchat.helpers.IntentHelper
 import org.vinaygopinath.launchchat.helpers.PhoneNumberHelper
-import org.vinaygopinath.launchchat.helpers.TextHelper
 import org.vinaygopinath.launchchat.models.Action
 import org.vinaygopinath.launchchat.models.Activity
 import org.vinaygopinath.launchchat.models.DetailedActivity
@@ -344,7 +343,7 @@ class MainActivity : AppCompatActivity() {
     private fun updatePhoneNumberInputType() {
         val inputText = phoneNumberInput.text.toString()
         val newInputType =
-            if (inputText.isBlank() || TextHelper.doesTextMatchPhoneNumberRegex(inputText)) {
+            if (inputText.isBlank() || phoneNumberHelper.doesTextMatchPhoneNumberRegex(inputText)) {
                 InputType.TYPE_CLASS_PHONE
             } else {
                 InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_FLAG_MULTI_LINE

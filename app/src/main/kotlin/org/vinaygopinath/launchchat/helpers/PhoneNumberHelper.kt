@@ -18,6 +18,14 @@ class PhoneNumberHelper @Inject constructor(private val phoneNumberUtil: PhoneNu
         Regex("[-() ]*")
     }
 
+    private val phoneNumberInputRegex by lazy {
+        Regex("^[+]?[(]?[0-9]{1,4}[)]?[-\\s./0-9]*$")
+    }
+
+    fun doesTextMatchPhoneNumberRegex(text: String): Boolean {
+        return phoneNumberInputRegex.matches(text)
+    }
+
     fun containsPhoneNumbers(text: String): Boolean {
         return extractPhoneNumbers(text).isNotEmpty()
     }
