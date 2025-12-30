@@ -32,7 +32,15 @@ data class ChatApp(
     enum class IdentifierType(val internalName: String) {
         PHONE_NUMBER_ONLY("phone_number_only"),
         USERNAME_ONLY("username_only"),
-        BOTH_PHONE_NUMBER_AND_USERNAME("both_phone_number_and_username")
+        BOTH_PHONE_NUMBER_AND_USERNAME("both_phone_number_and_username");
+
+        fun supportsPhoneNumbers(): Boolean {
+            return this == PHONE_NUMBER_ONLY || this == BOTH_PHONE_NUMBER_AND_USERNAME
+        }
+
+        fun supportsUsernames(): Boolean {
+            return this == USERNAME_ONLY || this == BOTH_PHONE_NUMBER_AND_USERNAME
+        }
     }
 
     enum class LaunchType(val internalName: String) {
