@@ -13,8 +13,10 @@ import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.update
 import org.vinaygopinath.launchchat.models.Action
 import org.vinaygopinath.launchchat.models.Activity
+import org.vinaygopinath.launchchat.models.ChatApp
 import org.vinaygopinath.launchchat.models.DetailedActivity
 import org.vinaygopinath.launchchat.models.Settings
+import org.vinaygopinath.launchchat.screens.main.domain.GetEnabledChatAppsUseCase
 import org.vinaygopinath.launchchat.screens.main.domain.GetRecentDetailedActivityUseCase
 import org.vinaygopinath.launchchat.screens.main.domain.GetSettingsUseCase
 import org.vinaygopinath.launchchat.screens.main.domain.LogActionUseCase
@@ -33,6 +35,7 @@ class MainViewModel @Inject constructor(
     private val logActivityFromHistoryUseCase: LogActivityFromHistoryUseCase,
     private val getSettingsUseCase: GetSettingsUseCase,
     private val prefixCountryCodeUseCase: PrefixCountryCodeUseCase,
+    private val getEnabledChatAppsUseCase: GetEnabledChatAppsUseCase,
     private val dispatcherUtil: DispatcherUtil
 ) : ViewModel() {
 
@@ -96,6 +99,10 @@ class MainViewModel @Inject constructor(
 
     fun getRecentDetailedActivities(): Flow<List<DetailedActivity>> {
         return getRecentDetailedActivityUseCase.execute().distinctUntilChanged()
+    }
+
+    fun getEnabledChatApps(): Flow<List<ChatApp>> {
+        return getEnabledChatAppsUseCase.execute().distinctUntilChanged()
     }
 
     fun logActivityFromHistory(activity: Activity) {
