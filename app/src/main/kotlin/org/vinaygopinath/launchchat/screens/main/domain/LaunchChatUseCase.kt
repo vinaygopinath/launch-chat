@@ -27,7 +27,6 @@ class LaunchChatUseCase @Inject constructor(
     //    3a. If supported, launch chat with username intent and/or URL
     // 4. Before launching action (a1a and 3a), log an action!
 
-
     // Actual launch intent process
     // If intent is available,
     //   and package selection is available, launch with intent with package selection
