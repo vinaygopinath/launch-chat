@@ -7,6 +7,7 @@ import dagger.hilt.components.SingletonComponent
 import org.vinaygopinath.launchchat.AppDatabase
 import org.vinaygopinath.launchchat.daos.ActionDao
 import org.vinaygopinath.launchchat.daos.ActivityDao
+import org.vinaygopinath.launchchat.daos.ChatAppDao
 import org.vinaygopinath.launchchat.daos.DetailedActivityDao
 import javax.inject.Singleton
 
@@ -30,5 +31,11 @@ class DatabaseDaoModule {
     @Singleton
     fun provideDetailedActivityDao(database: AppDatabase): DetailedActivityDao {
         return database.detailedActivityDao()
+    }
+
+    @Provides
+    @Singleton
+    fun provideChatAppDao(database: AppDatabase): ChatAppDao {
+        return database.chatAppDao()
     }
 }
