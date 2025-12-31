@@ -42,5 +42,15 @@ class RoomTypeConverter {
             ChatApp.LaunchType.entries.firstOrNull { it.internalName == launchTypeStr }
         }
     }
-}
 
+    @TypeConverter
+    fun convertPhoneNumberFormatToString(phoneNumberFormat: ChatApp.PhoneNumberFormat?): String? =
+        phoneNumberFormat?.internalName
+
+    @TypeConverter
+    fun convertStringToPhoneNumberFormat(phoneNumberFormatStr: String?): ChatApp.PhoneNumberFormat? {
+        return phoneNumberFormatStr?.let { str ->
+            ChatApp.PhoneNumberFormat.entries.firstOrNull { it.internalName == str }
+        }
+    }
+}
