@@ -1,17 +1,55 @@
 package org.vinaygopinath.launchchat.helpers
 
+import android.content.Context
+import android.graphics.drawable.Drawable
 import androidx.annotation.DrawableRes
+import androidx.core.content.ContextCompat
+import dagger.hilt.android.qualifiers.ApplicationContext
 import org.vinaygopinath.launchchat.R
 import org.vinaygopinath.launchchat.models.ChatApp
+import java.io.File
 import javax.inject.Inject
 
-class ChatAppHelper @Inject constructor() {
+class ChatAppHelper @Inject constructor(
+    @ApplicationContext private val context: Context
+) {
+
+    fun getIconDrawable(chatApp: ChatApp): Drawable {
+        return when {
+            chatApp.isPredefined -> {
+                getPredefinedChatAppIcon(chatApp.name)?.let {
+                    ContextCompat.getDrawable(context, it)
+                } ?: getDefaultIcon()
+            }
+            chatApp.iconUri != null -> {
+                loadIconFromPath(chatApp.iconUri) ?: getDefaultIcon()
+            }
+            else -> getDefaultIcon()
+        }
+    }
 
     @DrawableRes
     fun getIconResource(chatApp: ChatApp): Int? {
         return if (chatApp.isPredefined) {
             getPredefinedChatAppIcon(chatApp.name)
         } else {
+            null
+        }
+    }
+
+    private fun getDefaultIcon(): Drawable {
+        return ContextCompat.getDrawable(context, R.drawable.ic_chat_app_default)!!
+    }
+
+    private fun loadIconFromPath(path: String): Drawable? {
+        return try {
+            val file = File(path)
+            if (file.exists()) {
+                Drawable.createFromPath(path)
+            } else {
+                null
+            }
+        } catch (expected: Exception) {
             null
         }
     }
