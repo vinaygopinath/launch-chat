@@ -30,6 +30,8 @@
     <string name="toast_signal_not_installed">Neither Signal nor a browser app is installed</string>
     <string name="toast_telegram_not_installed">Neither Telegram nor a browser app is installed</string>
     <string name="toast_chat_app_not_installed">The chat app or a browser is not installed</string>
+    <string name="error_empty_input">Please enter a phone number or username</string>
+    <string name="error_incompatible_input">This chat app doesn\'t support this input type</string>
 
     <!-- Preference ID's -->
     <!-- Caution when editing: This maps to Settings.KEY_ACTIVITY_HISTORY -->
@@ -99,4 +101,53 @@
     <string name="delete_confirmation_negative_button">Cancel</string>
 
     <string name="button_delete">Delete</string>
+
+    <!-- Chat App Management -->
+    <!-- Caution when editing: This maps to Settings.KEY_MANAGE_CHAT_APPS -->
+    <string name="pref_manage_chat_apps_key" translatable="false">pref_manage_chat_apps</string>
+    <string name="pref_manage_chat_apps_title">Manage chat apps</string>
+    <string name="pref_manage_chat_apps_summary">Enable, disable, or add custom chat apps</string>
+
+    <!-- Chat App List -->
+    <string name="chat_app_list_title">Chat Apps</string>
+    <string name="chat_app_list_add_button">Add chat app</string>
+    <string name="chat_app_list_icon_description">Chat app icon</string>
+    <string name="chat_app_list_predefined">Predefined</string>
+    <string name="chat_app_list_custom">Custom</string>
+
+    <!-- Chat App Editor -->
+    <string name="chat_app_editor_title_add">Add Chat App</string>
+    <string name="chat_app_editor_title_edit">Edit Chat App</string>
+    <string name="chat_app_editor_title_view">View Chat App</string>
+    <string name="chat_app_editor_icon_description">Chat app icon</string>
+    <string name="chat_app_editor_select_icon">Select icon</string>
+    <string name="chat_app_editor_clear_icon">Clear</string>
+    <string name="chat_app_editor_name_hint">App name</string>
+    <string name="chat_app_editor_identifier_type_label">Identifier type</string>
+    <string name="chat_app_editor_identifier_phone_only">Phone number only</string>
+    <string name="chat_app_editor_identifier_username_only">Username only</string>
+    <string name="chat_app_editor_identifier_both">Both phone number and username</string>
+    <string name="chat_app_editor_phone_section_title">Phone number settings</string>
+    <string name="chat_app_editor_phone_format_label">Phone number format</string>
+    <string name="chat_app_editor_phone_format_with_plus">With + prefix (e.g., +1234567890)</string>
+    <string name="chat_app_editor_phone_format_without_plus">Without + prefix (e.g., 1234567890)</string>
+    <string name="chat_app_editor_phone_format_raw">Raw (as entered by user)</string>
+    <string name="chat_app_editor_phone_intent_hint">Phone number intent template (optional)</string>
+    <string name="chat_app_editor_phone_intent_helper">e.g., appname://chat?phone=[phone-number]&amp;text=[message]</string>
+    <string name="chat_app_editor_phone_url_hint">Phone number URL template</string>
+    <string name="chat_app_editor_phone_url_helper">e.g., https://example.com/chat/[phone-number]?text=[message]</string>
+    <string name="chat_app_editor_username_section_title">Username settings</string>
+    <string name="chat_app_editor_username_intent_hint">Username intent template (optional)</string>
+    <string name="chat_app_editor_username_intent_helper">e.g., appname://user/[username]</string>
+    <string name="chat_app_editor_username_url_hint">Username URL template</string>
+    <string name="chat_app_editor_username_url_helper">e.g., https://example.com/user/[username]</string>
+    <string name="chat_app_editor_package_hint">Package name (optional)</string>
+    <string name="chat_app_editor_package_helper">e.g., com.example.chatapp - Used to open the app directly</string>
+    <string name="chat_app_editor_save">Save</string>
+    <string name="chat_app_editor_predefined_warning">This is a predefined chat app and cannot be edited.</string>
+    <string name="chat_app_editor_delete">Delete</string>
+    <string name="chat_app_editor_delete_title">Delete chat app</string>
+    <string name="chat_app_editor_delete_message">Are you sure you want to delete this chat app? This action cannot be undone.</string>
+    <string name="chat_app_editor_saved">Chat app saved</string>
+    <string name="chat_app_editor_deleted">Chat app deleted</string>
 </resources>

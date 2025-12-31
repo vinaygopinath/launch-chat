@@ -7,6 +7,7 @@ data class Settings(
     val missingCountryCodeAction: MissingCountryCodeAction
 ) {
     companion object {
+        const val KEY_MANAGE_CHAT_APPS = "pref_manage_chat_apps"
         const val KEY_ACTIVITY_HISTORY = "pref_activity_history"
 
         const val KEY_MISSING_COUNTRY_CODE_ACTION = "missing_country_code_action"
