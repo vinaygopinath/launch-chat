@@ -53,6 +53,7 @@ import org.vinaygopinath.launchchat.screens.history.HistoryActivity
 import org.vinaygopinath.launchchat.screens.main.domain.ProcessIntentUseCase
 import org.vinaygopinath.launchchat.screens.settings.SettingsActivity
 import javax.inject.Inject
+import org.vinaygopinath.launchchat.models.ChatApp.InputType as ChatInputType
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -308,34 +309,93 @@ class MainActivity : AppCompatActivity() {
         phoneNumberInput.inputType = newInputType
     }
 
+    private fun detectInputType(input: String): ChatInputType {
+        if (input.isBlank()) return ChatInputType.EMPTY
+        return if (phoneNumberHelper.doesTextMatchPhoneNumberRegex(input)) {
+            ChatInputType.PHONE_NUMBER
+        } else {
+            ChatInputType.USERNAME
+        }
+    }
+
     private fun onChatAppButtonClick(chatApp: ChatApp) {
         phoneNumberInputLayout.error = null
-        val phoneNumbers = phoneNumberHelper.extractPhoneNumbers(phoneNumberInput.text.toString())
+        val input = phoneNumberInput.text.toString()
+        val inputType = detectInputType(input)
+
+        when {
+            inputType == ChatInputType.EMPTY -> {
+                phoneNumberInputLayout.error = getString(R.string.error_empty_input)
+            }
+            inputType == ChatInputType.PHONE_NUMBER && chatApp.identifierType.supportsPhoneNumbers() -> {
+                handlePhoneNumberLaunch(chatApp, input)
+            }
+            inputType == ChatInputType.USERNAME && chatApp.identifierType.supportsUsernames() -> {
+                launchChatAppWithUsername(chatApp, input.trim())
+            }
+            else -> {
+                phoneNumberInputLayout.error = getString(R.string.error_incompatible_input)
+            }
+        }
+    }
+
+    private fun handlePhoneNumberLaunch(chatApp: ChatApp, input: String) {
+        val phoneNumbers = phoneNumberHelper.extractPhoneNumbers(input)
         if (phoneNumbers.isEmpty()) {
             phoneNumberInputLayout.error = getString(R.string.toast_invalid_phone_number)
         } else if (phoneNumbers.size != 1) {
             showPhoneNumberSelectionDialog(phoneNumbers) { selectedNumber ->
-                launchChatApp(chatApp, selectedNumber)
+                launchChatAppWithPhoneNumber(chatApp, selectedNumber)
             }
         } else {
-            launchChatApp(chatApp, phoneNumbers.first())
+            launchChatAppWithPhoneNumber(chatApp, phoneNumbers.first())
         }
     }
 
-    private fun launchChatApp(chatApp: ChatApp, phoneNumber: String) {
+    private fun launchChatAppWithPhoneNumber(chatApp: ChatApp, phoneNumber: String) {
         val possiblePhoneNumberWithCountryCode = viewModel.prefixCountryCode(phoneNumber)
         val message = messageInput.text.toString().trim()
-        try {
-            startActivity(
-                intentHelper.getChatAppIntent(
-                    chatApp,
-                    possiblePhoneNumberWithCountryCode,
-                    message.ifBlank { null }
-                )
-            )
-        } catch (ignoredException: ActivityNotFoundException) {
-            showToast(R.string.toast_chat_app_not_installed)
+        val intents = intentHelper.getChatAppIntentsForPhoneNumber(
+            chatApp,
+            possiblePhoneNumberWithCountryCode,
+            message.ifBlank { null }
+        )
+        launchWithFallback(intents)
+    }
+
+    private fun launchChatAppWithUsername(chatApp: ChatApp, username: String) {
+        val message = messageInput.text.toString().trim()
+        val intents = intentHelper.getChatAppIntentsForUsername(
+            chatApp,
+            username,
+            message.ifBlank { null }
+        )
+        launchWithFallback(intents)
+    }
+
+    private fun launchWithFallback(intents: IntentHelper.ChatAppLaunchIntents) {
+        val appIntent = intents.appIntent
+        val urlIntent = intents.urlIntent
+
+        if (appIntent != null) {
+            try {
+                startActivity(appIntent)
+                return
+            } catch (e: ActivityNotFoundException) {
+                // App intent failed, try URL fallback
+            }
         }
+
+        if (urlIntent != null) {
+            try {
+                startActivity(urlIntent)
+                return
+            } catch (e: ActivityNotFoundException) {
+                // URL intent also failed
+            }
+        }
+
+        showToast(R.string.toast_chat_app_not_installed)
     }
 
     companion object {

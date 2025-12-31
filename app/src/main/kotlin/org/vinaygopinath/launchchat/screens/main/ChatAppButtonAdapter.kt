@@ -31,13 +31,8 @@ class ChatAppButtonAdapter(
 
         fun bind(chatApp: ChatApp) {
             button.text = chatApp.name
-            val iconRes = chatAppHelper.getIconResource(chatApp)
-            if (iconRes != null) {
-                button.setIconResource(iconRes)
-                button.iconTint = null
-            } else {
-                button.icon = null
-            }
+            button.icon = chatAppHelper.getIconDrawable(chatApp)
+            button.iconTint = null
             button.setOnClickListener {
                 onChatAppClick(chatApp)
             }

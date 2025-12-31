@@ -9,6 +9,15 @@ import javax.inject.Inject
 
 class IntentHelper @Inject constructor() {
 
+    /**
+     * Contains the intents available for launching a chat app.
+     * Caller should try appIntent first, then fall back to urlIntent if appIntent fails.
+     */
+    data class ChatAppLaunchIntents(
+        val appIntent: Intent?,
+        val urlIntent: Intent?
+    )
+
     fun getGithubRepoIntent(): Intent {
         return Intent().apply {
             action = Intent.ACTION_VIEW
@@ -16,42 +25,80 @@ class IntentHelper @Inject constructor() {
         }
     }
 
-    fun getChatAppIntent(chatApp: ChatApp, phoneNumber: String, message: String?): Intent {
-        val url = buildChatAppUrl(chatApp, phoneNumber, message)
-        return Intent().apply {
-            action = Intent.ACTION_VIEW
-            data = url.toUri()
-            chatApp.intentPackageSelection?.let { setPackage(it) }
+    fun getChatAppIntentsForPhoneNumber(chatApp: ChatApp, phoneNumber: String, message: String?): ChatAppLaunchIntents {
+        require(chatApp.identifierType.supportsPhoneNumbers()) {
+            "ChatApp ${chatApp.name} does not support phone numbers"
         }
+
+        val format = chatApp.phoneNumberFormat ?: ChatApp.PhoneNumberFormat.WITH_PLUS_PREFIX
+        val formattedNumber = formatPhoneNumber(phoneNumber, format)
+
+        val appIntent = chatApp.phoneNumberLaunchIntent?.let { template ->
+            val uri = buildFromTemplate(template, formattedNumber, null, message)
+            Intent().apply {
+                action = Intent.ACTION_VIEW
+                data = uri.toUri()
+                chatApp.intentPackageSelection?.let { setPackage(it) }
+            }
+        }
+
+        val urlIntent = chatApp.phoneNumberLaunchUrl?.let { template ->
+            val uri = buildFromTemplate(template, formattedNumber, null, message)
+            Intent().apply {
+                action = Intent.ACTION_VIEW
+                data = uri.toUri()
+            }
+        }
+
+        return ChatAppLaunchIntents(appIntent, urlIntent)
     }
 
-    private fun buildChatAppUrl(chatApp: ChatApp, phoneNumber: String, message: String?): String {
-        val urlTemplate = chatApp.phoneNumberLaunchUrl
-            ?: throw IllegalArgumentException("ChatApp ${chatApp.name} does not have a phoneNumberLaunchUrl")
+    fun getChatAppIntentsForUsername(chatApp: ChatApp, username: String, message: String?): ChatAppLaunchIntents {
+        require(chatApp.identifierType.supportsUsernames()) {
+            "ChatApp ${chatApp.name} does not support usernames"
+        }
 
-        return urlTemplate
-            .replace(PLACEHOLDER_PHONE_NUMBER, phoneNumber)
+        val appIntent = chatApp.usernameLaunchIntent?.let { template ->
+            val uri = buildFromTemplate(template, null, username, message)
+            Intent().apply {
+                action = Intent.ACTION_VIEW
+                data = uri.toUri()
+                chatApp.intentPackageSelection?.let { setPackage(it) }
+            }
+        }
+
+        val urlIntent = chatApp.usernameLaunchUrl?.let { template ->
+            val uri = buildFromTemplate(template, null, username, message)
+            Intent().apply {
+                action = Intent.ACTION_VIEW
+                data = uri.toUri()
+            }
+        }
+
+        return ChatAppLaunchIntents(appIntent, urlIntent)
+    }
+
+    private fun buildFromTemplate(
+        template: String,
+        phoneNumber: String?,
+        username: String?,
+        message: String?
+    ): String {
+        return template
+            .replace(PLACEHOLDER_PHONE_NUMBER, phoneNumber ?: "")
+            .replace(PLACEHOLDER_USERNAME, username ?: "")
             .replace(PLACEHOLDER_MESSAGE, message ?: "")
     }
 
-    fun getOpenWhatsappIntent(phoneNumber: String, message: String?): Intent {
-        return Intent().apply {
-            action = Intent.ACTION_VIEW
-            data = generateWhatsappUrl(phoneNumber, message).toUri()
-        }
-    }
-
-    fun getOpenSignalIntent(phoneNumber: String): Intent {
-        return Intent().apply {
-            action = Intent.ACTION_VIEW
-            data = generateSignalUrl(phoneNumber).toUri()
-        }
-    }
-
-    fun getOpenTelegramIntent(phoneNumber: String): Intent {
-        return Intent().apply {
-            action = Intent.ACTION_VIEW
-            data = generateTelegramUrl(phoneNumber).toUri()
+    private fun formatPhoneNumber(phoneNumber: String, format: ChatApp.PhoneNumberFormat): String {
+        return when (format) {
+            ChatApp.PhoneNumberFormat.WITH_PLUS_PREFIX -> {
+                if (phoneNumber.startsWith("+")) phoneNumber else "+$phoneNumber"
+            }
+            ChatApp.PhoneNumberFormat.WITHOUT_PLUS_PREFIX -> {
+                phoneNumber.removePrefix("+")
+            }
+            ChatApp.PhoneNumberFormat.RAW -> phoneNumber
         }
     }
 
@@ -78,6 +125,7 @@ class IntentHelper @Inject constructor() {
 
     companion object {
         private const val PLACEHOLDER_PHONE_NUMBER = "[phone-number]"
+        private const val PLACEHOLDER_USERNAME = "[username]"
         private const val PLACEHOLDER_MESSAGE = "[message]"
     }
 }
