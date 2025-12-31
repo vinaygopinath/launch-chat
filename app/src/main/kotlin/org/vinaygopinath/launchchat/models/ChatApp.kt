@@ -26,7 +26,9 @@ data class ChatApp(
     @ColumnInfo("created_at") val createdAt: Instant,
     @ColumnInfo("deleted_at") val deletedAt: Instant?,
     @ColumnInfo("is_predefined") val isPredefined: Boolean,
-    @ColumnInfo("is_enabled") val isEnabled: Boolean
+    @ColumnInfo("is_enabled") val isEnabled: Boolean,
+    @ColumnInfo("icon_uri") val iconUri: String? = null,
+    @ColumnInfo("phone_number_format", defaultValue = "with_plus") val phoneNumberFormat: PhoneNumberFormat? = null
 ) {
 
     enum class IdentifierType(val internalName: String) {
@@ -47,6 +49,18 @@ data class ChatApp(
         URL_ONLY("url_only"),
         INTENT_ONLY("intent_only"),
         BOTH_URL_AND_INTENT("both_url_and_intent")
+    }
+
+    enum class PhoneNumberFormat(val internalName: String) {
+        WITH_PLUS_PREFIX("with_plus"),
+        WITHOUT_PLUS_PREFIX("without_plus"),
+        RAW("raw")
+    }
+
+    enum class InputType {
+        PHONE_NUMBER,
+        USERNAME,
+        EMPTY
     }
 
     companion object {
@@ -71,7 +85,8 @@ data class ChatApp(
                     isPredefined = true,
                     isEnabled = true,
                     createdAt = currentTime,
-                    deletedAt = null
+                    deletedAt = null,
+                    phoneNumberFormat = PhoneNumberFormat.WITH_PLUS_PREFIX
                 ),
                 ChatApp(
                     name = PREDEFINED_CHAT_APP_WHATSAPP_BUSINESS_NAME,
@@ -85,7 +100,8 @@ data class ChatApp(
                     isPredefined = true,
                     isEnabled = false,
                     createdAt = currentTime,
-                    deletedAt = null
+                    deletedAt = null,
+                    phoneNumberFormat = PhoneNumberFormat.WITH_PLUS_PREFIX
                 ),
                 ChatApp(
                     name = PREDEFINED_CHAT_APP_SIGNAL_NAME,
@@ -99,7 +115,8 @@ data class ChatApp(
                     isPredefined = true,
                     isEnabled = true,
                     createdAt = currentTime,
-                    deletedAt = null
+                    deletedAt = null,
+                    phoneNumberFormat = PhoneNumberFormat.WITH_PLUS_PREFIX
                 ),
                 ChatApp(
                     name = PREDEFINED_CHAT_APP_TELEGRAM_NAME,
@@ -113,7 +130,8 @@ data class ChatApp(
                     isPredefined = true,
                     isEnabled = true,
                     createdAt = currentTime,
-                    deletedAt = null
+                    deletedAt = null,
+                    phoneNumberFormat = PhoneNumberFormat.WITH_PLUS_PREFIX
                 )
             )
         }
