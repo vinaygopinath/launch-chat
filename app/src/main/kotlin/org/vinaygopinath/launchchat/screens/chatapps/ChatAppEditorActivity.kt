@@ -121,7 +121,7 @@ class ChatAppEditorActivity : AppCompatActivity() {
         }
 
         nameInput.doAfterTextChanged { text ->
-            viewModel.updateName(text?.toString() ?: "")
+            viewModel.updateName(text?.toString().orEmpty())
         }
 
         identifierTypeGroup.setOnCheckedChangeListener { _, checkedId ->
@@ -145,23 +145,23 @@ class ChatAppEditorActivity : AppCompatActivity() {
         }
 
         phoneIntentInput.doAfterTextChanged { text ->
-            viewModel.updatePhoneNumberIntent(text?.toString() ?: "")
+            viewModel.updatePhoneNumberIntent(text?.toString().orEmpty())
         }
 
         phoneUrlInput.doAfterTextChanged { text ->
-            viewModel.updatePhoneNumberUrl(text?.toString() ?: "")
+            viewModel.updatePhoneNumberUrl(text?.toString().orEmpty())
         }
 
         usernameIntentInput.doAfterTextChanged { text ->
-            viewModel.updateUsernameIntent(text?.toString() ?: "")
+            viewModel.updateUsernameIntent(text?.toString().orEmpty())
         }
 
         usernameUrlInput.doAfterTextChanged { text ->
-            viewModel.updateUsernameUrl(text?.toString() ?: "")
+            viewModel.updateUsernameUrl(text?.toString().orEmpty())
         }
 
         packageInput.doAfterTextChanged { text ->
-            viewModel.updateIntentPackage(text?.toString() ?: "")
+            viewModel.updateIntentPackage(text?.toString().orEmpty())
         }
 
         saveButton.setOnClickListener {

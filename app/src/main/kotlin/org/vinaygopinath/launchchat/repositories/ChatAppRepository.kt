@@ -39,4 +39,14 @@ class ChatAppRepository @Inject constructor(
     suspend fun toggleEnabled(id: Long, isEnabled: Boolean) {
         chatAppDao.updateEnabled(id, isEnabled)
     }
+
+    suspend fun updatePositions(chatApps: List<ChatApp>) {
+        chatApps.forEachIndexed { index, chatApp ->
+            chatAppDao.updatePosition(chatApp.id, index)
+        }
+    }
+
+    suspend fun getNextPosition(): Int {
+        return chatAppDao.getMaxPosition() + 1
+    }
 }
