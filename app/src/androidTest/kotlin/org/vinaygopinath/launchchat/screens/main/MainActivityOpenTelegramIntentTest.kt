@@ -1,39 +1,79 @@
 package org.vinaygopinath.launchchat.screens.main
 
 import android.content.Intent
-import androidx.test.core.app.ActivityScenario.launch
+import androidx.test.core.app.ActivityScenario
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.action.ViewActions.replaceText
 import androidx.test.espresso.matcher.ViewMatchers.withId
+import androidx.test.espresso.matcher.ViewMatchers.withText
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
+import kotlinx.coroutines.runBlocking
+import org.junit.After
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.vinaygopinath.launchchat.R
+import org.vinaygopinath.launchchat.daos.ChatAppDao
 import org.vinaygopinath.launchchat.helpers.AssertionHelper.assertIntentNavigation
-import org.vinaygopinath.launchchat.helpers.IntentHelper
+import org.vinaygopinath.launchchat.models.ChatApp
+import org.vinaygopinath.launchchat.utils.DateUtils
+import javax.inject.Inject
 
 @HiltAndroidTest
 class MainActivityOpenTelegramIntentTest {
 
     @get:Rule
-    val rule = HiltAndroidRule(this)
+    val hiltRule = HiltAndroidRule(this)
+
+    @Inject
+    lateinit var chatAppDao: ChatAppDao
+
+    @Inject
+    lateinit var dateUtils: DateUtils
+
+    private lateinit var scenario: ActivityScenario<MainActivity>
 
     @Before
     fun setUp() {
-        launch(MainActivity::class.java)
+        hiltRule.inject()
+        ensureChatAppsExist()
+        scenario = ActivityScenario.launch(MainActivity::class.java)
+    }
+
+    @After
+    fun tearDown() {
+        scenario.close()
+    }
+
+    private fun ensureChatAppsExist() {
+        runBlocking {
+            if (chatAppDao.getCount() == 0) {
+                chatAppDao.create(ChatApp.getPredefinedChatApps(dateUtils))
+            }
+        }
     }
 
     @Test
     fun launchesTelegramChatWithTheEnteredNumber() {
         val phoneNumber = "+1555555555"
         onView(withId(R.id.phone_number_input)).perform(replaceText(phoneNumber))
-        val generatedUrl = IntentHelper().generateTelegramUrl(phoneNumber)
+        val expectedUrl = "https://t.me/$phoneNumber"
 
-        assertIntentNavigation(Intent.ACTION_VIEW, generatedUrl) {
-            onView(withId(R.id.open_telegram_button)).perform(click())
+        assertIntentNavigation(Intent.ACTION_VIEW, expectedUrl) {
+            onView(withText(ChatApp.PREDEFINED_CHAT_APP_TELEGRAM_NAME)).perform(click())
+        }
+    }
+
+    @Test
+    fun launchesTelegramChatWithTheEnteredUsername() {
+        val username = "testuser"
+        onView(withId(R.id.phone_number_input)).perform(replaceText(username))
+        val expectedUrl = "https://t.me/$username"
+
+        assertIntentNavigation(Intent.ACTION_VIEW, expectedUrl) {
+            onView(withText(ChatApp.PREDEFINED_CHAT_APP_TELEGRAM_NAME)).perform(click())
         }
     }
 }
