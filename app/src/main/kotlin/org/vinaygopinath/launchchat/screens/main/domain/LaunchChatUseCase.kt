@@ -11,30 +11,7 @@ class LaunchChatUseCase @Inject constructor(
     private val prefixCountryCodeUseCase: PrefixCountryCodeUseCase
 ) {
 
-    // Inputs
-    // 1. Raw string
-    // 2. Selected chat app
-
-    // Algorithm
-    // 1. Process phone number or username input field
-    // 2. If phone number, check if it contains one phone number or multiple
-    //    a. If single phone number, check if the chat app supports phone numbers
-    //         a1. If supported, delegate to country code use case
-    //             a1a. Launch phone number intent
-    //         a2. If not supported, reject with unsupported_phone_number error
-    //    b. If multiple, return result with extracted phone numbers back to the activity
-    // 3. If username, check if the chat app supports usernames
-    //    3a. If supported, launch chat with username intent and/or URL
-    // 4. Before launching action (a1a and 3a), log an action!
-
-    // Actual launch intent process
-    // If intent is available,
-    //   and package selection is available, launch with intent with package selection
-    //     If it fails, launch without package selection
-    //   and package selection is not available, launch with intent and no package selection
-    //     If it fails, launch with URL + package selection
-    //     If it fails, launch with URL and no package selection.
-    suspend fun execute(
+    fun execute(
         inputString: String,
         chatApp: ChatApp,
         messageInputString: String?
@@ -48,7 +25,7 @@ class LaunchChatUseCase @Inject constructor(
         return LaunchChatResult.NoIdentifierFoundError
     }
 
-    suspend fun executeAfterSinglePhoneNumberSelection(
+    fun executeAfterSinglePhoneNumberSelection(
         selectedPhoneNumber: String,
         chatApp: ChatApp,
         messageInputString: String?
@@ -64,7 +41,7 @@ class LaunchChatUseCase @Inject constructor(
         )
     }
 
-    private suspend fun handlePhoneNumbers(
+    private fun handlePhoneNumbers(
         inputString: String,
         chatApp: ChatApp,
         messageInputString: String?
