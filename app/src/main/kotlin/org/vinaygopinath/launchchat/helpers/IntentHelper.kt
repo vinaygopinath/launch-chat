@@ -34,12 +34,14 @@ class IntentHelper @Inject constructor() {
         val formattedNumber = formatPhoneNumber(phoneNumber, format)
 
         val appIntent = chatApp.phoneNumberLaunchIntent?.let { template ->
-            val uri = buildFromTemplate(template, formattedNumber, null, message)
-            Intent().apply {
-                action = Intent.ACTION_VIEW
-                data = uri.toUri()
-                chatApp.intentPackageSelection?.let { setPackage(it) }
-            }
+            createIntentForTemplate(
+                chatAppName = chatApp.name,
+                template = template,
+                phoneNumber = formattedNumber,
+                username = null,
+                message = message,
+                packageSelection = chatApp.intentPackageSelection
+            )
         }
 
         val urlIntent = chatApp.phoneNumberLaunchUrl?.let { template ->
@@ -59,12 +61,14 @@ class IntentHelper @Inject constructor() {
         }
 
         val appIntent = chatApp.usernameLaunchIntent?.let { template ->
-            val uri = buildFromTemplate(template, null, username, message)
-            Intent().apply {
-                action = Intent.ACTION_VIEW
-                data = uri.toUri()
-                chatApp.intentPackageSelection?.let { setPackage(it) }
-            }
+            createIntentForTemplate(
+                chatAppName = chatApp.name,
+                template = template,
+                phoneNumber = null,
+                username = username,
+                message = message,
+                packageSelection = chatApp.intentPackageSelection
+            )
         }
 
         val urlIntent = chatApp.usernameLaunchUrl?.let { template ->
@@ -78,6 +82,33 @@ class IntentHelper @Inject constructor() {
         return ChatAppLaunchIntents(appIntent, urlIntent)
     }
 
+    private fun createIntentForTemplate(
+        chatAppName: String,
+        template: String,
+        phoneNumber: String?,
+        username: String?,
+        message: String?,
+        packageSelection: String?
+    ): Intent {
+        val uri = buildFromTemplate(template, phoneNumber, username, message)
+        return when (chatAppName) {
+            ChatApp.PREDEFINED_CHAT_APP_PHONE_CALL_NAME -> Intent().apply {
+                action = Intent.ACTION_DIAL
+                data = uri.toUri()
+            }
+            ChatApp.PREDEFINED_CHAT_APP_SMS_NAME -> Intent().apply {
+                action = Intent.ACTION_SENDTO
+                data = "smsto:${phoneNumber.orEmpty()}".toUri()
+                message?.let { putExtra(EXTRA_SMS_BODY, it) }
+            }
+            else -> Intent().apply {
+                action = Intent.ACTION_VIEW
+                data = uri.toUri()
+                packageSelection?.let { setPackage(it) }
+            }
+        }
+    }
+
     private fun buildFromTemplate(
         template: String,
         phoneNumber: String?,
@@ -85,9 +116,9 @@ class IntentHelper @Inject constructor() {
         message: String?
     ): String {
         return template
-            .replace(PLACEHOLDER_PHONE_NUMBER, phoneNumber ?: "")
-            .replace(PLACEHOLDER_USERNAME, username ?: "")
-            .replace(PLACEHOLDER_MESSAGE, message ?: "")
+            .replace(PLACEHOLDER_PHONE_NUMBER, phoneNumber.orEmpty())
+            .replace(PLACEHOLDER_USERNAME, username.orEmpty())
+            .replace(PLACEHOLDER_MESSAGE, message.orEmpty())
     }
 
     private fun formatPhoneNumber(phoneNumber: String, format: ChatApp.PhoneNumberFormat): String {
@@ -127,5 +158,7 @@ class IntentHelper @Inject constructor() {
         private const val PLACEHOLDER_PHONE_NUMBER = "[phone-number]"
         private const val PLACEHOLDER_USERNAME = "[username]"
         private const val PLACEHOLDER_MESSAGE = "[message]"
+
+        private const val EXTRA_SMS_BODY = "sms_body"
     }
 }
