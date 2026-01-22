@@ -28,7 +28,8 @@ data class ChatApp(
     @ColumnInfo("is_predefined") val isPredefined: Boolean,
     @ColumnInfo("is_enabled") val isEnabled: Boolean,
     @ColumnInfo("icon_uri") val iconUri: String? = null,
-    @ColumnInfo("phone_number_format", defaultValue = "with_plus") val phoneNumberFormat: PhoneNumberFormat? = null
+    @ColumnInfo("phone_number_format", defaultValue = "with_plus") val phoneNumberFormat: PhoneNumberFormat? = null,
+    @ColumnInfo("position") val position: Int = 0
 ) {
 
     enum class IdentifierType(val internalName: String) {
@@ -69,6 +70,8 @@ data class ChatApp(
         const val PREDEFINED_CHAT_APP_WHATSAPP_BUSINESS_NAME = "WhatsApp Business"
         const val PREDEFINED_CHAT_APP_SIGNAL_NAME = "Signal"
         const val PREDEFINED_CHAT_APP_TELEGRAM_NAME = "Telegram"
+        const val PREDEFINED_CHAT_APP_SMS_NAME = "SMS"
+        const val PREDEFINED_CHAT_APP_PHONE_CALL_NAME = "Phone Call"
 
         fun getPredefinedChatApps(dateUtils: DateUtils): List<ChatApp> {
             val currentTime = dateUtils.getCurrentInstant()
@@ -86,7 +89,8 @@ data class ChatApp(
                     isEnabled = true,
                     createdAt = currentTime,
                     deletedAt = null,
-                    phoneNumberFormat = PhoneNumberFormat.WITH_PLUS_PREFIX
+                    phoneNumberFormat = PhoneNumberFormat.WITH_PLUS_PREFIX,
+                    position = 0
                 ),
                 ChatApp(
                     name = PREDEFINED_CHAT_APP_WHATSAPP_BUSINESS_NAME,
@@ -101,7 +105,8 @@ data class ChatApp(
                     isEnabled = false,
                     createdAt = currentTime,
                     deletedAt = null,
-                    phoneNumberFormat = PhoneNumberFormat.WITH_PLUS_PREFIX
+                    phoneNumberFormat = PhoneNumberFormat.WITH_PLUS_PREFIX,
+                    position = 1
                 ),
                 ChatApp(
                     name = PREDEFINED_CHAT_APP_SIGNAL_NAME,
@@ -116,7 +121,8 @@ data class ChatApp(
                     isEnabled = true,
                     createdAt = currentTime,
                     deletedAt = null,
-                    phoneNumberFormat = PhoneNumberFormat.WITH_PLUS_PREFIX
+                    phoneNumberFormat = PhoneNumberFormat.WITH_PLUS_PREFIX,
+                    position = 2
                 ),
                 ChatApp(
                     name = PREDEFINED_CHAT_APP_TELEGRAM_NAME,
@@ -131,7 +137,40 @@ data class ChatApp(
                     isEnabled = true,
                     createdAt = currentTime,
                     deletedAt = null,
-                    phoneNumberFormat = PhoneNumberFormat.WITH_PLUS_PREFIX
+                    phoneNumberFormat = PhoneNumberFormat.WITH_PLUS_PREFIX,
+                    position = 3
+                ),
+                ChatApp(
+                    name = PREDEFINED_CHAT_APP_SMS_NAME,
+                    identifierType = IdentifierType.PHONE_NUMBER_ONLY,
+                    launchType = LaunchType.INTENT_ONLY,
+                    intentPackageSelection = null,
+                    phoneNumberLaunchIntent = "sms:[phone-number]?body=[message]",
+                    phoneNumberLaunchUrl = null,
+                    usernameLaunchIntent = null,
+                    usernameLaunchUrl = null,
+                    isPredefined = true,
+                    isEnabled = false,
+                    createdAt = currentTime,
+                    deletedAt = null,
+                    phoneNumberFormat = PhoneNumberFormat.RAW,
+                    position = 4
+                ),
+                ChatApp(
+                    name = PREDEFINED_CHAT_APP_PHONE_CALL_NAME,
+                    identifierType = IdentifierType.PHONE_NUMBER_ONLY,
+                    launchType = LaunchType.INTENT_ONLY,
+                    intentPackageSelection = null,
+                    phoneNumberLaunchIntent = "tel:[phone-number]",
+                    phoneNumberLaunchUrl = null,
+                    usernameLaunchIntent = null,
+                    usernameLaunchUrl = null,
+                    isPredefined = true,
+                    isEnabled = false,
+                    createdAt = currentTime,
+                    deletedAt = null,
+                    phoneNumberFormat = PhoneNumberFormat.RAW,
+                    position = 5
                 )
             )
         }

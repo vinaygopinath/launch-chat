@@ -61,6 +61,8 @@ class ChatAppHelper @Inject constructor(
             ChatApp.PREDEFINED_CHAT_APP_WHATSAPP_BUSINESS_NAME -> R.drawable.ic_whatsapp_business
             ChatApp.PREDEFINED_CHAT_APP_SIGNAL_NAME -> R.drawable.ic_signal
             ChatApp.PREDEFINED_CHAT_APP_TELEGRAM_NAME -> R.drawable.ic_telegram
+            ChatApp.PREDEFINED_CHAT_APP_SMS_NAME -> R.drawable.ic_sms
+            ChatApp.PREDEFINED_CHAT_APP_PHONE_CALL_NAME -> R.drawable.ic_phone_call
             else -> null
         }
     }
