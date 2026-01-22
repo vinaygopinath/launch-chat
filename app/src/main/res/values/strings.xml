@@ -17,6 +17,9 @@
     <string name="phone_number_selection_dialog_title">Multiple phone numbers detected</string>
     <string name="phone_number_selection_dialog_message">It looks like multiple phone numbers are available. Which number do you want to chat with?</string>
 
+    <string name="username_selection_dialog_title">Multiple usernames detected</string>
+    <string name="username_selection_dialog_message">It looks like multiple usernames are available. Which username do you want to chat with?</string>
+
     <string name="button_choose_from_contacts">Choose from contacts</string>
 
     <string name="button_paste_from_clipboard_description">Paste from clipboard</string>

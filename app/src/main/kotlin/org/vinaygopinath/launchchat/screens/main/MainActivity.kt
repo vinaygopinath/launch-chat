@@ -46,6 +46,7 @@ import org.vinaygopinath.launchchat.helpers.ClipboardHelper
 import org.vinaygopinath.launchchat.helpers.DetailedActivityHelper
 import org.vinaygopinath.launchchat.helpers.IntentHelper
 import org.vinaygopinath.launchchat.helpers.PhoneNumberHelper
+import org.vinaygopinath.launchchat.helpers.UsernameHelper
 import org.vinaygopinath.launchchat.models.Activity
 import org.vinaygopinath.launchchat.models.ChatApp
 import org.vinaygopinath.launchchat.models.DetailedActivity
@@ -74,6 +75,9 @@ class MainActivity : AppCompatActivity() {
 
     @Inject
     lateinit var chatAppHelper: ChatAppHelper
+
+    @Inject
+    lateinit var usernameHelper: UsernameHelper
 
     private val historyAdapter by lazy {
         RecentDetailedActivityAdapter(
@@ -251,6 +255,29 @@ class MainActivity : AppCompatActivity() {
         dialog.show()
     }
 
+    private fun showUsernameSelectionDialog(
+        usernames: List<String>,
+        onUsernameSelected: (String) -> Unit
+    ) {
+        val items = usernames.toTypedArray()
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle(R.string.username_selection_dialog_title)
+
+        val dialogView = layoutInflater.inflate(R.layout.dialog_phone_number_selection, null)
+        builder.setView(dialogView)
+
+        val usernameList =
+            dialogView.findViewById<ListView>(R.id.phone_number_selection_dialog_list)
+        usernameList.adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, items)
+
+        val dialog = builder.create()
+        usernameList.setOnItemClickListener { _, _, position, _ ->
+            onUsernameSelected(items[position])
+            dialog.dismiss()
+        }
+        dialog.show()
+    }
+
     override fun onNewIntent(intent: Intent, caller: ComponentCaller) {
         super.onNewIntent(intent, caller)
         viewModel.processIntent(intent, contentResolver)
@@ -311,7 +338,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun detectInputType(input: String): ChatInputType {
         if (input.isBlank()) return ChatInputType.EMPTY
-        return if (phoneNumberHelper.doesTextMatchPhoneNumberRegex(input)) {
+        return if (phoneNumberHelper.containsPhoneNumbers(input)) {
             ChatInputType.PHONE_NUMBER
         } else {
             ChatInputType.USERNAME
@@ -331,7 +358,7 @@ class MainActivity : AppCompatActivity() {
                 handlePhoneNumberLaunch(chatApp, input)
             }
             inputType == ChatInputType.USERNAME && chatApp.identifierType.supportsUsernames() -> {
-                launchChatAppWithUsername(chatApp, input.trim())
+                handleUsernameLaunch(chatApp, input)
             }
             else -> {
                 phoneNumberInputLayout.error = getString(R.string.error_incompatible_input)
@@ -349,6 +376,19 @@ class MainActivity : AppCompatActivity() {
             }
         } else {
             launchChatAppWithPhoneNumber(chatApp, phoneNumbers.first())
+        }
+    }
+
+    private fun handleUsernameLaunch(chatApp: ChatApp, input: String) {
+        val usernames = usernameHelper.extractUsernames(input)
+        if (usernames.isEmpty()) {
+            phoneNumberInputLayout.error = getString(R.string.error_empty_input)
+        } else if (usernames.size != 1) {
+            showUsernameSelectionDialog(usernames) { selectedUsername ->
+                launchChatAppWithUsername(chatApp, selectedUsername)
+            }
+        } else {
+            launchChatAppWithUsername(chatApp, usernames.first())
         }
     }
 
@@ -381,7 +421,7 @@ class MainActivity : AppCompatActivity() {
             try {
                 startActivity(appIntent)
                 return
-            } catch (e: ActivityNotFoundException) {
+            } catch (_: ActivityNotFoundException) {
                 // App intent failed, try URL fallback
             }
         }
@@ -390,7 +430,7 @@ class MainActivity : AppCompatActivity() {
             try {
                 startActivity(urlIntent)
                 return
-            } catch (e: ActivityNotFoundException) {
+            } catch (_: ActivityNotFoundException) {
                 // URL intent also failed
             }
         }
