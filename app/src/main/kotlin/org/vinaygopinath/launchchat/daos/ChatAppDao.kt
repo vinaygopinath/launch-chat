@@ -16,14 +16,14 @@ interface ChatAppDao {
     @Query(
         "SELECT * FROM " + ChatApp.TABLE_NAME +
             " WHERE is_enabled = 1 AND deleted_at IS NULL" +
-            " ORDER BY name ASC"
+            " ORDER BY position ASC"
     )
     fun getEnabledChatApps(): Flow<List<ChatApp>>
 
     @Query(
         "SELECT * FROM " + ChatApp.TABLE_NAME +
             " WHERE deleted_at IS NULL" +
-            " ORDER BY is_predefined DESC, name ASC"
+            " ORDER BY position ASC"
     )
     fun getAllChatApps(): Flow<List<ChatApp>>
 
@@ -44,4 +44,10 @@ interface ChatAppDao {
 
     @Query("UPDATE " + ChatApp.TABLE_NAME + " SET is_enabled = :isEnabled WHERE id = :id")
     suspend fun updateEnabled(id: Long, isEnabled: Boolean)
+
+    @Query("UPDATE " + ChatApp.TABLE_NAME + " SET position = :position WHERE id = :id")
+    suspend fun updatePosition(id: Long, position: Int)
+
+    @Query("SELECT COALESCE(MAX(position), -1) FROM " + ChatApp.TABLE_NAME + " WHERE deleted_at IS NULL")
+    suspend fun getMaxPosition(): Int
 }

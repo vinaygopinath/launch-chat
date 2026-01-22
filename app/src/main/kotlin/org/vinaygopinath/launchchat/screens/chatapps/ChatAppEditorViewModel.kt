@@ -30,6 +30,7 @@ class ChatAppEditorViewModel @Inject constructor(
     private var editingChatAppId: Long? = null
     private var originalIconPath: String? = null
     private var isPredefinedChatApp: Boolean = false
+    private var existingPosition: Int = 0
 
     fun loadChatApp(chatAppId: Long?) {
         if (chatAppId == null) {
@@ -47,17 +48,18 @@ class ChatAppEditorViewModel @Inject constructor(
             editingChatAppId = chatAppId
             originalIconPath = chatApp.iconUri
             isPredefinedChatApp = chatApp.isPredefined
+            existingPosition = chatApp.position
 
             _formState.value = FormState(
                 name = chatApp.name,
                 identifierType = chatApp.identifierType,
                 phoneNumberFormat = chatApp.phoneNumberFormat
                     ?: ChatApp.PhoneNumberFormat.WITH_PLUS_PREFIX,
-                phoneNumberIntent = chatApp.phoneNumberLaunchIntent ?: "",
-                phoneNumberUrl = chatApp.phoneNumberLaunchUrl ?: "",
-                usernameIntent = chatApp.usernameLaunchIntent ?: "",
-                usernameUrl = chatApp.usernameLaunchUrl ?: "",
-                intentPackage = chatApp.intentPackageSelection ?: "",
+                phoneNumberIntent = chatApp.phoneNumberLaunchIntent.orEmpty(),
+                phoneNumberUrl = chatApp.phoneNumberLaunchUrl.orEmpty(),
+                usernameIntent = chatApp.usernameLaunchIntent.orEmpty(),
+                usernameUrl = chatApp.usernameLaunchUrl.orEmpty(),
+                intentPackage = chatApp.intentPackageSelection.orEmpty(),
                 iconPath = chatApp.iconUri
             )
             _uiState.value = UiState.Ready(isEditing = true, isPredefined = chatApp.isPredefined)
@@ -133,6 +135,13 @@ class ChatAppEditorViewModel @Inject constructor(
                 null
             }
 
+            val isNewChatApp = editingChatAppId == null
+            val position = if (isNewChatApp) {
+                chatAppRepository.getNextPosition()
+            } else {
+                existingPosition
+            }
+
             val chatApp = ChatApp(
                 id = editingChatAppId ?: 0,
                 name = form.name.trim(),
@@ -156,11 +165,14 @@ class ChatAppEditorViewModel @Inject constructor(
                 isPredefined = false,
                 isEnabled = true,
                 iconUri = form.iconPath,
-                phoneNumberFormat = phoneNumberFormat
+                phoneNumberFormat = phoneNumberFormat,
+                position = position
             )
 
-            if (originalIconPath != null && originalIconPath != form.iconPath) {
-                imageStorageHelper.deleteIcon(originalIconPath!!)
+            originalIconPath?.let { path ->
+                if (path != form.iconPath) {
+                    imageStorageHelper.deleteIcon(path)
+                }
             }
 
             chatAppRepository.saveChatApp(chatApp)
@@ -198,7 +210,8 @@ class ChatAppEditorViewModel @Inject constructor(
     }
 
     private fun validatePhoneNumberFields(form: FormState): String? {
-        val hasLaunchMethod = form.phoneNumberIntent.isNotBlank() || form.phoneNumberUrl.isNotBlank()
+        val hasLaunchMethod =
+            form.phoneNumberIntent.isNotBlank() || form.phoneNumberUrl.isNotBlank()
         if (!hasLaunchMethod) {
             return "At least one phone number launch method (intent or URL) is required"
         }

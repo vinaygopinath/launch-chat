@@ -11,6 +11,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -20,6 +21,7 @@ import kotlinx.coroutines.launch
 import org.vinaygopinath.launchchat.R
 import org.vinaygopinath.launchchat.helpers.ChatAppHelper
 import org.vinaygopinath.launchchat.models.ChatApp
+import java.util.Collections
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -80,6 +82,43 @@ class ChatAppListActivity : AppCompatActivity() {
         recyclerView.addItemDecoration(
             DividerItemDecoration(this, linearLayoutManager.orientation)
         )
+
+        val itemTouchHelper = ItemTouchHelper(createItemTouchHelperCallback())
+        itemTouchHelper.attachToRecyclerView(recyclerView)
+    }
+
+    private fun createItemTouchHelperCallback(): ItemTouchHelper.Callback {
+        return object : ItemTouchHelper.SimpleCallback(
+            ItemTouchHelper.UP or ItemTouchHelper.DOWN,
+            0
+        ) {
+            override fun onMove(
+                recyclerView: RecyclerView,
+                viewHolder: RecyclerView.ViewHolder,
+                target: RecyclerView.ViewHolder
+            ): Boolean {
+                val fromPosition = viewHolder.bindingAdapterPosition
+                val toPosition = target.bindingAdapterPosition
+
+                val currentList = adapter.currentList.toMutableList()
+                Collections.swap(currentList, fromPosition, toPosition)
+                adapter.submitList(currentList)
+
+                return true
+            }
+
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                // Not used - swipe disabled
+            }
+
+            override fun clearView(
+                recyclerView: RecyclerView,
+                viewHolder: RecyclerView.ViewHolder
+            ) {
+                super.clearView(recyclerView, viewHolder)
+                viewModel.onItemMoved(adapter.currentList)
+            }
+        }
     }
 
     private fun initializeFab() {

@@ -32,4 +32,10 @@ class ChatAppListViewModel @Inject constructor(
             chatAppRepository.toggleEnabled(chatApp.id, isEnabled)
         }
     }
+
+    fun onItemMoved(chatApps: List<ChatApp>) {
+        viewModelScope.launch {
+            chatAppRepository.updatePositions(chatApps)
+        }
+    }
 }
