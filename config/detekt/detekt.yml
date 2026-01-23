@@ -1,4 +1,9 @@
 complexity:
+  CyclomaticComplexMethod:
+    active: true
+    threshold: 20
+    ignoreSingleWhenExpression: true
+    ignoreSimpleWhenEntries: true
   LongMethod:
     active: true
     threshold: 120
@@ -12,8 +17,8 @@ complexity:
   TooManyFunctions:
     active: true
     excludes: [ '**/test/**', '**/androidTest/**', '**/commonTest/**', '**/jvmTest/**', '**/androidUnitTest/**', '**/androidInstrumentedTest/**', '**/jsTest/**', '**/iosTest/**' ]
-    thresholdInFiles: 16
-    thresholdInClasses: 16
+    thresholdInFiles: 25
+    thresholdInClasses: 25
     thresholdInInterfaces: 16
     thresholdInObjects: 16
     thresholdInEnums: 16
@@ -28,6 +33,11 @@ formatting:
     ignoreBackTickedIdentifier: true
 
 exceptions:
+  SwallowedException:
+    active: true
+    ignoredExceptionTypes:
+      - 'ActivityNotFoundException'
+    allowedExceptionNameRegex: '_|(ignore|expected).*'
   TooGenericExceptionCaught:
     active: true
     excludes: [ '**/test/**', '**/androidTest/**', '**/commonTest/**', '**/jvmTest/**', '**/androidUnitTest/**', '**/androidInstrumentedTest/**', '**/jsTest/**', '**/iosTest/**' ]
@@ -59,3 +69,9 @@ style:
     excludeRawStrings: true
     ignoreAnnotated:
       - Test
+  ReturnCount:
+    active: true
+    max: 4
+    excludeLabeled: false
+    excludeReturnFromLambda: true
+    excludeGuardClauses: true

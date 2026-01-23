@@ -19,10 +19,11 @@ import org.vinaygopinath.launchchat.helpers.AssertionHelper.assertIntentNavigati
 class MainActivityMenuTest {
 
     @get:Rule
-    val rule = HiltAndroidRule(this)
+    val hiltRule = HiltAndroidRule(this)
 
     @Before
     fun setUp() {
+        hiltRule.inject()
         launch(MainActivity::class.java)
     }
 

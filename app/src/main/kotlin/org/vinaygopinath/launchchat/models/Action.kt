@@ -31,6 +31,24 @@ data class Action(
     enum class Type {
         WHATSAPP,
         SIGNAL,
-        TELEGRAM
+        TELEGRAM,
+        WHATSAPP_BUSINESS,
+        SMS,
+        PHONE_CALL,
+        OTHER;
+
+        companion object {
+            fun fromChatAppName(name: String): Type {
+                return when (name) {
+                    ChatApp.PREDEFINED_CHAT_APP_WHATSAPP_NAME -> WHATSAPP
+                    ChatApp.PREDEFINED_CHAT_APP_WHATSAPP_BUSINESS_NAME -> WHATSAPP_BUSINESS
+                    ChatApp.PREDEFINED_CHAT_APP_SIGNAL_NAME -> SIGNAL
+                    ChatApp.PREDEFINED_CHAT_APP_TELEGRAM_NAME -> TELEGRAM
+                    ChatApp.PREDEFINED_CHAT_APP_SMS_NAME -> SMS
+                    ChatApp.PREDEFINED_CHAT_APP_PHONE_CALL_NAME -> PHONE_CALL
+                    else -> OTHER
+                }
+            }
+        }
     }
 }

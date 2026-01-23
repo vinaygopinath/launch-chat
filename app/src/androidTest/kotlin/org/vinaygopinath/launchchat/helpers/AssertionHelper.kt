@@ -15,7 +15,13 @@ object AssertionHelper {
                 IntentMatchers.hasData(data)
             )
 
+            // Stub any intent matching our expected action and data
             Intents.intending(expectedIntent).respondWith(
+                Instrumentation.ActivityResult(0, null)
+            )
+
+            // Also stub the app intent variant (with package) that may be tried first
+            Intents.intending(IntentMatchers.hasAction(action)).respondWith(
                 Instrumentation.ActivityResult(0, null)
             )
 

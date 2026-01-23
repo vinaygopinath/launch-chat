@@ -41,18 +41,21 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import org.vinaygopinath.launchchat.R
+import org.vinaygopinath.launchchat.helpers.ChatAppHelper
 import org.vinaygopinath.launchchat.helpers.ClipboardHelper
 import org.vinaygopinath.launchchat.helpers.DetailedActivityHelper
 import org.vinaygopinath.launchchat.helpers.IntentHelper
 import org.vinaygopinath.launchchat.helpers.PhoneNumberHelper
-import org.vinaygopinath.launchchat.helpers.TextHelper
+import org.vinaygopinath.launchchat.helpers.UsernameHelper
 import org.vinaygopinath.launchchat.models.Action
 import org.vinaygopinath.launchchat.models.Activity
+import org.vinaygopinath.launchchat.models.ChatApp
 import org.vinaygopinath.launchchat.models.DetailedActivity
 import org.vinaygopinath.launchchat.screens.history.HistoryActivity
 import org.vinaygopinath.launchchat.screens.main.domain.ProcessIntentUseCase
 import org.vinaygopinath.launchchat.screens.settings.SettingsActivity
 import javax.inject.Inject
+import org.vinaygopinath.launchchat.models.ChatApp.InputType as ChatInputType
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -71,11 +74,23 @@ class MainActivity : AppCompatActivity() {
     @Inject
     lateinit var detailedActivityHelper: DetailedActivityHelper
 
+    @Inject
+    lateinit var chatAppHelper: ChatAppHelper
+
+    @Inject
+    lateinit var usernameHelper: UsernameHelper
+
     private val historyAdapter by lazy {
         RecentDetailedActivityAdapter(
             detailedActivityHelper,
             recentHistoryClickListener
         )
+    }
+
+    private val chatAppButtonAdapter by lazy {
+        ChatAppButtonAdapter(chatAppHelper) { chatApp ->
+            onChatAppButtonClick(chatApp)
+        }
     }
 
     private lateinit var phoneNumberInput: TextInputEditText
@@ -84,6 +99,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var historyTitle: MaterialTextView
     private lateinit var historyListView: RecyclerView
     private lateinit var historyViewAllButton: Button
+    private lateinit var chatAppButtonList: RecyclerView
 
     private val recentHistoryClickListener by lazy {
         object : RecentDetailedActivityAdapter.Companion.RecentHistoryClickListener {
@@ -156,38 +172,10 @@ class MainActivity : AppCompatActivity() {
                 .findViewById<TextView>(android.R.id.message)
                 ?.movementMethod = LinkMovementMethod.getInstance()
         }
-        findViewById<Button>(R.id.open_whatsapp_button).setOnClickListener {
-            startActivityOrShowToast(R.string.toast_whatsapp_not_installed) { phoneNumber, message ->
-                viewModel.logAction(
-                    Action.Type.WHATSAPP,
-                    phoneNumber,
-                    message.ifBlank { null },
-                    phoneNumberInput.text.toString()
-                )
-                intentHelper.getOpenWhatsappIntent(phoneNumber, message.ifBlank { null })
-            }
-        }
-        findViewById<Button>(R.id.open_signal_button).setOnClickListener {
-            startActivityOrShowToast(R.string.toast_signal_not_installed) { phoneNumber, message ->
-                viewModel.logAction(
-                    Action.Type.SIGNAL,
-                    phoneNumber,
-                    message.ifBlank { null },
-                    phoneNumberInput.text.toString()
-                )
-                intentHelper.getOpenSignalIntent(phoneNumber)
-            }
-        }
-        findViewById<Button>(R.id.open_telegram_button).setOnClickListener {
-            startActivityOrShowToast(R.string.toast_telegram_not_installed) { phoneNumber, message ->
-                viewModel.logAction(
-                    Action.Type.TELEGRAM,
-                    phoneNumber,
-                    message.ifBlank { null },
-                    phoneNumberInput.text.toString()
-                )
-                intentHelper.getOpenTelegramIntent(phoneNumber)
-            }
+        chatAppButtonList = findViewById(R.id.chat_app_button_list)
+        with(chatAppButtonList) {
+            layoutManager = LinearLayoutManager(this@MainActivity, LinearLayoutManager.HORIZONTAL, false)
+            adapter = chatAppButtonAdapter
         }
         historyViewAllButton = findViewById(R.id.history_view_all)
         historyViewAllButton.setOnClickListener {
@@ -204,9 +192,6 @@ class MainActivity : AppCompatActivity() {
                             handleExtractedContent(it)
                             updatePhoneNumberInputType()
                         }
-                        uiState.settings?.let {
-                            toggleHistoryViews(it.isActivityHistoryEnabled)
-                        }
                     }
                 }
                 launch {
@@ -216,6 +201,11 @@ class MainActivity : AppCompatActivity() {
                                 viewModel.uiState.value.settings?.isActivityHistoryEnabled != false
                         )
                         historyAdapter.setItems(detailedActivityList)
+                    }
+                }
+                launch {
+                    viewModel.getEnabledChatApps().collectLatest { chatApps ->
+                        chatAppButtonAdapter.submitList(chatApps)
                     }
                 }
             }
@@ -240,37 +230,6 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun startActivityOrShowToast(
-        @StringRes errorToast: Int,
-        getButtonIntent: (phoneNumber: String, message: String) -> Intent
-    ) {
-        phoneNumberInputLayout.error = null
-        val phoneNumbers = phoneNumberHelper.extractPhoneNumbers(phoneNumberInput.text.toString())
-        if (phoneNumbers.isEmpty()) {
-            phoneNumberInputLayout.error = getString(R.string.toast_invalid_phone_number)
-        } else if (phoneNumbers.size != 1) {
-            showPhoneNumberSelectionDialog(phoneNumbers) { selectedNumber ->
-                launchActivityIntent(errorToast, getButtonIntent, selectedNumber)
-            }
-        } else {
-            launchActivityIntent(errorToast, getButtonIntent, phoneNumbers.first())
-        }
-    }
-
-    private fun launchActivityIntent(
-        @StringRes errorToast: Int,
-        getButtonIntent: (phoneNumber: String, message: String) -> Intent,
-        phoneNumber: String
-    ) {
-        val possiblePhoneNumberWithCountryCode = viewModel.prefixCountryCode(phoneNumber)
-        val message = messageInput.text.toString().trim()
-        try {
-            startActivity(getButtonIntent(possiblePhoneNumberWithCountryCode, message))
-        } catch (ignoredException: ActivityNotFoundException) {
-            showToast(errorToast)
-        }
-    }
-
     private fun showPhoneNumberSelectionDialog(
         phoneNumbers: List<String>,
         onNumberSelected: (String) -> Unit
@@ -289,6 +248,29 @@ class MainActivity : AppCompatActivity() {
         val dialog = builder.create()
         phoneNumberList.setOnItemClickListener { _, _, position, _ ->
             onNumberSelected(items[position])
+            dialog.dismiss()
+        }
+        dialog.show()
+    }
+
+    private fun showUsernameSelectionDialog(
+        usernames: List<String>,
+        onUsernameSelected: (String) -> Unit
+    ) {
+        val items = usernames.toTypedArray()
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle(R.string.username_selection_dialog_title)
+
+        val dialogView = layoutInflater.inflate(R.layout.dialog_phone_number_selection, null)
+        builder.setView(dialogView)
+
+        val usernameList =
+            dialogView.findViewById<ListView>(R.id.phone_number_selection_dialog_list)
+        usernameList.adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, items)
+
+        val dialog = builder.create()
+        usernameList.setOnItemClickListener { _, _, position, _ ->
+            onUsernameSelected(items[position])
             dialog.dismiss()
         }
         dialog.show()
@@ -344,12 +326,129 @@ class MainActivity : AppCompatActivity() {
     private fun updatePhoneNumberInputType() {
         val inputText = phoneNumberInput.text.toString()
         val newInputType =
-            if (inputText.isBlank() || TextHelper.doesTextMatchPhoneNumberRegex(inputText)) {
+            if (inputText.isBlank() || phoneNumberHelper.doesTextMatchPhoneNumberRegex(inputText)) {
                 InputType.TYPE_CLASS_PHONE
             } else {
                 InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_FLAG_MULTI_LINE
             }
         phoneNumberInput.inputType = newInputType
+    }
+
+    private fun detectInputType(input: String): ChatInputType {
+        if (input.isBlank()) return ChatInputType.EMPTY
+        return if (phoneNumberHelper.containsPhoneNumbers(input)) {
+            ChatInputType.PHONE_NUMBER
+        } else {
+            ChatInputType.USERNAME
+        }
+    }
+
+    private fun onChatAppButtonClick(chatApp: ChatApp) {
+        phoneNumberInputLayout.error = null
+        val input = phoneNumberInput.text.toString()
+        val inputType = detectInputType(input)
+
+        when {
+            inputType == ChatInputType.EMPTY -> {
+                phoneNumberInputLayout.error = getString(R.string.error_empty_input)
+            }
+            inputType == ChatInputType.PHONE_NUMBER && chatApp.identifierType.supportsPhoneNumbers() -> {
+                handlePhoneNumberLaunch(chatApp, input)
+            }
+            inputType == ChatInputType.USERNAME && chatApp.identifierType.supportsUsernames() -> {
+                handleUsernameLaunch(chatApp, input)
+            }
+            else -> {
+                phoneNumberInputLayout.error = getString(R.string.error_incompatible_input)
+            }
+        }
+    }
+
+    private fun handlePhoneNumberLaunch(chatApp: ChatApp, input: String) {
+        val phoneNumbers = phoneNumberHelper.extractPhoneNumbers(input)
+        if (phoneNumbers.isEmpty()) {
+            phoneNumberInputLayout.error = getString(R.string.toast_invalid_phone_number)
+        } else if (phoneNumbers.size != 1) {
+            showPhoneNumberSelectionDialog(phoneNumbers) { selectedNumber ->
+                launchChatAppWithPhoneNumber(chatApp, selectedNumber)
+            }
+        } else {
+            launchChatAppWithPhoneNumber(chatApp, phoneNumbers.first())
+        }
+    }
+
+    private fun handleUsernameLaunch(chatApp: ChatApp, input: String) {
+        val usernames = usernameHelper.extractUsernames(input)
+        if (usernames.isEmpty()) {
+            phoneNumberInputLayout.error = getString(R.string.error_empty_input)
+        } else if (usernames.size != 1) {
+            showUsernameSelectionDialog(usernames) { selectedUsername ->
+                launchChatAppWithUsername(chatApp, selectedUsername)
+            }
+        } else {
+            launchChatAppWithUsername(chatApp, usernames.first())
+        }
+    }
+
+    private fun launchChatAppWithPhoneNumber(chatApp: ChatApp, phoneNumber: String) {
+        val possiblePhoneNumberWithCountryCode = viewModel.prefixCountryCode(phoneNumber)
+        val message = messageInput.text.toString().trim()
+        val intents = intentHelper.getChatAppIntentsForPhoneNumber(
+            chatApp,
+            possiblePhoneNumberWithCountryCode,
+            message.ifBlank { null }
+        )
+        if (launchWithFallback(intents)) {
+            viewModel.logAction(
+                Action.Type.fromChatAppName(chatApp.name),
+                possiblePhoneNumberWithCountryCode,
+                message.ifBlank { null },
+                phoneNumberInput.text.toString()
+            )
+        }
+    }
+
+    private fun launchChatAppWithUsername(chatApp: ChatApp, username: String) {
+        val message = messageInput.text.toString().trim()
+        val intents = intentHelper.getChatAppIntentsForUsername(
+            chatApp,
+            username,
+            message.ifBlank { null }
+        )
+        if (launchWithFallback(intents)) {
+            viewModel.logAction(
+                Action.Type.fromChatAppName(chatApp.name),
+                username,
+                message.ifBlank { null },
+                phoneNumberInput.text.toString()
+            )
+        }
+    }
+
+    private fun launchWithFallback(intents: IntentHelper.ChatAppLaunchIntents): Boolean {
+        val appIntent = intents.appIntent
+        val urlIntent = intents.urlIntent
+
+        if (appIntent != null) {
+            try {
+                startActivity(appIntent)
+                return true
+            } catch (_: ActivityNotFoundException) {
+                // App intent failed, try URL fallback
+            }
+        }
+
+        if (urlIntent != null) {
+            try {
+                startActivity(urlIntent)
+                return true
+            } catch (_: ActivityNotFoundException) {
+                // URL intent also failed
+            }
+        }
+
+        showToast(R.string.toast_chat_app_not_installed)
+        return false
     }
 
     companion object {

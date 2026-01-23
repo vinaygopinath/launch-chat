@@ -68,54 +68,12 @@
                 android:layout_below="@id/paste_from_clipboard_button"
                 android:layout_marginBottom="@dimen/open_button_layout_vertical_padding">
 
-                <RelativeLayout
-                    android:id="@+id/open_button_layout"
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/chat_app_button_list"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center_horizontal"
-                    android:paddingTop="@dimen/open_button_layout_vertical_padding"
-                    android:paddingBottom="@dimen/open_button_layout_vertical_padding">
-
-                    <com.google.android.material.button.MaterialButton
-                        android:id="@+id/open_whatsapp_button"
-                        style="@style/Widget.Material3.Button.OutlinedButton.Icon"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentTop="true"
-                        android:layout_marginEnd="@dimen/open_button_margin"
-                        android:text="@string/button_open"
-                        android:tooltipText="@string/button_open_whatsapp_description"
-                        app:icon="@drawable/ic_whatsapp"
-                        app:iconTint="@null"
-                        tools:targetApi="o" />
-
-                    <com.google.android.material.button.MaterialButton
-                        android:id="@+id/open_signal_button"
-                        style="@style/Widget.Material3.Button.OutlinedButton.Icon"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentTop="true"
-                        android:layout_marginEnd="@dimen/open_button_margin"
-                        android:layout_toEndOf="@id/open_whatsapp_button"
-                        android:text="@string/button_open"
-                        android:tooltipText="@string/button_open_signal_description"
-                        app:icon="@drawable/ic_signal"
-                        app:iconTint="@null"
-                        tools:targetApi="o" />
-
-                    <com.google.android.material.button.MaterialButton
-                        android:id="@+id/open_telegram_button"
-                        style="@style/Widget.Material3.Button.OutlinedButton.Icon"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentTop="true"
-                        android:layout_toEndOf="@id/open_signal_button"
-                        android:text="@string/button_open"
-                        android:tooltipText="@string/button_open_telegram_description"
-                        app:icon="@drawable/ic_telegram"
-                        app:iconTint="@null"
-                        tools:targetApi="o" />
-                </RelativeLayout>
+                    android:paddingVertical="@dimen/open_button_layout_vertical_padding"
+                    android:clipToPadding="false" />
             </com.google.android.material.card.MaterialCardView>
 
             <com.google.android.material.textfield.TextInputLayout

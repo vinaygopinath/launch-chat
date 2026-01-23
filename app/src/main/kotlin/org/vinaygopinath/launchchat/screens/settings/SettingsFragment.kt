@@ -11,8 +11,10 @@ import dagger.hilt.android.AndroidEntryPoint
 import org.vinaygopinath.launchchat.R
 import org.vinaygopinath.launchchat.models.Settings
 import org.vinaygopinath.launchchat.models.Settings.Companion.KEY_DEFAULT_COUNTRY_CODE
+import org.vinaygopinath.launchchat.models.Settings.Companion.KEY_MANAGE_CHAT_APPS
 import org.vinaygopinath.launchchat.models.Settings.Companion.KEY_MISSING_COUNTRY_CODE_ACTION
 import org.vinaygopinath.launchchat.models.Settings.MissingCountryCodeAction.DefaultCountryCode
+import org.vinaygopinath.launchchat.screens.chatapps.ChatAppListActivity
 import org.vinaygopinath.launchchat.screens.settings.DefaultCountryCodeHelper.isValidCountryCode
 import org.vinaygopinath.launchchat.utils.PreferenceUtil
 import javax.inject.Inject
@@ -29,6 +31,11 @@ class SettingsFragment : PreferenceFragmentCompat() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        findPreference<Preference>(KEY_MANAGE_CHAT_APPS)?.setOnPreferenceClickListener {
+            startActivity(ChatAppListActivity.getIntent(requireContext()))
+            true
+        }
 
         val settings = Settings.build(preferenceUtil)
         val missingCountryCodePref =

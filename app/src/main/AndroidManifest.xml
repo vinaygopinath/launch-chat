@@ -1,6 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <!-- Required for Android 11+ to resolve ACTION_VIEW intents -->
+    <queries>
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+            <category android:name="android.intent.category.BROWSABLE" />
+            <data android:scheme="https" />
+        </intent>
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+            <category android:name="android.intent.category.BROWSABLE" />
+            <data android:scheme="http" />
+        </intent>
+    </queries>
+
     <application
         android:name=".LaunchChatApplication"
         android:allowBackup="true"
@@ -66,5 +80,11 @@
             android:name=".screens.settings.SettingsActivity"
             android:windowSoftInputMode="adjustResize"
             android:label="@string/label_settings" />
+        <activity
+            android:name=".screens.chatapps.ChatAppListActivity"
+            android:label="@string/chat_app_list_title" />
+        <activity
+            android:name=".screens.chatapps.ChatAppEditorActivity"
+            android:windowSoftInputMode="adjustResize" />
     </application>
 </manifest>

@@ -1,14 +1,17 @@
 package org.vinaygopinath.launchchat.screens.main
 
 import android.content.Intent
+import androidx.recyclerview.widget.RecyclerView
 import androidx.test.core.app.ActivityScenario
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.action.ViewActions.replaceText
+import androidx.test.espresso.contrib.RecyclerViewActions
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.espresso.matcher.ViewMatchers.withText
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 import org.junit.After
 import org.junit.Before
@@ -22,7 +25,7 @@ import org.vinaygopinath.launchchat.utils.DateUtils
 import javax.inject.Inject
 
 @HiltAndroidTest
-class MainActivityOpenWhatsappIntentTest {
+class MainActivityOpenSmsIntentTest {
 
     @get:Rule
     val hiltRule = HiltAndroidRule(this)
@@ -38,7 +41,7 @@ class MainActivityOpenWhatsappIntentTest {
     @Before
     fun setUp() {
         hiltRule.inject()
-        ensureWhatsAppIsEnabled()
+        ensureSmsIsEnabled()
         scenario = ActivityScenario.launch(MainActivity::class.java)
     }
 
@@ -47,35 +50,34 @@ class MainActivityOpenWhatsappIntentTest {
         scenario.close()
     }
 
-    private fun ensureWhatsAppIsEnabled() {
+    private fun ensureSmsIsEnabled() {
         runBlocking {
             if (chatAppDao.getCount() == 0) {
                 chatAppDao.create(ChatApp.getPredefinedChatApps(dateUtils))
             }
+            val smsApp = chatAppDao.getAllChatApps().first()
+                .find { it.name == ChatApp.PREDEFINED_CHAT_APP_SMS_NAME }
+            smsApp?.let {
+                chatAppDao.updateEnabled(it.id, true)
+            }
+            // Give the database time to propagate the change
+            Thread.sleep(100)
         }
     }
 
     @Test
-    fun launchesWhatsappChatWithTheEnteredNumber() {
+    fun launchesSmsWithTheEnteredNumber() {
         val phoneNumber = "+1555555555"
         onView(withId(R.id.phone_number_input)).perform(replaceText(phoneNumber))
-        val expectedUrl = "whatsapp://send/?phone=$phoneNumber&text="
 
-        assertIntentNavigation(Intent.ACTION_VIEW, expectedUrl) {
-            onView(withText(ChatApp.PREDEFINED_CHAT_APP_WHATSAPP_NAME)).perform(click())
-        }
-    }
-
-    @Test
-    fun launchesWhatsappChatWithTheEnteredNumberAndMessage() {
-        val phoneNumber = "+1555555555"
-        val someMessage = "Hi!"
-        onView(withId(R.id.phone_number_input)).perform(replaceText(phoneNumber))
-        onView(withId(R.id.message_input)).perform(replaceText(someMessage))
-        val expectedUrl = "whatsapp://send/?phone=$phoneNumber&text=$someMessage"
-
-        assertIntentNavigation(Intent.ACTION_VIEW, expectedUrl) {
-            onView(withText(ChatApp.PREDEFINED_CHAT_APP_WHATSAPP_NAME)).perform(click())
+        assertIntentNavigation(Intent.ACTION_SENDTO, "smsto:$phoneNumber") {
+            // Scroll to and click the SMS button in the horizontal RecyclerView
+            onView(withId(R.id.chat_app_button_list)).perform(
+                RecyclerViewActions.actionOnItem<RecyclerView.ViewHolder>(
+                    withText(ChatApp.PREDEFINED_CHAT_APP_SMS_NAME),
+                    click()
+                )
+            )
         }
     }
 }

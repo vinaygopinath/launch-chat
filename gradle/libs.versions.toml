@@ -25,6 +25,7 @@ test-rules = { module = "androidx.test:rules", version = "1.7.0" }
 
 espresso-core = { module = "androidx.test.espresso:espresso-core", version.ref = "espresso" }
 espresso-intents = { module = "androidx.test.espresso:espresso-intents", version.ref = "espresso" }
+espresso-contrib = { module = "androidx.test.espresso:espresso-contrib", version.ref = "espresso" }
 
 libphonenumber = { module = "io.michaelrocks:libphonenumber-android", version = "9.0.16" }
 junit = { module = "junit:junit", version = "4.13.2" }
@@ -54,7 +55,7 @@ detekt-formatting = { module = "io.gitlab.arturbosch.detekt:detekt-formatting", 
 
 [bundles]
 test = ["test-core", "test-runner", "test-rules"]
-espresso = ["espresso-core", "espresso-intents"]
+espresso = ["espresso-core", "espresso-intents", "espresso-contrib"]
 
 [plugins]
 hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }

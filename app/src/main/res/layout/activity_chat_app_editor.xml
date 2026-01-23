@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/padding_medium">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/chat_app_editor_icon"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:contentDescription="@string/chat_app_editor_icon_description"
+                android:src="@drawable/ic_chat_app_default" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/chat_app_editor_icon_button"
+                style="@style/Widget.Material3.Button.OutlinedButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/padding_medium"
+                android:text="@string/chat_app_editor_select_icon" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/chat_app_editor_clear_icon_button"
+                style="@style/Widget.Material3.Button.TextButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/chat_app_editor_clear_icon"
+                android:visibility="gone" />
+
+        </LinearLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/chat_app_editor_name_layout"
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/padding_medium"
+            android:hint="@string/chat_app_editor_name_hint">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/chat_app_editor_name_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:maxLines="1" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textview.MaterialTextView
+            style="@style/TextAppearance.Material3.TitleMedium"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/padding_large"
+            android:text="@string/chat_app_editor_identifier_type_label" />
+
+        <RadioGroup
+            android:id="@+id/chat_app_editor_identifier_type_group"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/padding_small">
+
+            <com.google.android.material.radiobutton.MaterialRadioButton
+                android:id="@+id/chat_app_editor_identifier_phone_only"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/chat_app_editor_identifier_phone_only" />
+
+            <com.google.android.material.radiobutton.MaterialRadioButton
+                android:id="@+id/chat_app_editor_identifier_username_only"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/chat_app_editor_identifier_username_only" />
+
+            <com.google.android.material.radiobutton.MaterialRadioButton
+                android:id="@+id/chat_app_editor_identifier_both"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/chat_app_editor_identifier_both" />
+
+        </RadioGroup>
+
+        <LinearLayout
+            android:id="@+id/chat_app_editor_phone_section"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/padding_large"
+            android:orientation="vertical">
+
+            <com.google.android.material.textview.MaterialTextView
+                style="@style/TextAppearance.Material3.TitleMedium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/chat_app_editor_phone_section_title" />
+
+            <com.google.android.material.textview.MaterialTextView
+                style="@style/TextAppearance.Material3.BodySmall"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/padding_small"
+                android:text="@string/chat_app_editor_phone_format_label" />
+
+            <RadioGroup
+                android:id="@+id/chat_app_editor_phone_format_group"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/padding_small">
+
+                <com.google.android.material.radiobutton.MaterialRadioButton
+                    android:id="@+id/chat_app_editor_phone_format_with_plus"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:checked="true"
+                    android:text="@string/chat_app_editor_phone_format_with_plus" />
+
+                <com.google.android.material.radiobutton.MaterialRadioButton
+                    android:id="@+id/chat_app_editor_phone_format_without_plus"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/chat_app_editor_phone_format_without_plus" />
+
+                <com.google.android.material.radiobutton.MaterialRadioButton
+                    android:id="@+id/chat_app_editor_phone_format_raw"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/chat_app_editor_phone_format_raw" />
+
+            </RadioGroup>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/chat_app_editor_phone_intent_layout"
+                style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/padding_medium"
+                android:hint="@string/chat_app_editor_phone_intent_hint"
+                app:helperText="@string/chat_app_editor_phone_intent_helper">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/chat_app_editor_phone_intent_input"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textUri"
+                    android:maxLines="2" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/chat_app_editor_phone_url_layout"
+                style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/padding_medium"
+                android:hint="@string/chat_app_editor_phone_url_hint"
+                app:helperText="@string/chat_app_editor_phone_url_helper">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/chat_app_editor_phone_url_input"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textUri"
+                    android:maxLines="2" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/chat_app_editor_username_section"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/padding_large"
+            android:orientation="vertical">
+
+            <com.google.android.material.textview.MaterialTextView
+                style="@style/TextAppearance.Material3.TitleMedium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/chat_app_editor_username_section_title" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/chat_app_editor_username_intent_layout"
+                style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/padding_medium"
+                android:hint="@string/chat_app_editor_username_intent_hint"
+                app:helperText="@string/chat_app_editor_username_intent_helper">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/chat_app_editor_username_intent_input"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textUri"
+                    android:maxLines="2" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/chat_app_editor_username_url_layout"
+                style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/padding_medium"
+                android:hint="@string/chat_app_editor_username_url_hint"
+                app:helperText="@string/chat_app_editor_username_url_helper">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/chat_app_editor_username_url_input"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textUri"
+                    android:maxLines="2" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </LinearLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/chat_app_editor_package_layout"
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/padding_large"
+            android:hint="@string/chat_app_editor_package_hint"
+            app:helperText="@string/chat_app_editor_package_helper">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/chat_app_editor_package_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:maxLines="1" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/chat_app_editor_predefined_warning"
+            style="@style/TextAppearance.Material3.BodyMedium"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/padding_large"
+            android:padding="@dimen/padding_medium"
+            android:background="?attr/colorSurfaceVariant"
+            android:text="@string/chat_app_editor_predefined_warning"
+            android:visibility="gone" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/chat_app_editor_save_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/padding_large"
+            android:text="@string/chat_app_editor_save" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/chat_app_editor_delete_button"
+            style="@style/Widget.Material3.Button.OutlinedButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/padding_small"
+            android:text="@string/chat_app_editor_delete"
+            android:visibility="gone" />
+
+    </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>
