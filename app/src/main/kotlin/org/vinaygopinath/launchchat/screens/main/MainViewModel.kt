@@ -16,6 +16,7 @@ import org.vinaygopinath.launchchat.models.Activity
 import org.vinaygopinath.launchchat.models.ChatApp
 import org.vinaygopinath.launchchat.models.DetailedActivity
 import org.vinaygopinath.launchchat.models.Settings
+import org.vinaygopinath.launchchat.screens.history.domain.UpdateActivityNoteUseCase
 import org.vinaygopinath.launchchat.screens.main.domain.GetEnabledChatAppsUseCase
 import org.vinaygopinath.launchchat.screens.main.domain.GetRecentDetailedActivityUseCase
 import org.vinaygopinath.launchchat.screens.main.domain.GetSettingsUseCase
@@ -36,6 +37,7 @@ class MainViewModel @Inject constructor(
     private val getSettingsUseCase: GetSettingsUseCase,
     private val prefixCountryCodeUseCase: PrefixCountryCodeUseCase,
     private val getEnabledChatAppsUseCase: GetEnabledChatAppsUseCase,
+    private val updateActivityNoteUseCase: UpdateActivityNoteUseCase,
     private val dispatcherUtil: DispatcherUtil
 ) : ViewModel() {
 
@@ -116,4 +118,13 @@ class MainViewModel @Inject constructor(
     }
 
     fun prefixCountryCode(phoneNumber: String) = prefixCountryCodeUseCase.execute(phoneNumber)
+
+    fun updateNote(activityId: Long, note: String?) {
+        CoroutineUtil.doWorkInBackground(
+            viewModelScope = viewModelScope,
+            dispatcherUtil = dispatcherUtil,
+            doWork = { updateActivityNoteUseCase.execute(activityId, note) },
+            onComplete = {}
+        )
+    }
 }

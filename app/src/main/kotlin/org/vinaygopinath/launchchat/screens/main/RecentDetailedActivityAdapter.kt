@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.NO_POSITION
+import com.google.android.material.button.MaterialButton
 import com.google.android.material.textview.MaterialTextView
 import org.vinaygopinath.launchchat.R
 import org.vinaygopinath.launchchat.helpers.DetailedActivityHelper
@@ -53,6 +54,16 @@ class RecentDetailedActivityAdapter(
             isVisible = helper.isMoreTextVisible(detailedActivity)
             text = helper.getMoreText(detailedActivity)
         }
+        val note = detailedActivity.activity.note
+        holder.noteText.isVisible = !note.isNullOrBlank()
+        holder.noteText.text = note
+        holder.noteButton.setText(
+            if (note.isNullOrBlank()) {
+                R.string.history_note_add
+            } else {
+                R.string.history_note_update
+            }
+        )
     }
 
     @SuppressLint("NotifyDataSetChanged")
@@ -76,11 +87,20 @@ class RecentDetailedActivityAdapter(
             view.findViewById(R.id.recent_detailed_activity_list_second_action)
         val moreActionText: MaterialTextView =
             view.findViewById(R.id.recent_detailed_activity_list_more_label)
+        val noteText: MaterialTextView =
+            view.findViewById(R.id.recent_detailed_activity_list_note)
+        val noteButton: MaterialButton =
+            view.findViewById(R.id.recent_detailed_activity_list_note_button)
 
         init {
             itemView.setOnClickListener {
                 if (bindingAdapterPosition != NO_POSITION) {
                     listener.onRecentHistoryItemClick(dataSet[bindingAdapterPosition])
+                }
+            }
+            noteButton.setOnClickListener {
+                if (bindingAdapterPosition != NO_POSITION) {
+                    listener.onNoteButtonClick(dataSet[bindingAdapterPosition])
                 }
             }
         }
@@ -89,6 +109,7 @@ class RecentDetailedActivityAdapter(
     companion object {
         interface RecentHistoryClickListener {
             fun onRecentHistoryItemClick(detailedActivity: DetailedActivity)
+            fun onNoteButtonClick(detailedActivity: DetailedActivity)
         }
     }
 }
