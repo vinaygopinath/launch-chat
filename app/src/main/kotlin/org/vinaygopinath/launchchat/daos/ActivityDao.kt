@@ -13,4 +13,7 @@ interface ActivityDao {
 
     @Query("DELETE FROM activities WHERE id IN (:activityIds)")
     suspend fun deleteByIds(activityIds: Set<Long>)
+
+    @Query("UPDATE activities SET note = :note WHERE id = :activityId")
+    suspend fun updateNote(activityId: Long, note: String?)
 }

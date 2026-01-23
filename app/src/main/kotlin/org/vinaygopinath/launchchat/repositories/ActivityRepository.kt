@@ -16,4 +16,8 @@ class ActivityRepository @Inject constructor(
     suspend fun deleteByIds(activityIds: Set<Long>) {
         activityDao.deleteByIds(activityIds)
     }
+
+    suspend fun updateNote(activityId: Long, note: String?) {
+        activityDao.updateNote(activityId, note)
+    }
 }
