@@ -20,7 +20,8 @@ data class Activity(
     @ColumnInfo val content: String,
     @ColumnInfo val source: Source,
     @ColumnInfo val message: String?,
-    @ColumnInfo("occurred_at") val occurredAt: Instant
+    @ColumnInfo("occurred_at") val occurredAt: Instant,
+    @ColumnInfo val note: String? = null
 ) : Parcelable {
     enum class Source {
         TEL,
