@@ -3,18 +3,10 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true">
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/history_app_bar"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/history_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fitsSystemWindows="true">
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/history_recycler_view"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:clipToPadding="false" />
-
-    </com.google.android.material.appbar.AppBarLayout>
+        android:clipToPadding="false" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
