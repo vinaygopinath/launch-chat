@@ -64,4 +64,29 @@
         tools:text="Opened +44666555444 with WhatsApp"
         tools:visibility="visible" />
 
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/history_list_note"
+        style="@style/TextAppearance.Material3.BodySmall"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/padding_medium"
+        android:paddingVertical="@dimen/padding_small"
+        android:textStyle="italic"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/history_list_selected_icon"
+        app:layout_constraintTop_toBottomOf="@id/history_list_actions"
+        tools:text="This is my note about the contact"
+        tools:visibility="visible" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/history_list_note_button"
+        style="@style/Widget.Material3.Button.TextButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/history_note_add"
+        android:textSize="12sp"
+        app:layout_constraintStart_toEndOf="@id/history_list_selected_icon"
+        app:layout_constraintTop_toBottomOf="@id/history_list_note" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
