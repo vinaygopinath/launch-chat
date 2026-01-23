@@ -109,6 +109,14 @@
 
     <string name="button_delete">Delete</string>
 
+    <!-- History note -->
+    <string name="history_note_add">Add note</string>
+    <string name="history_note_update">Update note</string>
+    <string name="history_note_dialog_title">Note</string>
+    <string name="history_note_dialog_hint">Enter a note for this entry</string>
+    <string name="history_note_dialog_save">Save</string>
+    <string name="history_note_dialog_cancel">Cancel</string>
+
     <!-- Chat App Management -->
     <!-- Caution when editing: This maps to Settings.KEY_MANAGE_CHAT_APPS -->
     <string name="pref_manage_chat_apps_key" translatable="false">pref_manage_chat_apps</string>
