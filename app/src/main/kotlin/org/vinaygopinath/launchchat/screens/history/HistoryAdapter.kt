@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.DiffUtil.ItemCallback
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.NO_POSITION
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
+import com.google.android.material.button.MaterialButton
 import com.google.android.material.textview.MaterialTextView
 import org.vinaygopinath.launchchat.R
 import org.vinaygopinath.launchchat.helpers.DetailedActivityHelper
@@ -49,6 +50,14 @@ class HistoryAdapter(
                 }
             }
         }
+        viewHolder.noteButton.setOnClickListener {
+            val position = viewHolder.bindingAdapterPosition
+            if (position != RecyclerView.NO_POSITION) {
+                getItem(position)?.let { item ->
+                    listener.onNoteButtonClick(item)
+                }
+            }
+        }
 
         return viewHolder
     }
@@ -66,6 +75,17 @@ class HistoryAdapter(
                 holder.contentText.text = helper.getActivityContent(detailedActivity)
                 holder.actionsText.text = helper.getActionsText(detailedActivity)
                 holder.selectedIcon.isVisible = isSelected
+
+                val note = detailedActivity.activity.note
+                holder.noteText.isVisible = !note.isNullOrBlank()
+                holder.noteText.text = note
+                holder.noteButton.setText(
+                    if (note.isNullOrBlank()) {
+                        R.string.history_note_add
+                    } else {
+                        R.string.history_note_update
+                    }
+                )
             }
         }
     }
@@ -104,6 +124,10 @@ class HistoryAdapter(
         val actionsText: MaterialTextView =
             view.findViewById(R.id.history_list_actions)
         val selectedIcon: ImageView = view.findViewById(R.id.history_list_selected_icon)
+        val noteText: MaterialTextView =
+            view.findViewById(R.id.history_list_note)
+        val noteButton: MaterialButton =
+            view.findViewById(R.id.history_list_note_button)
     }
 
     class DetailedActivityDiffCallback : ItemCallback<DetailedActivity>() {
@@ -121,5 +145,6 @@ class HistoryAdapter(
     interface HistoryAdapterListener {
         fun onClick(detailedActivity: DetailedActivity)
         fun onItemSelectionChanged(selectedItems: Set<DetailedActivity>)
+        fun onNoteButtonClick(detailedActivity: DetailedActivity)
     }
 }

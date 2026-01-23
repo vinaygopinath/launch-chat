@@ -11,6 +11,7 @@ import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.update
 import org.vinaygopinath.launchchat.screens.history.domain.DeleteSelectedActivitiesUseCase
 import org.vinaygopinath.launchchat.screens.history.domain.GetDetailedActivitiesUseCase
+import org.vinaygopinath.launchchat.screens.history.domain.UpdateActivityNoteUseCase
 import org.vinaygopinath.launchchat.utils.CoroutineUtil
 import org.vinaygopinath.launchchat.utils.DispatcherUtil
 import javax.inject.Inject
@@ -19,7 +20,8 @@ import javax.inject.Inject
 class HistoryViewModel @Inject constructor(
     private val dispatcherUtil: DispatcherUtil,
     getDetailedActivitiesUseCase: GetDetailedActivitiesUseCase,
-    private val deleteSelectedActivitiesUseCase: DeleteSelectedActivitiesUseCase
+    private val deleteSelectedActivitiesUseCase: DeleteSelectedActivitiesUseCase,
+    private val updateActivityNoteUseCase: UpdateActivityNoteUseCase
 ) : ViewModel() {
 
     private val internalUiState = MutableStateFlow<UiState>(UiState.None)
@@ -40,8 +42,20 @@ class HistoryViewModel @Inject constructor(
         )
     }
 
+    fun updateNote(activityId: Long, note: String?) {
+        CoroutineUtil.doWorkInBackground(
+            viewModelScope = viewModelScope,
+            dispatcherUtil = dispatcherUtil,
+            doWork = { updateActivityNoteUseCase.execute(activityId, note) },
+            onComplete = {
+                internalUiState.update { UiState.NoteUpdated }
+            }
+        )
+    }
+
     sealed class UiState {
         data object None : UiState()
         data object DeleteSuccessful : UiState()
+        data object NoteUpdated : UiState()
     }
 }
