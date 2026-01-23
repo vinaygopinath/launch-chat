@@ -45,6 +45,7 @@ import org.vinaygopinath.launchchat.helpers.ChatAppHelper
 import org.vinaygopinath.launchchat.helpers.ClipboardHelper
 import org.vinaygopinath.launchchat.helpers.DetailedActivityHelper
 import org.vinaygopinath.launchchat.helpers.IntentHelper
+import org.vinaygopinath.launchchat.helpers.NoteDialogHelper
 import org.vinaygopinath.launchchat.helpers.PhoneNumberHelper
 import org.vinaygopinath.launchchat.helpers.UsernameHelper
 import org.vinaygopinath.launchchat.models.Action
@@ -109,6 +110,10 @@ class MainActivity : AppCompatActivity() {
                 } else {
                     showReplaceInputWithHistoryDialog(detailedActivity.activity)
                 }
+            }
+
+            override fun onNoteButtonClick(detailedActivity: DetailedActivity) {
+                showNoteDialog(detailedActivity)
             }
         }
     }
@@ -340,6 +345,12 @@ class MainActivity : AppCompatActivity() {
             ChatInputType.PHONE_NUMBER
         } else {
             ChatInputType.USERNAME
+        }
+    }
+
+    private fun showNoteDialog(detailedActivity: DetailedActivity) {
+        NoteDialogHelper.showNoteDialog(this, detailedActivity) { activityId, note ->
+            viewModel.updateNote(activityId, note)
         }
     }
 
