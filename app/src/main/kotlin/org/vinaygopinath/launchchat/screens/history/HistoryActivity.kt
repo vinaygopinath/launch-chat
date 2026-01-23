@@ -21,6 +21,7 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import org.vinaygopinath.launchchat.R
 import org.vinaygopinath.launchchat.helpers.DetailedActivityHelper
+import org.vinaygopinath.launchchat.helpers.NoteDialogHelper
 import org.vinaygopinath.launchchat.models.DetailedActivity
 import org.vinaygopinath.launchchat.screens.main.MainActivity
 import javax.inject.Inject
@@ -48,6 +49,10 @@ class HistoryActivity : AppCompatActivity() {
 
                 override fun onItemSelectionChanged(selectedItems: Set<DetailedActivity>) {
                     toggleDeleteSelectedItemsMenuItem()
+                }
+
+                override fun onNoteButtonClick(detailedActivity: DetailedActivity) {
+                    showNoteDialog(detailedActivity)
                 }
             }
         )
@@ -137,6 +142,10 @@ class HistoryActivity : AppCompatActivity() {
                                 historyAdapter.refresh()
                             }
 
+                            is HistoryViewModel.UiState.NoteUpdated -> {
+                                historyAdapter.refresh()
+                            }
+
                             is HistoryViewModel.UiState.None -> {
                                 /* do nothing */
                             }
@@ -163,6 +172,12 @@ class HistoryActivity : AppCompatActivity() {
 
     private fun toggleDeleteSelectedItemsMenuItem() {
         invalidateOptionsMenu()
+    }
+
+    private fun showNoteDialog(detailedActivity: DetailedActivity) {
+        NoteDialogHelper.showNoteDialog(this, detailedActivity) { activityId, note ->
+            viewModel.updateNote(activityId, note)
+        }
     }
 
     companion object {
