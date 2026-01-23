@@ -12,14 +12,16 @@ object ActivityFactory {
         content: String = "some-content",
         source: Source = Source.TEXT_SHARE,
         message: String? = null,
-        occurredAt: Instant = Instant.now().withMillisecondPrecision()
+        occurredAt: Instant = Instant.now().withMillisecondPrecision(),
+        note: String? = null
     ): Activity {
         return Activity(
             id = id,
             content = content,
             source = source,
             message = message,
-            occurredAt = occurredAt
+            occurredAt = occurredAt,
+            note = note
         )
     }
 }
