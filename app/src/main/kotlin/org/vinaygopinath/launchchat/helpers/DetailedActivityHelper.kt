@@ -80,8 +80,12 @@ class DetailedActivityHelper @Inject constructor(
         return resources.getString(
             when (action.type) {
                 Action.Type.WHATSAPP -> R.string.action_type_whatsapp
+                Action.Type.WHATSAPP_BUSINESS -> R.string.action_type_whatsapp_business
                 Action.Type.SIGNAL -> R.string.action_type_signal
                 Action.Type.TELEGRAM -> R.string.action_type_telegram
+                Action.Type.SMS -> R.string.action_type_sms
+                Action.Type.PHONE_CALL -> R.string.action_type_phone_call
+                Action.Type.OTHER -> R.string.action_type_other
             }
         )
     }

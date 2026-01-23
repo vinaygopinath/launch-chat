@@ -47,6 +47,7 @@ import org.vinaygopinath.launchchat.helpers.DetailedActivityHelper
 import org.vinaygopinath.launchchat.helpers.IntentHelper
 import org.vinaygopinath.launchchat.helpers.PhoneNumberHelper
 import org.vinaygopinath.launchchat.helpers.UsernameHelper
+import org.vinaygopinath.launchchat.models.Action
 import org.vinaygopinath.launchchat.models.Activity
 import org.vinaygopinath.launchchat.models.ChatApp
 import org.vinaygopinath.launchchat.models.DetailedActivity
@@ -190,9 +191,6 @@ class MainActivity : AppCompatActivity() {
                         uiState.extractedContent?.let {
                             handleExtractedContent(it)
                             updatePhoneNumberInputType()
-                        }
-                        uiState.settings?.let {
-                            toggleHistoryViews(it.isActivityHistoryEnabled)
                         }
                     }
                 }
@@ -400,7 +398,14 @@ class MainActivity : AppCompatActivity() {
             possiblePhoneNumberWithCountryCode,
             message.ifBlank { null }
         )
-        launchWithFallback(intents)
+        if (launchWithFallback(intents)) {
+            viewModel.logAction(
+                Action.Type.fromChatAppName(chatApp.name),
+                possiblePhoneNumberWithCountryCode,
+                message.ifBlank { null },
+                phoneNumberInput.text.toString()
+            )
+        }
     }
 
     private fun launchChatAppWithUsername(chatApp: ChatApp, username: String) {
@@ -410,17 +415,24 @@ class MainActivity : AppCompatActivity() {
             username,
             message.ifBlank { null }
         )
-        launchWithFallback(intents)
+        if (launchWithFallback(intents)) {
+            viewModel.logAction(
+                Action.Type.fromChatAppName(chatApp.name),
+                username,
+                message.ifBlank { null },
+                phoneNumberInput.text.toString()
+            )
+        }
     }
 
-    private fun launchWithFallback(intents: IntentHelper.ChatAppLaunchIntents) {
+    private fun launchWithFallback(intents: IntentHelper.ChatAppLaunchIntents): Boolean {
         val appIntent = intents.appIntent
         val urlIntent = intents.urlIntent
 
         if (appIntent != null) {
             try {
                 startActivity(appIntent)
-                return
+                return true
             } catch (_: ActivityNotFoundException) {
                 // App intent failed, try URL fallback
             }
@@ -429,13 +441,14 @@ class MainActivity : AppCompatActivity() {
         if (urlIntent != null) {
             try {
                 startActivity(urlIntent)
-                return
+                return true
             } catch (_: ActivityNotFoundException) {
                 // URL intent also failed
             }
         }
 
         showToast(R.string.toast_chat_app_not_installed)
+        return false
     }
 
     companion object {

@@ -86,8 +86,12 @@
     <string name="no_action_label">No actions</string>
     <string name="action_more">…and %1$d more</string>
     <string name="action_type_whatsapp">WhatsApp</string>
+    <string name="action_type_whatsapp_business">WhatsApp Business</string>
     <string name="action_type_signal">Signal</string>
     <string name="action_type_telegram">Telegram</string>
+    <string name="action_type_sms">SMS</string>
+    <string name="action_type_phone_call">Phone Call</string>
+    <string name="action_type_other">Other</string>
 
     <string name="replace_input_title">Replace input</string>
     <string name="replace_input_message">You\'ve clicked a history item when the phone number input is not empty. Do you want to replace the entered text with the history item?</string>
