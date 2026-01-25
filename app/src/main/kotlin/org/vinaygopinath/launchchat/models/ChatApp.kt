@@ -29,7 +29,7 @@ data class ChatApp(
     @ColumnInfo("is_enabled") val isEnabled: Boolean,
     @ColumnInfo("icon_uri") val iconUri: String? = null,
     @ColumnInfo("phone_number_format", defaultValue = "with_plus") val phoneNumberFormat: PhoneNumberFormat? = null,
-    @ColumnInfo("position") val position: Int = 0
+    @ColumnInfo("position", defaultValue = "0") val position: Int = 0
 ) {
 
     enum class IdentifierType(val internalName: String) {
