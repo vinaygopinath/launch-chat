@@ -1,12 +1,7 @@
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-import io.gitlab.arturbosch.detekt.Detekt
-
 plugins {
     id 'com.android.application'
     id 'kotlin-allopen'
-    id 'kotlin-android'
     id 'kotlin-parcelize'
-    id 'org.jetbrains.kotlin.android'
     id 'com.google.devtools.ksp'
     id 'com.google.dagger.hilt.android'
     id 'androidx.room'
@@ -17,8 +12,8 @@ android {
     defaultConfig {
         applicationId 'org.vinaygopinath.launchchat'
         minSdkVersion 23
-        compileSdk 35
-        targetSdkVersion 35
+        compileSdk 36
+        targetSdkVersion 36
         versionCode 6
         versionName "1.4.1"
         multiDexEnabled true
@@ -28,20 +23,18 @@ android {
         release {
             minifyEnabled true
             shrinkResources true
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
 
     compileOptions {
         coreLibraryDesugaringEnabled true
 
-        sourceCompatibility JavaVersion.VERSION_17
-        targetCompatibility JavaVersion.VERSION_17
+        sourceCompatibility JavaVersion.VERSION_21
+        targetCompatibility JavaVersion.VERSION_21
     }
-    kotlinOptions {
-        tasks.withType(KotlinCompile).configureEach {
-            kotlinOptions.jvmTarget = "17"
-        }
+    kotlin {
+        jvmToolchain(21)
     }
     testOptions {
         unitTests {
@@ -58,7 +51,7 @@ android {
         testInstrumentationRunner "org.vinaygopinath.launchchat.LaunchChatTestRunner"
     }
     room {
-        schemaDirectory "$projectDir/schemas"
+        schemaDirectory "$projectDir/schemas/"
     }
 
     namespace 'org.vinaygopinath.launchchat'
@@ -66,20 +59,18 @@ android {
 
 detekt {
     toolVersion = "1.23.8"
-    sourceSets = files("src/main/kotlin", "src/test/kotlin", "src/androidTest/kotlin", "src/testFixtures/kotlin")
     config.setFrom(file("../config/detekt/detekt.yml"))
     buildUponDefaultConfig = true
     ignoredBuildTypes = ["release"]
     basePath = projectDir
 }
 
-tasks.withType(Detekt).configureEach {
+tasks.named("detekt").configure {
     reports {
         html.required.set(true)
         html.outputLocation.set(file("build/reports/detekt/detekt.html"))
         sarif.required.set(true)
         sarif.outputLocation.set(file("build/reports/detekt/detekt.sarif"))
-
         md.required.set(false)
         xml.required.set(false)
         txt.required.set(false)
