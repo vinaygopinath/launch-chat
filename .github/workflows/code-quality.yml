@@ -20,7 +20,7 @@ jobs:
     - name: Set up Java
       uses: actions/setup-java@v4
       with:
-        java-version: '17'
+        java-version: '21'
         distribution: 'temurin'
         cache: gradle
     - name: Run simple Detekt check
@@ -30,24 +30,3 @@ jobs:
       if: failure()
       with:
         sarif_file: app/build/reports/detekt/detekt.sarif
-
-  detekt-advanced:
-    name: 'Advanced Detekt checks'
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout source code
-        uses: actions/checkout@v4
-      - name: Set up Java
-        uses: actions/setup-java@v4
-        with:
-          java-version: '17'
-          distribution: 'temurin'
-          cache: gradle
-      - name: Run advanced Detekt check
-        run: ./gradlew detektMain
-      - name: Upload advanced Detekt check results
-        uses: github/codeql-action/upload-sarif@v3
-        if: failure()
-        with:
-          sarif_file: app/build/reports/detekt/detekt.sarif

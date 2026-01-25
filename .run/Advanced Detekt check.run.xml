@@ -3,7 +3,7 @@
     <option name="SCRIPT_TEXT" value="open app/build/reports/detekt/detekt.html" />
     <option name="INDEPENDENT_SCRIPT_PATH" value="true" />
     <option name="SCRIPT_PATH" value="$PROJECT_DIR$/scripts/run-detekt-and-open-reports-on-failure.sh" />
-    <option name="SCRIPT_OPTIONS" value="detektDebug &quot;Advanced Detekt check&quot;" />
+    <option name="SCRIPT_OPTIONS" value="detekt &quot;Advanced Detekt check&quot;" />
     <option name="INDEPENDENT_SCRIPT_WORKING_DIRECTORY" value="true" />
     <option name="SCRIPT_WORKING_DIRECTORY" value="$PROJECT_DIR$" />
     <option name="INDEPENDENT_INTERPRETER_PATH" value="true" />

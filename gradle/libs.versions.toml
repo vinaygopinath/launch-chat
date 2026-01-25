@@ -1,12 +1,12 @@
 [versions]
 espresso = "3.7.0"
-gradle = "8.10.1"
-hilt = "2.57.1"
-kotlin = "2.2.20"
+gradle = "9.0.0"
+hilt = "2.59"
+kotlin = "2.3.0"
 coroutines = "1.10.2"
-ksp = "2.2.10-2.0.2"
+ksp = "2.3.4"
 paging = "3.3.6"
-room = "2.8.3"
+room = "2.8.4"
 vcard4android = "03a37a8"
 detekt = "1.23.8"
 
@@ -16,8 +16,8 @@ kotlin = { group = "org.jetbrains.kotlin", name = "kotlin-stdlib", version.ref =
 
 appcompat = { group = "androidx.appcompat", name = "appcompat", version = "1.7.1" }
 preference = { group = "androidx.preference", name = "preference-ktx", version = "1.2.1" }
-activity = { group = "androidx.activity", name = "activity-ktx", version = "1.10.1" }
-core = { group = "androidx.core", name = "core-ktx", version = "1.16.0" }
+activity = { group = "androidx.activity", name = "activity-ktx", version = "1.12.2" }
+core = { group = "androidx.core", name = "core-ktx", version = "1.17.0" }
 
 test-core = { module = "androidx.test:core", version = "1.7.0" }
 test-runner = { module = "androidx.test:runner", version = "1.7.0" }
@@ -27,15 +27,15 @@ espresso-core = { module = "androidx.test.espresso:espresso-core", version.ref =
 espresso-intents = { module = "androidx.test.espresso:espresso-intents", version.ref = "espresso" }
 espresso-contrib = { module = "androidx.test.espresso:espresso-contrib", version.ref = "espresso" }
 
-libphonenumber = { module = "io.michaelrocks:libphonenumber-android", version = "9.0.16" }
+libphonenumber = { module = "io.michaelrocks:libphonenumber-android", version = "9.0.22" }
 junit = { module = "junit:junit", version = "4.13.2" }
-truth = { module = "com.google.truth:truth", version = "1.4.4" }
-mockito = { module = "org.mockito.kotlin:mockito-kotlin", version = "6.0.0" }
+truth = { module = "com.google.truth:truth", version = "1.4.5" }
+mockito = { module = "org.mockito.kotlin:mockito-kotlin", version = "6.2.2" }
 hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hilt" }
 hilt-compiler = { module = "com.google.dagger:hilt-compiler", version.ref = "hilt" }
 hilt-testing = { module = "com.google.dagger:hilt-android-testing", version.ref = "hilt" }
 
-robolectric = { module = "org.robolectric:robolectric", version = "4.16" }
+robolectric = { module = "org.robolectric:robolectric", version = "4.16.1" }
 material = { module = "com.google.android.material:material", version = "1.13.0" }
 vcard4android = { module = "com.github.bitfireAT:vcard4android", version.ref = "vcard4android" }
 desugarjdklibs = { module = "com.android.tools:desugar_jdk_libs", version = "2.1.5" }
