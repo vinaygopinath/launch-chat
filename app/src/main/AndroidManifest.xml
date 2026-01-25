@@ -59,6 +59,11 @@
 
                 <data android:mimeType="text/plain" />
             </intent-filter>
+            <intent-filter android:label="@string/label_launch_chat">
+                <action android:name="android.intent.action.PROCESS_TEXT" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="text/plain" />
+            </intent-filter>
             <intent-filter android:label="@string/label_share">
                 <action android:name="android.intent.action.VIEW" />
                 <action android:name="android.intent.action.DIAL" />

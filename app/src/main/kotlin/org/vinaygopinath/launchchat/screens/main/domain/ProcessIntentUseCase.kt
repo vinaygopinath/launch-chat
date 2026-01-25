@@ -31,6 +31,7 @@ class ProcessIntentUseCase @Inject constructor(
             )
 
             intent.action == Intent.ACTION_DIAL -> processDialIntent(intent)
+            intent.action == Intent.ACTION_PROCESS_TEXT -> processTextIntent(intent)
             else -> ExtractedContent.PossibleResult(
                 source = Source.UNKNOWN,
                 rawInputText = intent.dataString?.trim(),
@@ -98,22 +99,33 @@ class ProcessIntentUseCase @Inject constructor(
         val uri = getExtraStreamIntentUri(intent)
         return when {
             uri != null -> extractContactResult(contentResolver, uri, intent)
-            clipData == null -> ExtractedContent.NoContentFound
-            doesTextStartWithTelScheme(clipData) -> extractTelSchemeResult(
-                clipData,
+            else -> processTextShareContent(clipData, intent)
+        }
+    }
+
+    private fun processTextIntent(intent: Intent): ExtractedContent {
+        val text = intent.getCharSequenceExtra(Intent.EXTRA_PROCESS_TEXT)?.toString()?.trim()
+        return processTextShareContent(text, intent)
+    }
+
+    private fun processTextShareContent(text: String?, intent: Intent): ExtractedContent {
+        return when {
+            text.isNullOrEmpty() -> ExtractedContent.NoContentFound
+            doesTextStartWithTelScheme(text) -> extractTelSchemeResult(
+                text,
                 intent,
                 Source.TEXT_SHARE
             )
 
-            doesTextStartWithMessageScheme(clipData) -> extractMessageSchemeResult(
-                clipData,
+            doesTextStartWithMessageScheme(text) -> extractMessageSchemeResult(
+                text,
                 intent,
                 Source.TEXT_SHARE
             )
 
             else -> ExtractedContent.PossibleResult(
                 source = Source.TEXT_SHARE,
-                rawInputText = clipData.trim(),
+                rawInputText = text,
                 rawContent = intent.toUri(0)
             )
         }
@@ -283,7 +295,8 @@ class ProcessIntentUseCase @Inject constructor(
             Intent.ACTION_DIAL,
             Intent.ACTION_SEND,
             Intent.ACTION_SENDTO,
-            Intent.ACTION_SEND_MULTIPLE
+            Intent.ACTION_SEND_MULTIPLE,
+            Intent.ACTION_PROCESS_TEXT
         )
 
         const val TEL_SCHEME = "tel:"
