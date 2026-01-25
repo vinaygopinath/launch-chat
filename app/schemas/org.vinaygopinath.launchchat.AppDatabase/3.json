@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 3,
-    "identityHash": "8c362364bdb46f9886bd0eba0646200d",
+    "identityHash": "c3880fb07977f2ab5cf4d7ad7158db77",
     "entities": [
       {
         "tableName": "activities",
@@ -124,7 +124,7 @@
       },
       {
         "tableName": "chat_apps",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT NOT NULL, `identifier_type` TEXT NOT NULL, `launch_type` TEXT NOT NULL, `intent_package_selection` TEXT, `phone_number_launch_intent` TEXT, `phone_number_launch_url` TEXT, `username_launch_intent` TEXT, `username_launch_url` TEXT, `created_at` INTEGER NOT NULL, `deleted_at` INTEGER, `is_predefined` INTEGER NOT NULL, `is_enabled` INTEGER NOT NULL, `icon_uri` TEXT, `phone_number_format` TEXT DEFAULT 'with_plus', `position` INTEGER NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT NOT NULL, `identifier_type` TEXT NOT NULL, `launch_type` TEXT NOT NULL, `intent_package_selection` TEXT, `phone_number_launch_intent` TEXT, `phone_number_launch_url` TEXT, `username_launch_intent` TEXT, `username_launch_url` TEXT, `created_at` INTEGER NOT NULL, `deleted_at` INTEGER, `is_predefined` INTEGER NOT NULL, `is_enabled` INTEGER NOT NULL, `icon_uri` TEXT, `phone_number_format` TEXT DEFAULT 'with_plus')",
         "fields": [
           {
             "fieldPath": "id",
@@ -208,12 +208,6 @@
             "columnName": "phone_number_format",
             "affinity": "TEXT",
             "defaultValue": "'with_plus'"
-          },
-          {
-            "fieldPath": "position",
-            "columnName": "position",
-            "affinity": "INTEGER",
-            "notNull": true
           }
         ],
         "primaryKey": {
@@ -226,7 +220,7 @@
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '8c362364bdb46f9886bd0eba0646200d')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'c3880fb07977f2ab5cf4d7ad7158db77')"
     ]
   }
 }
