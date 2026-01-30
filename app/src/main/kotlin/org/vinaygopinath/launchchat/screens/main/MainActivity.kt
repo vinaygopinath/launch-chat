@@ -1,16 +1,15 @@
 package org.vinaygopinath.launchchat.screens.main
 
+import android.Manifest
 import android.app.ComponentCaller
 import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
 import android.content.Intent.ACTION_VIEW
+import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Bundle
 import android.text.InputType
-import android.text.SpannableString
-import android.text.method.LinkMovementMethod
-import android.text.util.Linkify
-import android.text.util.Linkify.WEB_URLS
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -18,13 +17,15 @@ import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ListView
-import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.Lifecycle
@@ -43,6 +44,7 @@ import kotlinx.coroutines.launch
 import org.vinaygopinath.launchchat.R
 import org.vinaygopinath.launchchat.helpers.ChatAppHelper
 import org.vinaygopinath.launchchat.helpers.ClipboardHelper
+import org.vinaygopinath.launchchat.helpers.ContactHelper
 import org.vinaygopinath.launchchat.helpers.DetailedActivityHelper
 import org.vinaygopinath.launchchat.helpers.IntentHelper
 import org.vinaygopinath.launchchat.helpers.NoteDialogHelper
@@ -80,6 +82,25 @@ class MainActivity : AppCompatActivity() {
 
     @Inject
     lateinit var usernameHelper: UsernameHelper
+
+    @Inject
+    lateinit var contactHelper: ContactHelper
+
+    private val requestContactsPermissionLauncher = registerForActivityResult(
+        ActivityResultContracts.RequestPermission()
+    ) { isGranted ->
+        if (isGranted) {
+            launchContactPicker()
+        } else {
+            showToast(R.string.contacts_permission_denied_toast)
+        }
+    }
+
+    private val pickContactLauncher = registerForActivityResult(
+        ActivityResultContracts.PickContact()
+    ) { contactUri: Uri? ->
+        contactUri?.let { handleSelectedContact(it) }
+    }
 
     private val historyAdapter by lazy {
         RecentDetailedActivityAdapter(
@@ -165,17 +186,8 @@ class MainActivity : AppCompatActivity() {
                 phoneNumberInput.setText(content.content)
             }
         }
-        findViewById<View>(R.id.choose_from_contacts_button).setOnClickListener { _ ->
-            AlertDialog.Builder(this)
-                .setTitle(R.string.select_contacts_not_ready_dialog_title)
-                .setMessage(
-                    SpannableString(getString(R.string.select_contacts_not_ready_dialog_message))
-                        .also { Linkify.addLinks(it, WEB_URLS) }
-                )
-                .setNeutralButton(R.string.select_contacts_not_ready_dialog_neutral_button, null)
-                .show()
-                .findViewById<TextView>(android.R.id.message)
-                ?.movementMethod = LinkMovementMethod.getInstance()
+        findViewById<View>(R.id.choose_from_contacts_button).setOnClickListener {
+            checkContactsPermissionAndLaunchPicker()
         }
         chatAppButtonList = findViewById(R.id.chat_app_button_list)
         with(chatAppButtonList) {
@@ -309,6 +321,88 @@ class MainActivity : AppCompatActivity() {
 
     private fun showToast(@StringRes toastResId: Int) {
         Toast.makeText(this, toastResId, Toast.LENGTH_LONG).show()
+    }
+
+    private fun checkContactsPermissionAndLaunchPicker() {
+        when {
+            ContextCompat.checkSelfPermission(
+                this,
+                Manifest.permission.READ_CONTACTS
+            ) == PackageManager.PERMISSION_GRANTED -> {
+                launchContactPicker()
+            }
+            ActivityCompat.shouldShowRequestPermissionRationale(
+                this,
+                Manifest.permission.READ_CONTACTS
+            ) -> {
+                showContactsPermissionRationale()
+            }
+            else -> {
+                requestContactsPermissionLauncher.launch(Manifest.permission.READ_CONTACTS)
+            }
+        }
+    }
+
+    private fun showContactsPermissionRationale() {
+        AlertDialog.Builder(this)
+            .setTitle(R.string.contacts_permission_required_title)
+            .setMessage(R.string.contacts_permission_required_message)
+            .setPositiveButton(R.string.contacts_permission_required_positive_button) { _, _ ->
+                requestContactsPermissionLauncher.launch(Manifest.permission.READ_CONTACTS)
+            }
+            .setNegativeButton(R.string.contacts_permission_required_negative_button, null)
+            .show()
+    }
+
+    private fun launchContactPicker() {
+        pickContactLauncher.launch(null)
+    }
+
+    private fun handleSelectedContact(contactUri: Uri) {
+        val phoneNumbers = contactHelper.getPhoneNumbersFromContactUri(contentResolver, contactUri)
+
+        when {
+            phoneNumbers.isEmpty() -> {
+                showToast(R.string.contacts_no_phone_number_toast)
+            }
+            phoneNumbers.size == 1 -> {
+                val number = phoneNumbers.first().number
+                phoneNumberInput.setText(number)
+                viewModel.setContactPickerSource(number)
+            }
+            else -> {
+                showContactPhoneNumberSelectionDialog(phoneNumbers)
+            }
+        }
+    }
+
+    private fun showContactPhoneNumberSelectionDialog(phoneNumbers: List<ContactHelper.ContactPhoneNumber>) {
+        val displayItems = phoneNumbers.map { phoneNumber ->
+            if (phoneNumber.type != null) {
+                "${phoneNumber.number} (${phoneNumber.type})"
+            } else {
+                phoneNumber.number
+            }
+        }.toTypedArray()
+
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle(R.string.contact_phone_number_selection_dialog_title)
+
+        val dialogView = layoutInflater.inflate(R.layout.dialog_phone_number_selection, null)
+        builder.setView(dialogView)
+
+        val phoneNumberList =
+            dialogView.findViewById<ListView>(R.id.phone_number_selection_dialog_list)
+        phoneNumberList.adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, displayItems)
+
+        val dialog = builder.create()
+        phoneNumberList.setOnItemClickListener { _, _, position, _ ->
+            val number = phoneNumbers[position].number
+            phoneNumberInput.setText(number)
+            viewModel.setContactPickerSource(number)
+            dialog.dismiss()
+        }
+        dialog.show()
     }
 
     private fun toggleHistoryViews(showHistory: Boolean) {
