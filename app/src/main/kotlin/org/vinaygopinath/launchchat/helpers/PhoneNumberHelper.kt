@@ -40,6 +40,10 @@ class PhoneNumberHelper @Inject constructor(private val phoneNumberUtil: PhoneNu
             .toList()
     }
 
+    fun normalizePhoneNumber(phoneNumber: String): String {
+        return phoneNumber.filter { it.isDigit() || it == '+' }
+    }
+
     fun extractCountryCodeFromInternationalPhoneNumber(rawPhoneNumberWithCountryCode: String): Int? {
         return try {
             phoneNumberUtil.parse(rawPhoneNumberWithCountryCode, "").countryCode
