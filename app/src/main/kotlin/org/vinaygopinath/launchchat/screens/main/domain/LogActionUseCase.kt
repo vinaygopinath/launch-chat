@@ -21,14 +21,15 @@ class LogActionUseCase @Inject constructor(
         number: String,
         message: String?,
         activity: Activity?,
-        rawInputText: String
+        rawInputText: String,
+        source: Source = Source.MANUAL_INPUT
     ): Activity? {
         if (!getSettingsUseCase.execute().isActivityHistoryEnabled) {
             return null
         }
 
         val currentTime = dateUtils.getCurrentInstant()
-        val associatedActivity = activity ?: createActivity(message, rawInputText, currentTime)
+        val associatedActivity = activity ?: createActivity(message, rawInputText, currentTime, source)
 
         actionRepository.create(
             Action(
@@ -45,11 +46,12 @@ class LogActionUseCase @Inject constructor(
     private suspend fun createActivity(
         message: String?,
         rawInputText: String,
-        currentTime: Instant
+        currentTime: Instant,
+        source: Source
     ): Activity {
         val activity = Activity(
             content = rawInputText,
-            source = Source.MANUAL_INPUT,
+            source = source,
             message = message,
             occurredAt = currentTime
         )

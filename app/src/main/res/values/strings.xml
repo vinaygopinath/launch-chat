@@ -99,9 +99,20 @@
     <string name="replace_input_positive_button">Replace input</string>
     <string name="replace_input_neutral_button">Dismiss</string>
 
-    <string name="select_contacts_not_ready_dialog_title">Not implemented yet!</string>
-    <string name="select_contacts_not_ready_dialog_message">This feature is not available yet. However, Launch Chat can open contacts if you open your Contacts app and share a contact with Launch Chat. \n\nSee demo video at https://github.com/vinaygopinath/launch-chat/pull/18</string>
-    <string name="select_contacts_not_ready_dialog_neutral_button">Got it</string>
+    <!-- Contact picker -->
+    <string name="contacts_permission_required_title">Permission required</string>
+    <string name="contacts_permission_required_message">To select a contact, Launch Chat needs permission to access your contacts.</string>
+    <string name="contacts_permission_required_positive_button">Grant permission</string>
+    <string name="contacts_permission_required_negative_button">Cancel</string>
+    <string name="contacts_permission_denied_toast">Contacts permission is required to use this feature</string>
+    <string name="contacts_no_phone_number_toast">This contact has no phone numbers</string>
+    <string name="contact_phone_number_selection_dialog_title">Select phone number</string>
+    <string name="contact_phone_number_selection_dialog_message">This contact has multiple phone numbers. Which number do you want to use?</string>
+    <string name="contact_phone_type_home">Home</string>
+    <string name="contact_phone_type_mobile">Mobile</string>
+    <string name="contact_phone_type_work">Work</string>
+    <string name="contact_phone_type_work_mobile">Work Mobile</string>
+    <string name="contact_phone_type_other">Other</string>
 
     <string name="delete_confirmation_title">Delete history confirmation</string>
     <string name="delete_confirmation_text">Are you sure you want to delete the selected activity history entries? This action is irreversible.</string>

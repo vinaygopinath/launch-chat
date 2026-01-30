@@ -82,12 +82,17 @@ class MainViewModel @Inject constructor(
             viewModelScope = viewModelScope,
             dispatcherUtil = dispatcherUtil,
             doWork = {
+                val currentState = internalUiState.value
+                val source = (currentState.extractedContent as? ProcessIntentUseCase.ExtractedContent.Result)?.source
+                    ?: (currentState.extractedContent as? ProcessIntentUseCase.ExtractedContent.PossibleResult)?.source
+                    ?: Activity.Source.MANUAL_INPUT
                 logActionUseCase.execute(
                     type = type,
                     number = number,
                     message = message,
-                    activity = internalUiState.value.activity,
-                    rawInputText = rawInputText
+                    activity = currentState.activity,
+                    rawInputText = rawInputText,
+                    source = source
                 )
             },
             onResult = { activity ->
@@ -118,6 +123,19 @@ class MainViewModel @Inject constructor(
     }
 
     fun prefixCountryCode(phoneNumber: String) = prefixCountryCodeUseCase.execute(phoneNumber)
+
+    fun setContactPickerSource(phoneNumber: String) {
+        internalUiState.update { currentState ->
+            currentState.copy(
+                extractedContent = ProcessIntentUseCase.ExtractedContent.Result(
+                    source = Activity.Source.CONTACT,
+                    phoneNumbers = listOf(phoneNumber),
+                    rawContent = phoneNumber
+                ),
+                activity = null
+            )
+        }
+    }
 
     fun updateNote(activityId: Long, note: String?) {
         CoroutineUtil.doWorkInBackground(
