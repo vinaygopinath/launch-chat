@@ -1,0 +1,6 @@
+* Customizable list of chat apps that can be enabled/disabled, including WhatsApp, WhatsApp Business, Telegram, Signal, phone call, and SMS
+* Faster navigation to the chat app - no round-trip through the device browser app.
+* Faster sharing with Launch Chat - When text is selected, a new "Launch Chat" context menu is available that directly shares the selected text with the app.
+* Add a note on history entries - Write down additional context for a phone number/conversation.
+* In-app contact picker - You can now select a contact and choose from among their phone number.
+* Fixed an issue with the history list screen scroll
