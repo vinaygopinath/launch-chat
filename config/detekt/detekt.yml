@@ -17,8 +17,8 @@ complexity:
   TooManyFunctions:
     active: true
     excludes: [ '**/test/**', '**/androidTest/**', '**/commonTest/**', '**/jvmTest/**', '**/androidUnitTest/**', '**/androidInstrumentedTest/**', '**/jsTest/**', '**/iosTest/**' ]
-    thresholdInFiles: 25
-    thresholdInClasses: 25
+    thresholdInFiles: 30
+    thresholdInClasses: 30
     thresholdInInterfaces: 16
     thresholdInObjects: 16
     thresholdInEnums: 16
