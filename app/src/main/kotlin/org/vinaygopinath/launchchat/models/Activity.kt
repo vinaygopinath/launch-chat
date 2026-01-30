@@ -28,7 +28,7 @@ data class Activity(
         SMS,
         MMS,
         TEXT_SHARE,
-        CONTACT_FILE,
+        CONTACT,
         DIAL,
         UNKNOWN,
         MANUAL_INPUT,

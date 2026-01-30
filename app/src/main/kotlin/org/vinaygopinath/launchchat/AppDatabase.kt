@@ -25,7 +25,7 @@ import org.vinaygopinath.launchchat.utils.DateUtils
         Action::class,
         ChatApp::class
     ],
-    version = 4,
+    version = 5,
     autoMigrations = [
         AutoMigration(from = 1, to = 2),
         AutoMigration(from = 3, to = 4)
@@ -41,11 +41,19 @@ abstract class AppDatabase : RoomDatabase() {
     companion object {
         private const val VERSION_2 = 2
         private const val VERSION_3 = 3
+        private const val VERSION_4 = 4
+        private const val VERSION_5 = 5
 
         private val MIGRATION_2_3 = object : Migration(VERSION_2, VERSION_3) {
             override fun migrate(db: SupportSQLiteDatabase) {
                 db.execSQL("ALTER TABLE ${ChatApp.TABLE_NAME} ADD COLUMN icon_uri TEXT DEFAULT NULL")
                 db.execSQL("ALTER TABLE ${ChatApp.TABLE_NAME} ADD COLUMN phone_number_format TEXT DEFAULT 'with_plus'")
+            }
+        }
+
+        private val MIGRATION_4_5 = object : Migration(VERSION_4, VERSION_5) {
+            override fun migrate(db: SupportSQLiteDatabase) {
+                db.execSQL("UPDATE activities SET source = 'CONTACT' WHERE source = 'CONTACT_FILE'")
             }
         }
 
@@ -55,7 +63,7 @@ abstract class AppDatabase : RoomDatabase() {
                 AppDatabase::class.java,
                 "launch-chat"
             )
-                .addMigrations(MIGRATION_2_3)
+                .addMigrations(MIGRATION_2_3, MIGRATION_4_5)
                 .build()
                 .addConditionalDataMigration(
                     condition = { it.chatAppDao().getCount() == 0 },

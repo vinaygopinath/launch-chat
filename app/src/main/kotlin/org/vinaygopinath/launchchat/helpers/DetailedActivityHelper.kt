@@ -26,7 +26,7 @@ class DetailedActivityHelper @Inject constructor(
             Activity.Source.SMS -> R.string.activity_source_sms
             Activity.Source.MMS -> R.string.activity_source_mms
             Activity.Source.TEXT_SHARE -> R.string.activity_source_text_share
-            Activity.Source.CONTACT_FILE -> R.string.activity_source_contact
+            Activity.Source.CONTACT -> R.string.activity_source_contact
             Activity.Source.DIAL -> R.string.activity_source_dial
             Activity.Source.UNKNOWN -> R.string.activity_source_unknown
             Activity.Source.MANUAL_INPUT -> R.string.activity_source_manual_input

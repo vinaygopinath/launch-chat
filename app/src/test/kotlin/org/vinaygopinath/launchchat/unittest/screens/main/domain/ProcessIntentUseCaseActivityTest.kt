@@ -499,7 +499,7 @@ class ProcessIntentUseCaseActivityTest {
             assertThat(processedIntent.activity).isNotNull()
             val activity = processedIntent.activity!!
 
-            assertThat(activity.source).isEqualTo(Source.CONTACT_FILE)
+            assertThat(activity.source).isEqualTo(Source.CONTACT)
             assertThat(activity.content).isEqualTo(
                 listOf(
                     phoneNumber1,

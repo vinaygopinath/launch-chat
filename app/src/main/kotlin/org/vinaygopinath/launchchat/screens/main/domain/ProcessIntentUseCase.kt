@@ -230,7 +230,7 @@ class ProcessIntentUseCase @Inject constructor(
                         .flatMap { contact -> contact.phoneNumbers }
                         .map { contact -> contact.property.text }
                     ExtractedContent.Result(
-                        source = Source.CONTACT_FILE,
+                        source = Source.CONTACT,
                         phoneNumbers = phoneNumbers,
                         rawContent = intent.toUri(0)
                     )

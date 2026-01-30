@@ -357,7 +357,7 @@ class ProcessIntentUseCaseExtractedContentTest {
 
         assertThat(useCase.execute(intent, contentResolver).extractedContent).isEqualTo(
             ProcessIntentUseCase.ExtractedContent.Result(
-                source = Source.CONTACT_FILE,
+                source = Source.CONTACT,
                 phoneNumbers = listOf(phoneNumber1, phoneNumber2),
                 rawContent = uri.toString()
             )
