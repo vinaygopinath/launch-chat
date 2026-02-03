@@ -64,4 +64,6 @@
     <string name="delete_confirmation_positive_button">Kustuta</string>
     <string name="delete_confirmation_negative_button">Katkesta</string>
     <string name="button_delete">Kustuta</string>
+    <string name="label_launch_chat">Vestlusekäivitaja</string>
+    <string name="username_selection_dialog_title">Tuvastasin mitu kasutajanime</string>
 </resources>
