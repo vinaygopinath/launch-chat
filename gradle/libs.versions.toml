@@ -2,7 +2,7 @@
 espresso = "3.7.0"
 gradle = "9.0.0"
 hilt = "2.59"
-kotlin = "2.3.0"
+kotlin = "2.3.10"
 coroutines = "1.10.2"
 ksp = "2.3.4"
 paging = "3.3.6"
