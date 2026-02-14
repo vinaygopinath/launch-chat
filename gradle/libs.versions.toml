@@ -16,7 +16,7 @@ kotlin = { group = "org.jetbrains.kotlin", name = "kotlin-stdlib", version.ref =
 
 appcompat = { group = "androidx.appcompat", name = "appcompat", version = "1.7.1" }
 preference = { group = "androidx.preference", name = "preference-ktx", version = "1.2.1" }
-activity = { group = "androidx.activity", name = "activity-ktx", version = "1.12.2" }
+activity = { group = "androidx.activity", name = "activity-ktx", version = "1.12.4" }
 core = { group = "androidx.core", name = "core-ktx", version = "1.17.0" }
 
 test-core = { module = "androidx.test:core", version = "1.7.0" }
