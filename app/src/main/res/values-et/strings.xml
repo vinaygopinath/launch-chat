@@ -31,8 +31,8 @@
     <string name="replace_input_positive_button">Asenda sisend</string>
     <string name="replace_input_neutral_button">Loobu</string>
     <string name="action_type_telegram">Telegram</string>
-    <string name="activity_source_sms">SMSi link</string>
-    <string name="activity_source_mms">MMSi link</string>
+    <string name="activity_source_sms">SMS-i link</string>
+    <string name="activity_source_mms">MMS-i link</string>
     <string name="activity_source_contact">Kontakt</string>
     <string name="activity_source_manual_input">Käsitsi sisestatud</string>
     <string name="activity_source_history">Ajalugu</string>
@@ -66,4 +66,13 @@
     <string name="button_delete">Kustuta</string>
     <string name="label_launch_chat">Vestlusekäivitaja</string>
     <string name="username_selection_dialog_title">Tuvastasin mitu kasutajanime</string>
+    <string name="username_selection_dialog_message">Tundub, et saadaval on mitu kasutajanime. Kellega neist tahaksid vestelda?</string>
+    <string name="toast_chat_app_not_installed">Vestlusrakendus ega brauser pole paigaldatud</string>
+    <string name="error_empty_input">Palun sisesta telefoninumber või kasutajanimi</string>
+    <string name="error_incompatible_input">See vestlusrakendus ei toeta antud sisenditüüpi</string>
+    <string name="action_type_whatsapp_business">WhatsApp Business</string>
+    <string name="action_type_sms">SMS</string>
+    <string name="action_type_phone_call">Telefonikõne</string>
+    <string name="action_type_other">Muu</string>
+    <string name="contacts_permission_required_title">Õigused on vajalikud</string>
 </resources>
