@@ -46,4 +46,16 @@
     <string name="replace_input_message">Kliknąłeś element historii, gdy wprowadzony numer telefonu nie jest pusty. Czy chcesz zastąpić wprowadzony tekst elementem historii?</string>
     <string name="activity_source_manual_input">Ręczne wprowadzanie</string>
     <string name="select_contacts_not_ready_dialog_message">Ta funkcja nie jest jeszcze dostępna. Launch Chat może jednak otwierać kontakty, jeśli otworzysz aplikację Kontakty i udostępnisz kontakt Launch Chat. \n\nZobacz film demonstracyjny na https://github.com/vinaygopinath/launch-chat/pull/18</string>
+    <string name="label_launch_chat">Otwórz Czat</string>
+    <string name="username_selection_dialog_title">Wykryto kilka nazw użytkownika</string>
+    <string name="username_selection_dialog_message">Wygląda na to, że dostępnych jest kilka nazw użytkownika. Jakiej nazwy chcesz używać do pisania?</string>
+    <string name="toast_chat_app_not_installed">Aplikacja czatu albo przeglądarka nie są zainstalowane</string>
+    <string name="error_empty_input">Proszę podać numer telefonu albo nazwę użytkownika</string>
+    <string name="error_incompatible_input">Ta aplikacja czatu nie wspiera tego typu wejścia</string>
+    <string name="pref_missing_country_code_action_title">Akcja gdy brakuje kodu państwa</string>
+    <string name="pref_missing_country_code_action_entry_default_name">Używaj domyślnego kodu państwa</string>
+    <string name="pref_missing_country_code_action_entry_recent_name">Używaj najnowszego kodu państwa</string>
+    <string name="pref_missing_country_code_action_description_default_country_code_available">Używaj domyślego kodu państwa +%1$d</string>
+    <string name="pref_missing_country_code_action_description_default_country_code_missing">⚠️ Wybrano domyślny kod państwa, ale kod państwa nie ustawiony</string>
+    <string name="pref_missing_country_code_action_description_recent_country_code_available">Używaj najnowszego kodu państwa +%1$d</string>
 </resources>
