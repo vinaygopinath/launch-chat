@@ -1,3 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="app_name">Launch Chat</string>
+    <string name="button_open">Apri</string>
+    <string name="button_open_whatsapp_description">Apri con WhatsApp</string>
+    <string name="button_open_signal_description">Apri con Signal</string>
 </resources>
